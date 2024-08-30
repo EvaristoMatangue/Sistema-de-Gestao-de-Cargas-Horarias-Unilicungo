@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{237F9EC4-ED33-43B9-80C0-D2A6349BC881}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SGC</RootNamespace>
+    <AssemblyName>SGC</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.25.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.25.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.3.5\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.5\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.4.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.4.0\lib\net462\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlBackup, Version=2.3.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlBackup.NET.2.3.8\lib\netstandard2.0\MySqlBackup.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdSharp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdSharp.Port.0.7.1\lib\net461\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdmin.Designer.cs">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRelatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRelatorio.Designer.cs">
+      <DependentUpon>FormRelatorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helppers\Dados.cs" />
+    <Compile Include="Helppers\Helpper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="UCDisciplina.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDisciplina.Designer.cs">
+      <DependentUpon>UCDisciplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCDocenteAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDocenteAdmin.Designer.cs">
+      <DependentUpon>UCDocenteAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlterarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AlterarSenha.Designer.cs">
+      <DependentUpon>AlterarSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chefe de Departamento\FormChefeReparticao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Chefe de Departamento\FormChefeReparticao.Designer.cs">
+      <DependentUpon>FormChefeReparticao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chefe de Departamento\UCChefeDiscplina.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Chefe de Departamento\UCChefeDiscplina.Designer.cs">
+      <DependentUpon>UCChefeDiscplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chefe de Departamento\UCChefeDocentes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Chefe de Departamento\UCChefeDocentes.Designer.cs">
+      <DependentUpon>UCChefeDocentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormError.Designer.cs">
+      <DependentUpon>FormError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormReportar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormReportar.Designer.cs">
+      <DependentUpon>FormReportar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCGCCadastro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCGCCadastro.Designer.cs">
+      <DependentUpon>UCGCCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCGCDisciplina.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCGCDisciplina.Designer.cs">
+      <DependentUpon>UCGCDisciplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Docentes\FormDocente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Docentes\FormDocente.Designer.cs">
+      <DependentUpon>FormDocente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestorCurso\FormGestorCuros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GestorCurso\FormGestorCuros.Designer.cs">
+      <DependentUpon>FormGestorCuros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCMensagem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCMensagem.Designer.cs">
+      <DependentUpon>UCMensagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestorHR\UCGRHCadastro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GestorHR\UCGRHCadastro.Designer.cs">
+      <DependentUpon>UCGRHCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCGCCursos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GestorCurso\UCGCCursos.Designer.cs">
+      <DependentUpon>UCGCCursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SenhaPadrao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SenhaPadrao.Designer.cs">
+      <DependentUpon>SenhaPadrao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCChefedepartamento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCChefedepartamento.Designer.cs">
+      <DependentUpon>UCChefedepartamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCDashboard.Designer.cs">
+      <DependentUpon>UCDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCDocente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UCDocente.Designer.cs">
+      <DependentUpon>UCDocente.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRelatorio.resx">
+      <DependentUpon>FormRelatorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Relatorio.rdlc" />
+    <EmbeddedResource Include="UCDisciplina.resx">
+      <DependentUpon>UCDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDocenteAdmin.resx">
+      <DependentUpon>UCDocenteAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AlterarSenha.resx">
+      <DependentUpon>AlterarSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Chefe de Departamento\FormChefeReparticao.resx">
+      <DependentUpon>FormChefeReparticao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Chefe de Departamento\UCChefeDiscplina.resx">
+      <DependentUpon>UCChefeDiscplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Chefe de Departamento\UCChefeDocentes.resx">
+      <DependentUpon>UCChefeDocentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormError.resx">
+      <DependentUpon>FormError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormReportar.resx">
+      <DependentUpon>FormReportar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GestorCurso\UCGCCadastro.resx">
+      <DependentUpon>UCGCCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GestorCurso\UCGCDisciplina.resx">
+      <DependentUpon>UCGCDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Docentes\FormDocente.resx">
+      <DependentUpon>FormDocente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GestorCurso\FormGestorCuros.resx">
+      <DependentUpon>FormGestorCuros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GestorCurso\UCMensagem.resx">
+      <DependentUpon>UCMensagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GestorHR\UCGRHCadastro.resx">
+      <DependentUpon>UCGRHCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GestorCurso\UCGCCursos.resx">
+      <DependentUpon>UCGCCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SenhaPadrao.resx">
+      <DependentUpon>SenhaPadrao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UCChefedepartamento.resx">
+      <DependentUpon>UCChefedepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UCDashboard.resx">
+      <DependentUpon>UCDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UCDocente.resx">
+      <DependentUpon>UCDocente.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\FormRelatorio.datasource" />
+    <None Include="Properties\DataSources\SGC.Helppers.Dados.datasource" />
+    <None Include="Properties\DataSources\SGC.Helppers.Helpper.datasource" />
+    <None Include="Properties\DataSources\SGC.Helppers.Session.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clone_figure_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\novo.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_48px.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\error_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize_button_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\subtract_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_10px.png" />
+    <None Include="Resources\hide_10px.png" />
+    <None Include="Resources\eye_14px.png" />
+    <None Include="Resources\hide_14px.png" />
+    <None Include="Resources\eye_20px.png" />
+    <None Include="Resources\hide_20px.png" />
+    <None Include="Resources\elective_40px.png" />
+    <None Include="Resources\evajoma.png" />
+    <None Include="Resources\evaristo.PNG" />
+    <None Include="Resources\facebook_48px.png" />
+    <None Include="Resources\Faquira.jpg" />
+    <None Include="Resources\filter_30px.png" />
+    <None Include="Resources\filter_50px.png" />
+    <None Include="Resources\github_30px.png" />
+    <None Include="Resources\gmail_64px.png" />
+    <None Include="Resources\google_classroom_30px.png" />
+    <None Include="Resources\Graduation Cap_64px.png" />
+    <None Include="Resources\group_of_projects_64px.png" />
+    <None Include="Resources\icpedido.png" />
+    <None Include="Resources\icprofile.jpg" />
+    <None Include="Resources\IMG-2023-editado.jpg" />
+    <None Include="Resources\IMG-20211029-WA0009.jpg" />
+    <None Include="Resources\IMG-20230616-WA0012.jpg" />
+    <None Include="Resources\IMG-20231204-WA0001.jpg" />
+    <None Include="Resources\IMG-20231204-WA0002.jpg" />
+    <None Include="Resources\java_48px.png" />
+    <None Include="Resources\knowledge_sharing_80px.png" />
+    <None Include="Resources\laptop_coding_40px.png" />
+    <None Include="Resources\like.jpg" />
+    <None Include="Resources\link_40px.png" />
+    <None Include="Resources\localizacao.png" />
+    <None Include="Resources\localizacao2.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\m4.jpg" />
+    <None Include="Resources\mail_48px.png" />
+    <None Include="Resources\microsoft_powerpoint_40px.png" />
+    <None Include="Resources\N1.jpg" />
+    <None Include="Resources\note_80px.png" />
+    <None Include="Resources\open_book_64px.png" />
+    <None Include="Resources\person_teacher_48px.png" />
+    <None Include="Resources\elective.png" />
+    <None Include="Resources\person_teacher.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+</Project>
