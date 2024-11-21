@@ -54,7 +54,7 @@ namespace SGC.View.GestorHR
         {
             try
             {
-                using (MySqlConnection connection1 = new MySqlConnection(conn))
+                string nome = txtnome.Text;
                 {
 
                     if (connection1 != null)
