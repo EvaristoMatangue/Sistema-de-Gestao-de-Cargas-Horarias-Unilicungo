@@ -55,7 +55,26 @@ namespace SGC.View
             this.Close();
         }
 
-        private void btsubmenter_Click(object sender, EventArgs e)
+
+        private void btveresconder_Click(object sender, EventArgs e)
+        {
+                if (txtsenhaactual.UseSystemPasswordChar && txtconfirmar.UseSystemPasswordChar && txtnovasenha.UseSystemPasswordChar)
+            {
+                txtsenhaactual.UseSystemPasswordChar = false;
+                txtconfirmar.UseSystemPasswordChar = false;
+                txtnovasenha.UseSystemPasswordChar = false;
+                btveresconder.Image = Properties.Resources.hide_20px;
+            }
+            else
+            {
+                txtsenhaactual.UseSystemPasswordChar = true;
+                txtconfirmar.UseSystemPasswordChar = true;
+                txtnovasenha.UseSystemPasswordChar = true; 
+                btveresconder.Image = Properties.Resources.eye_20px;
+            }
+        }
+
+        private void btsubmeter_Click(object sender, EventArgs e)
         {
             string senha = "";
             using (MySqlConnection con = new MySqlConnection(conn))
@@ -129,16 +148,19 @@ namespace SGC.View
 
                                 if (rowsAffected > 0)
                                 {
+
                                     PopupNotifier popup = new PopupNotifier();
                                     popup.BodyColor = Color.White;
                                     popup.Image = Properties.Resources.ok_48px;
                                     popup.TitleText = "Sucesso";
-                                    popup.ContentText = "Registo Atualizado com sucesso!";
+                                    popup.ContentText = "Senha Actualizada com sucesso!";
                                     popup.Popup();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Falha ao atualizar os dados: ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Session.Error = "Falha ao atualizar a senha!";
+                                    FormError erro = new FormError();
+                                    erro.ShowDialog();
                                 }
                             }
                             this.Close();
@@ -161,26 +183,11 @@ namespace SGC.View
                     txterror.Text = $"{Helppers.Session.Error}";
                 }
             }
-
-
         }
 
-        private void btveresconder_Click(object sender, EventArgs e)
+        private void txtnovasenha_TextChanged(object sender, EventArgs e)
         {
-                if (txtsenhaactual.UseSystemPasswordChar && txtconfirmar.UseSystemPasswordChar && txtnovasenha.UseSystemPasswordChar)
-            {
-                txtsenhaactual.UseSystemPasswordChar = false;
-                txtconfirmar.UseSystemPasswordChar = false;
-                txtnovasenha.UseSystemPasswordChar = false;
-                btveresconder.Image = Properties.Resources.hide_20px;
-            }
-            else
-            {
-                txtsenhaactual.UseSystemPasswordChar = true;
-                txtconfirmar.UseSystemPasswordChar = true;
-                txtnovasenha.UseSystemPasswordChar = true; 
-                btveresconder.Image = Properties.Resources.eye_20px;
-            }
+
         }
     }
 }

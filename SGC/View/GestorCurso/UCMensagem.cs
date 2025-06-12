@@ -36,7 +36,7 @@ namespace SGC.View.GestorCurso
                         connection.Close();
                     }
                     connection.Open();
-                    string query = "SELECT m.mensagem FROM mensagens as m join gestorescurso as g ON g.nome= m.nomedestinatario WHERE m.nomedestinatario = @nome";
+                    string query = "SELECT m.conteudo FROM mensagens as m join gestorescurso as g ON g.nome= m.nomedestinatario WHERE m.nomedestinatario = @nome";
                     string query1 = "SELECT COUNT(*) as total FROM mensagens where nomedestinatario = @nome";
                     MySqlCommand command1 = new MySqlCommand(query1, connection);
                     command1.Parameters.AddWithValue("@nome", $"{Helppers.Session.Nomec}");
@@ -52,7 +52,7 @@ namespace SGC.View.GestorCurso
                             {
                                 while (reader.Read())
                                 {
-                                    lmensagem.Text += reader["mensagem"].ToString() + Environment.NewLine + Environment.NewLine;
+                                    lmensagem.Text += reader["conteudo"].ToString() + Environment.NewLine + Environment.NewLine;
                                 }
                             }else{
                                 lmensagem.Text="Nenhuma Mensagem disponivel!";
@@ -85,7 +85,7 @@ namespace SGC.View.GestorCurso
                             PopupNotifier popup = new PopupNotifier();
                             //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
                             popup.BodyColor = Color.White;
-                            popup.Image = Properties.Resources.exit;
+                            popup.Image = Properties.Resources.ok_48px;
                             popup.TitleText = "Sucesso";
                             popup.ContentText = "Mensagens Eliminado com sucesso!";
                             popup.Popup();

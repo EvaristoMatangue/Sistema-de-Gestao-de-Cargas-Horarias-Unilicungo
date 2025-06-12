@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,17 @@ namespace SGC
             painelprincipal.Controls.Clear();
             painelprincipal.Controls.Add(dashboard);
 
-            
+            ToolTip toolTip = new ToolTip();
+
+            // Configurações opcionais
+            toolTip.AutoPopDelay = 5000; // O tempo em milissegundos que o tooltip permanece visível
+            toolTip.InitialDelay = 100;  // Atraso antes de aparecer após o cursor parar no botão
+            toolTip.ReshowDelay = 100;   // Intervalo entre exibições sucessivas do tooltip
+            toolTip.ShowAlways = true;   // Sempre mostra o tooltip mesmo com o botão inativo
+
+            // Definindo o texto para os botões
+            toolTip.SetToolTip(btrestaurar, "Restaurar os dados do sistema a partir do backup.");
+            toolTip.SetToolTip(btbackup, "Realizar o backup dos dados do sistema.");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -222,15 +233,12 @@ namespace SGC
 
         private void btapagar_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            login.Show();
+            
         }
 
         private void btrestaurar_Click(object sender, EventArgs e)
         {
-            string path = @"C:\\Users\\EVARISTO\\Documents\backup-SGContratos.sql";
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "backup-SGCH.sql");
             MySqlCommand cmd = new MySqlCommand();
             MySqlBackup bkp = new MySqlBackup(cmd);
 
@@ -239,18 +247,15 @@ namespace SGC
             bkp.ImportFromFile(path);
             con.Close();
 
-            PopupNotifier popup = new PopupNotifier();
-            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-            popup.BodyColor = Color.White;
-            popup.Image = Properties.Resources.ok_48px;
-            popup.TitleText = "Sucesso";
-            popup.ContentText = "Restauro Feito com sucesso!";
-            popup.Popup();
+            Helppers.Session.Sucess = "Restauro Feito com sucesso!";
+            FormSucess sucess = new FormSucess();
+            sucess.ShowDialog();
+
         }
 
         private void btbackup_Click(object sender, EventArgs e)
         {
-            string path = @"C:\\Users\\EVARISTO\\Documents\backup-SGContratos.sql";
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "backup-SGCH.sql");
             MySqlCommand cmd = new MySqlCommand();
             MySqlBackup bkp = new MySqlBackup(cmd);
 
@@ -258,12 +263,10 @@ namespace SGC
             con.Open();
             bkp.ExportToFile(path);
             con.Close();
-            PopupNotifier popup = new PopupNotifier();
-            popup.BodyColor = Color.White;
-            popup.Image = Properties.Resources.ok_48px;
-            popup.TitleText = "Sucesso";
-            popup.ContentText = "Backup Feito com sucesso!";
-            popup.Popup();
+
+            Helppers.Session.Sucess = "Backup Feito com sucesso!";
+            FormSucess sucess = new FormSucess();
+            sucess.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -316,13 +319,21 @@ namespace SGC
             if (i == 5)
             {
                 timer1.Stop();
-                if (BCrypt.Net.BCrypt.Verify("1234", $"{Helppers.Session.s}"))
+                if (BCrypt.Net.BCrypt.Verify($"{Helppers.Session.UserName}" + "1234", $"{Helppers.Session.s}"))
                 {
                     SenhaPadrao senhapadrao = new SenhaPadrao();
                     senhapadrao.ShowDialog();
 
                 }
             }
+        }
+
+        private void btsair_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            login.Show();
         }
     }
 }

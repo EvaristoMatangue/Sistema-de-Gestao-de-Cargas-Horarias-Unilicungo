@@ -73,6 +73,13 @@ namespace SGC.View
         private void btsubmenter_Click(object sender, EventArgs e)
         {
 
+            if (txtmensagem.Text == "")
+            {
+                Session.Error = "Escreve alguma coisa para enviar uma mensagem";
+
+            }
+            else
+            {
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
                 if (connection != null)
@@ -109,16 +116,13 @@ namespace SGC.View
                 // Execute o comando de inserção
                 command.ExecuteNonQuery();
 
-
-                PopupNotifier popup = new PopupNotifier();
-                //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                popup.BodyColor = Color.White;
-                popup.Image = Properties.Resources.ok_48px;
-                popup.TitleText = "Sucesso";
-                popup.ContentText = "Mensagem enviado com sucesso!";
-                popup.Popup();
-                // Feche a conexão
+                Session.Sucess = "Mensagem enviado com sucesso!";
+                FormSucess sucess = new FormSucess();
+                sucess.ShowDialog();
+                   
                 connection.Close();
+
+            }
 
             }
         }

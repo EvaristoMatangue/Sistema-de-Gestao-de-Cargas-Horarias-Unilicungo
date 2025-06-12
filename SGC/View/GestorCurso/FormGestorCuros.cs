@@ -24,11 +24,14 @@ namespace SGC.View
             InitializeComponent();
             Carregarnum();
             luser.Text = $"{Helppers.Session.Sobrenomec}";
+            lcurso.Text = $"{Helppers.Session.curso}";
+
             UCDashboard dashboard = new UCDashboard();
 
             painelprincipal.Controls.Clear();
             painelprincipal.Controls.Add(dashboard);
             timer1.Start();
+
         }
         private void Carregarnum()
         {
@@ -123,10 +126,7 @@ namespace SGC.View
 
         private void btapagar_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            login.Show();
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -186,7 +186,7 @@ namespace SGC.View
             if (i == 5)
             {
                 timer1.Stop();
-                if (BCrypt.Net.BCrypt.Verify("1234", $"{Helppers.Session.s}"))
+                if (BCrypt.Net.BCrypt.Verify($"{Helppers.Session.UserName}" + "1234", $"{Helppers.Session.s}"))
                 {
                     SenhaPadrao senhapadrao = new SenhaPadrao();
                     senhapadrao.ShowDialog();
@@ -198,6 +198,14 @@ namespace SGC.View
         private void FormGestorCuros_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void btapagar_Click_1(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            login.Show();
         }
     }
 }

@@ -10,11 +10,12 @@ namespace SGC.Helppers
 {
     public static class Session
     {
-        public static string conn = "datasource=localhost;port=3306;username=root;password=;database=gestao_contratos";
+        public static string conn = "datasource=localhost;port=3306;username=root;password=;database=cargas_horarias_unilicungo";
         public static string UserName { get; set; }
         public static string Nomec { get; set; }
         public static string Nome { get; set; }
         public static string Nomerh { get; set; }
+        public static string Sucess { get; set; }
         public static string Emailrh { get; set; }
         public static string hoje { get; set; }
         public static string Emailc { get; set; }
@@ -28,7 +29,7 @@ namespace SGC.Helppers
     }
     public static class conexao
     {
-        public static string connectionString = "Server=localhost;Database=gestao_contratos;User=root;Password=;";
+        public static string connectionString = "Server=localhost;Database=cargas_horarias_unilicungo;User=root;Password=;";
 
         public static string path = Directory.GetCurrentDirectory() + "\\banco-de-dados-SGC.sqlite";
         private static string sqliteconn;

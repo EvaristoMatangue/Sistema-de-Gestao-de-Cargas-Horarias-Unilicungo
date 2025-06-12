@@ -42,7 +42,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.luser = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.siticoneButton1 = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.btdocente = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btdisciplina = new System.Windows.Forms.Button();
@@ -65,25 +65,25 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Fax", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
             this.label2.Location = new System.Drawing.Point(6, 2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(662, 38);
+            this.label2.Size = new System.Drawing.Size(612, 37);
             this.label2.TabIndex = 8;
             this.label2.Text = "Sistema de Gestão de Cargas Horarias";
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.button5);
             this.panel6.Controls.Add(this.btimprimir);
             this.panel6.Controls.Add(this.label3);
-            this.panel6.Controls.Add(this.label2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(186, 35);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(917, 61);
+            this.panel6.Size = new System.Drawing.Size(924, 61);
             this.panel6.TabIndex = 16;
             // 
             // button5
@@ -93,7 +93,7 @@
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(850, 6);
+            this.button5.Location = new System.Drawing.Point(834, 6);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(47, 46);
             this.button5.TabIndex = 11;
@@ -107,7 +107,7 @@
             this.btimprimir.FlatAppearance.BorderSize = 0;
             this.btimprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btimprimir.Image = global::SGC.Properties.Resources.print_24px;
-            this.btimprimir.Location = new System.Drawing.Point(798, 6);
+            this.btimprimir.Location = new System.Drawing.Point(782, 6);
             this.btimprimir.Name = "btimprimir";
             this.btimprimir.Size = new System.Drawing.Size(47, 46);
             this.btimprimir.TabIndex = 10;
@@ -116,11 +116,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Lucida Fax", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(347, 38);
+            this.label3.Location = new System.Drawing.Point(347, 34);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(225, 22);
+            this.label3.Size = new System.Drawing.Size(226, 28);
             this.label3.TabIndex = 7;
             this.label3.Text = "==Unilicungo-Beira==";
             // 
@@ -132,7 +132,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 35);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(186, 508);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(186, 513);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
             // panel3
@@ -149,11 +149,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Fax", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
             this.label4.Location = new System.Drawing.Point(103, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 46);
+            this.label4.Size = new System.Drawing.Size(73, 46);
             this.label4.TabIndex = 6;
             this.label4.Text = "UL";
             // 
@@ -178,17 +178,17 @@
             // luser
             // 
             this.luser.AutoSize = true;
-            this.luser.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.luser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(63)))), ((int)(((byte)(1)))));
             this.luser.Location = new System.Drawing.Point(3, 70);
             this.luser.Name = "luser";
-            this.luser.Size = new System.Drawing.Size(64, 18);
+            this.luser.Size = new System.Drawing.Size(59, 20);
             this.luser.TabIndex = 5;
             this.luser.Text = "Admin";
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.button6);
+            this.panel4.Controls.Add(this.siticoneButton1);
             this.panel4.Controls.Add(this.btdocente);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.btdisciplina);
@@ -198,26 +198,29 @@
             this.panel4.Size = new System.Drawing.Size(183, 408);
             this.panel4.TabIndex = 6;
             // 
-            // button6
+            // siticoneButton1
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(-3, 380);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(184, 25);
-            this.button6.TabIndex = 65;
-            this.button6.Text = "Sair";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.siticoneButton1.BorderRadius = 3;
+            this.siticoneButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.siticoneButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.siticoneButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.siticoneButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.siticoneButton1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siticoneButton1.ForeColor = System.Drawing.Color.White;
+            this.siticoneButton1.Location = new System.Drawing.Point(0, 374);
+            this.siticoneButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.siticoneButton1.Name = "siticoneButton1";
+            this.siticoneButton1.Size = new System.Drawing.Size(183, 29);
+            this.siticoneButton1.TabIndex = 66;
+            this.siticoneButton1.Text = "Sair";
+            this.siticoneButton1.Click += new System.EventHandler(this.siticoneButton1_Click);
             // 
             // btdocente
             // 
             this.btdocente.FlatAppearance.BorderSize = 0;
             this.btdocente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btdocente.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btdocente.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btdocente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btdocente.Location = new System.Drawing.Point(4, 89);
             this.btdocente.Name = "btdocente";
@@ -232,7 +235,7 @@
             // 
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.button4.Location = new System.Drawing.Point(4, 133);
             this.button4.Name = "button4";
@@ -247,7 +250,7 @@
             // 
             this.btdisciplina.FlatAppearance.BorderSize = 0;
             this.btdisciplina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btdisciplina.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btdisciplina.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btdisciplina.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btdisciplina.Location = new System.Drawing.Point(3, 47);
             this.btdisciplina.Name = "btdisciplina";
@@ -263,7 +266,7 @@
             this.btdashboard.BackColor = System.Drawing.Color.Silver;
             this.btdashboard.FlatAppearance.BorderSize = 0;
             this.btdashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btdashboard.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btdashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btdashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btdashboard.Location = new System.Drawing.Point(3, 3);
             this.btdashboard.Name = "btdashboard";
@@ -290,7 +293,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1103, 35);
+            this.panel1.Size = new System.Drawing.Size(1110, 35);
             this.panel1.TabIndex = 13;
             // 
             // button2
@@ -298,9 +301,9 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Lucida Fax", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(971, 0);
+            this.button2.Location = new System.Drawing.Point(975, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 29);
             this.button2.TabIndex = 6;
@@ -314,7 +317,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(1011, 0);
+            this.button3.Location = new System.Drawing.Point(1015, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(45, 29);
             this.button3.TabIndex = 7;
@@ -327,10 +330,10 @@
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(1056, 0);
+            this.button1.Location = new System.Drawing.Point(1060, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(46, 29);
             this.button1.TabIndex = 5;
@@ -342,7 +345,7 @@
             this.painelprincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelprincipal.Location = new System.Drawing.Point(186, 96);
             this.painelprincipal.Name = "painelprincipal";
-            this.painelprincipal.Size = new System.Drawing.Size(917, 447);
+            this.painelprincipal.Size = new System.Drawing.Size(924, 452);
             this.painelprincipal.TabIndex = 15;
             // 
             // timer1
@@ -353,7 +356,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 543);
+            this.ClientSize = new System.Drawing.Size(1110, 548);
             this.Controls.Add(this.painelprincipal);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -399,7 +402,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel painelprincipal;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Timer timer1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton siticoneButton1;
     }
 }

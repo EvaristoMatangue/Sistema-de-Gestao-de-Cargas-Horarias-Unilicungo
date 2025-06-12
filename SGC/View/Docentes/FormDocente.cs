@@ -13,69 +13,23 @@ namespace SGC.View
 {
     public partial class FormDocente : Form
     {
-        string connectionString = $"{Helppers.conexao.connectionString}";
+        string conn = $"{Helppers.conexao.connectionString}";
 
         public FormDocente()
         {
             InitializeComponent();
             CarregarDados();
         }
-        private void CarregarDados()
+        private string semestreSelecionado = ""; // Variável para armazenar o semestre selecionado
+
+        private void UCDashboard_Load(object sender, EventArgs e)
         {
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-                            WHERE 
-                                d.nome = di.docente
-                            ORDER BY
-                                NomeDocente";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
-           
+            CarregarDados();
         }
 
-        private void llaporal_Click(object sender, EventArgs e)
+        private void CarregarDados(string filtroSemestre = null)
         {
-            llaporal.BackColor = Color.FromArgb(0, 138, 210);
-            llaporal.ForeColor = Color.White;
-            lposlaboral.ForeColor = Color.FromArgb(0, 138, 210);
-            lposlaboral.BackColor = Color.Transparent;
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                string query = @"
+            string query = @"
                             SELECT 
                                 d.Nome AS NomeDocente,
                                 di.Nivel,
@@ -84,7 +38,6 @@ namespace SGC.View
                                 di.CargaHoraria,
                                 t.TotalCargaHoraria,
                                 d.Observacao
-                                
                             FROM 
                                 Docentes d
                             JOIN 
@@ -101,11 +54,17 @@ namespace SGC.View
                                     GROUP BY 
                                         di.DocenteID
                                 ) t ON d.ID = t.DocenteID
-                            WHERE 
-                                di.Semestre = '1º Semestre'
-                            ORDER BY 
-                                NomeDocente";
+                            ";
 
+            if (!string.IsNullOrEmpty(filtroSemestre))
+            {
+                query += $" WHERE di.Semestre = '{filtroSemestre}'";
+            }
+
+            query += " ORDER BY NomeDocente";
+
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
 
@@ -116,15 +75,28 @@ namespace SGC.View
             }
         }
 
-        private void lposlaboral_Click(object sender, EventArgs e)
+        private void AtualizarCoresSemestre(Label labelSelecionado)
         {
-            lposlaboral.BackColor = Color.FromArgb(0, 138, 210);
-            lposlaboral.ForeColor = Color.White;
-            llaporal.ForeColor = Color.FromArgb(0, 138, 210);
-            llaporal.BackColor = Color.Transparent;
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            Label[] labels = { lsemestreum, lsemestredois };
+
+            foreach (var label in labels)
             {
-                string query = @"
+                if (label == labelSelecionado && !string.IsNullOrEmpty(semestreSelecionado))
+                {
+                    label.BackColor = Color.FromArgb(0, 138, 210);
+                    label.ForeColor = Color.White;
+                }
+                else
+                {
+                    label.BackColor = Color.Transparent;
+                    label.ForeColor = Color.FromArgb(0, 138, 210);
+                }
+            }
+        }
+
+        private void CarregarDadosPorPeriodo(string periodo)
+        {
+            string query = @"
                             SELECT 
                                 d.Nome AS NomeDocente,
                                 di.Nivel,
@@ -133,7 +105,6 @@ namespace SGC.View
                                 di.CargaHoraria,
                                 t.TotalCargaHoraria,
                                 d.Observacao
-                                
                             FROM 
                                 Docentes d
                             JOIN 
@@ -151,11 +122,14 @@ namespace SGC.View
                                         di.DocenteID
                                 ) t ON d.ID = t.DocenteID
                             WHERE 
-                                di.Semestre = '2º Semestre'
+                                c.Periodo = @Periodo
                             ORDER BY 
                                 NomeDocente";
 
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
                 MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Periodo", periodo);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
 
                 DataTable dataTable = new DataTable();
@@ -163,6 +137,61 @@ namespace SGC.View
 
                 dataGridView1.DataSource = dataTable;
             }
+        }
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            log.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            log.Show();
+        }
+
+        private void btlaboral_Click_1(object sender, EventArgs e)
+        {
+            CarregarDadosPorPeriodo("laboral");
+        }
+
+        private void lsemestreum_Click_1(object sender, EventArgs e)
+        {
+            if (semestreSelecionado == "1º Semestre")
+            {
+                // Se já está selecionado, limpa o filtro e exibe todos os semestres
+                semestreSelecionado = "";
+                CarregarDados();
+            }
+            else
+            {
+                semestreSelecionado = "1º Semestre";
+                CarregarDados("1º Semestre");
+            }
+
+            AtualizarCoresSemestre(lsemestreum);
+        }
+
+        private void lsemestredois_Click(object sender, EventArgs e)
+        {
+            if (semestreSelecionado == "2º Semestre")
+            {
+                // Se já está selecionado, limpa o filtro e exibe todos os semestres
+                semestreSelecionado = "";
+                CarregarDados();
+            }
+            else
+            {
+                semestreSelecionado = "2º Semestre";
+                CarregarDados("2º Semestre");
+            }
+
+            AtualizarCoresSemestre(lsemestredois);
+        }
+
+        private void btposlaboral_Click_1(object sender, EventArgs e)
+        {
+            CarregarDadosPorPeriodo("pos-laboral");
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
 
@@ -176,12 +205,12 @@ namespace SGC.View
             if (WindowState == FormWindowState.Normal)
             {
                 WindowState = FormWindowState.Maximized;
-                button3.Image = Properties.Resources.copy_24px;
+                button3.Image = Properties.Resources.clone_figure_20px;
             }
             else
             {
                 WindowState = FormWindowState.Normal;
-                button3.Image = Properties.Resources.maximize_button_24px;
+                button3.Image = Properties.Resources.maximize_button_20px;
 
             }
         }
@@ -191,17 +220,9 @@ namespace SGC.View
             WindowState = FormWindowState.Minimized;
         }
 
-        private void painelprincipal_Paint(object sender, PaintEventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
-
-        private void btapagar_Click(object sender, EventArgs e)
-        {
-            Login log = new Login();
-            log.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            log.Show();
         }
     }
 }

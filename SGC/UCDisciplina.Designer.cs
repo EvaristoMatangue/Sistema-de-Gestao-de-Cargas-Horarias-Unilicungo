@@ -28,220 +28,312 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtnome = new System.Windows.Forms.TextBox();
-            this.txtcarga = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbcurso = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
-            this.btactualizar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbsemestre = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtnivel = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbdocente = new System.Windows.Forms.ComboBox();
-            this.btcadastrar = new System.Windows.Forms.Button();
+            this.cbsemestre = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.txtcarga = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtnivel = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbcurso = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.cbdocente = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.txtnome = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.btactualizar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.btcadastrar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtnome
-            // 
-            this.txtnome.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnome.Location = new System.Drawing.Point(6, 117);
-            this.txtnome.Name = "txtnome";
-            this.txtnome.Size = new System.Drawing.Size(201, 25);
-            this.txtnome.TabIndex = 0;
-            // 
-            // txtcarga
-            // 
-            this.txtcarga.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcarga.Location = new System.Drawing.Point(6, 177);
-            this.txtcarga.Name = "txtcarga";
-            this.txtcarga.Size = new System.Drawing.Size(201, 25);
-            this.txtcarga.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 99);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Nome";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 159);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Carga horaria";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 213);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Nivel";
-            // 
-            // cbcurso
-            // 
-            this.cbcurso.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbcurso.FormattingEnabled = true;
-            this.cbcurso.Location = new System.Drawing.Point(6, 285);
-            this.cbcurso.Name = "cbcurso";
-            this.cbcurso.Size = new System.Drawing.Size(201, 25);
-            this.cbcurso.TabIndex = 6;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 268);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(4, 235);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 17);
+            this.label4.Size = new System.Drawing.Size(49, 18);
             this.label4.TabIndex = 8;
             this.label4.Text = "Curso";
-            // 
-            // btactualizar
-            // 
-            this.btactualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.btactualizar.FlatAppearance.BorderSize = 0;
-            this.btactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btactualizar.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btactualizar.ForeColor = System.Drawing.Color.White;
-            this.btactualizar.Location = new System.Drawing.Point(736, 86);
-            this.btactualizar.Name = "btactualizar";
-            this.btactualizar.Size = new System.Drawing.Size(160, 25);
-            this.btactualizar.TabIndex = 11;
-            this.btactualizar.Text = "Actualizar";
-            this.btactualizar.UseVisualStyleBackColor = false;
-            this.btactualizar.Click += new System.EventHandler(this.btactualizar_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(234, 117);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(662, 298);
-            this.dataGridView1.TabIndex = 12;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 373);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 17);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Semestre";
-            // 
-            // cbsemestre
-            // 
-            this.cbsemestre.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbsemestre.FormattingEnabled = true;
-            this.cbsemestre.Items.AddRange(new object[] {
-            "1º Semestre",
-            "2º Semestre"});
-            this.cbsemestre.Location = new System.Drawing.Point(6, 390);
-            this.cbsemestre.Name = "cbsemestre";
-            this.cbsemestre.Size = new System.Drawing.Size(201, 25);
-            this.cbsemestre.TabIndex = 13;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Lucida Fax", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.label6.Location = new System.Drawing.Point(264, 10);
+            this.label6.Location = new System.Drawing.Point(290, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(342, 33);
+            this.label6.Size = new System.Drawing.Size(314, 33);
             this.label6.TabIndex = 15;
             this.label6.Text = "Cadastrar Disciplinas";
-            // 
-            // txtnivel
-            // 
-            this.txtnivel.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnivel.FormattingEnabled = true;
-            this.txtnivel.Items.AddRange(new object[] {
-            "1º Ano",
-            "2º Ano",
-            "3º Ano",
-            "4º Ano"});
-            this.txtnivel.Location = new System.Drawing.Point(6, 231);
-            this.txtnivel.Name = "txtnivel";
-            this.txtnivel.Size = new System.Drawing.Size(201, 25);
-            this.txtnivel.TabIndex = 23;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 318);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(4, 299);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 17);
+            this.label7.Size = new System.Drawing.Size(64, 18);
             this.label7.TabIndex = 25;
             this.label7.Text = "Docente";
             // 
-            // cbdocente
+            // cbsemestre
             // 
-            this.cbdocente.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbdocente.FormattingEnabled = true;
-            this.cbdocente.Items.AddRange(new object[] {
+            this.cbsemestre.BackColor = System.Drawing.Color.Transparent;
+            this.cbsemestre.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbsemestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbsemestre.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbsemestre.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbsemestre.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbsemestre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbsemestre.ItemHeight = 30;
+            this.cbsemestre.Items.AddRange(new object[] {
             "1º Semestre",
             "2º Semestre"});
-            this.cbdocente.Location = new System.Drawing.Point(6, 335);
+            this.cbsemestre.Location = new System.Drawing.Point(6, 386);
+            this.cbsemestre.Margin = new System.Windows.Forms.Padding(2);
+            this.cbsemestre.Name = "cbsemestre";
+            this.cbsemestre.Size = new System.Drawing.Size(206, 36);
+            this.cbsemestre.TabIndex = 98;
+            // 
+            // txtcarga
+            // 
+            this.txtcarga.BorderRadius = 3;
+            this.txtcarga.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtcarga.DefaultText = "";
+            this.txtcarga.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtcarga.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtcarga.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtcarga.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtcarga.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtcarga.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtcarga.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtcarga.Location = new System.Drawing.Point(8, 130);
+            this.txtcarga.Margin = new System.Windows.Forms.Padding(2);
+            this.txtcarga.Name = "txtcarga";
+            this.txtcarga.PasswordChar = '\0';
+            this.txtcarga.PlaceholderText = "Máx: 6";
+            this.txtcarga.SelectedText = "";
+            this.txtcarga.Size = new System.Drawing.Size(205, 35);
+            this.txtcarga.TabIndex = 97;
+            this.txtcarga.Leave += new System.EventHandler(this.txtcarga_Leave);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(4, 169);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(129, 21);
+            this.label8.TabIndex = 96;
+            this.label8.Text = "Selecione o Nivel";
+            // 
+            // txtnivel
+            // 
+            this.txtnivel.BackColor = System.Drawing.Color.Transparent;
+            this.txtnivel.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.txtnivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtnivel.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtnivel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtnivel.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtnivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.txtnivel.ItemHeight = 30;
+            this.txtnivel.Items.AddRange(new object[] {
+            "1º Ano",
+            "2º Ano",
+            "3º Ano",
+            "4º Ano",
+            "5º Ano"});
+            this.txtnivel.Location = new System.Drawing.Point(8, 195);
+            this.txtnivel.Margin = new System.Windows.Forms.Padding(2);
+            this.txtnivel.Name = "txtnivel";
+            this.txtnivel.Size = new System.Drawing.Size(206, 36);
+            this.txtnivel.TabIndex = 95;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(5, 107);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(107, 21);
+            this.label9.TabIndex = 94;
+            this.label9.Text = "Carga Horária";
+            // 
+            // cbcurso
+            // 
+            this.cbcurso.BackColor = System.Drawing.Color.Transparent;
+            this.cbcurso.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcurso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcurso.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcurso.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcurso.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbcurso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcurso.ItemHeight = 30;
+            this.cbcurso.Location = new System.Drawing.Point(8, 257);
+            this.cbcurso.Margin = new System.Windows.Forms.Padding(2);
+            this.cbcurso.Name = "cbcurso";
+            this.cbcurso.Size = new System.Drawing.Size(206, 36);
+            this.cbcurso.TabIndex = 93;
+            // 
+            // cbdocente
+            // 
+            this.cbdocente.BackColor = System.Drawing.Color.Transparent;
+            this.cbdocente.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbdocente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbdocente.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbdocente.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbdocente.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbdocente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbdocente.ItemHeight = 30;
+            this.cbdocente.Location = new System.Drawing.Point(6, 321);
+            this.cbdocente.Margin = new System.Windows.Forms.Padding(2);
             this.cbdocente.Name = "cbdocente";
-            this.cbdocente.Size = new System.Drawing.Size(201, 25);
-            this.cbdocente.TabIndex = 24;
+            this.cbdocente.Size = new System.Drawing.Size(206, 36);
+            this.cbdocente.TabIndex = 92;
+            // 
+            // txtnome
+            // 
+            this.txtnome.BorderRadius = 3;
+            this.txtnome.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtnome.DefaultText = "";
+            this.txtnome.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtnome.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtnome.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtnome.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtnome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtnome.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtnome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtnome.Location = new System.Drawing.Point(7, 68);
+            this.txtnome.Margin = new System.Windows.Forms.Padding(2);
+            this.txtnome.Name = "txtnome";
+            this.txtnome.PasswordChar = '\0';
+            this.txtnome.PlaceholderText = "Digite o nome da Disciplina";
+            this.txtnome.SelectedText = "";
+            this.txtnome.Size = new System.Drawing.Size(205, 36);
+            this.txtnome.TabIndex = 91;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(4, 362);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 18);
+            this.label10.TabIndex = 90;
+            this.label10.Text = "Semestre";
+            // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeight = 18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dataGridView1.Location = new System.Drawing.Point(229, 117);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(667, 305);
+            this.dataGridView1.TabIndex = 99;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dataGridView1.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.dataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.ThemeStyle.HeaderStyle.Height = 18;
+            this.dataGridView1.ThemeStyle.ReadOnly = false;
+            this.dataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.dataGridView1.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dataGridView1.ThemeStyle.RowsStyle.Height = 28;
+            this.dataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
+            // 
+            // btactualizar
+            // 
+            this.btactualizar.BorderRadius = 3;
+            this.btactualizar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btactualizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btactualizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btactualizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
+            this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btactualizar.ForeColor = System.Drawing.Color.White;
+            this.btactualizar.Location = new System.Drawing.Point(713, 68);
+            this.btactualizar.Margin = new System.Windows.Forms.Padding(2);
+            this.btactualizar.Name = "btactualizar";
+            this.btactualizar.Size = new System.Drawing.Size(183, 36);
+            this.btactualizar.TabIndex = 101;
+            this.btactualizar.Text = "Actualizar";
+            this.btactualizar.Click += new System.EventHandler(this.btactualizar_Click_1);
             // 
             // btcadastrar
             // 
-            this.btcadastrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btcadastrar.FlatAppearance.BorderSize = 0;
-            this.btcadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btcadastrar.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btcadastrar.BorderRadius = 3;
+            this.btcadastrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btcadastrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btcadastrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btcadastrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btcadastrar.FillColor = System.Drawing.Color.Green;
+            this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btcadastrar.ForeColor = System.Drawing.Color.White;
-            this.btcadastrar.Location = new System.Drawing.Point(566, 86);
+            this.btcadastrar.Location = new System.Drawing.Point(505, 68);
+            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2);
             this.btcadastrar.Name = "btcadastrar";
-            this.btcadastrar.Size = new System.Drawing.Size(164, 25);
-            this.btcadastrar.TabIndex = 26;
+            this.btcadastrar.Size = new System.Drawing.Size(183, 36);
+            this.btcadastrar.TabIndex = 100;
             this.btcadastrar.Text = "Cadastrar";
-            this.btcadastrar.UseVisualStyleBackColor = false;
-            this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click);
+            this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click_1);
             // 
             // UCDisciplina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btcadastrar);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.cbdocente);
-            this.Controls.Add(this.txtnivel);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.cbsemestre);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btactualizar);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbcurso);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btcadastrar);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.cbsemestre);
             this.Controls.Add(this.txtcarga);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtnivel);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cbcurso);
+            this.Controls.Add(this.cbdocente);
             this.Controls.Add(this.txtnome);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
             this.Name = "UCDisciplina";
             this.Size = new System.Drawing.Size(917, 447);
             this.Load += new System.EventHandler(this.UCDisciplina_Load);
@@ -252,22 +344,20 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtnome;
-        private System.Windows.Forms.TextBox txtcarga;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbcurso;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btactualizar;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbsemestre;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox txtnivel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbdocente;
-        private System.Windows.Forms.Button btcadastrar;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbsemestre;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtcarga;
+        private System.Windows.Forms.Label label8;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox txtnivel;
+        private System.Windows.Forms.Label label9;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbcurso;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbdocente;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtnome;
+        private System.Windows.Forms.Label label10;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dataGridView1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btactualizar;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btcadastrar;
     }
 }

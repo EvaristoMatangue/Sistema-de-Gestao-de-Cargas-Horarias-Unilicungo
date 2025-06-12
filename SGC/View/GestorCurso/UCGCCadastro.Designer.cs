@@ -28,55 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btactualizar = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
-            this.txttelefone = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtemail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtusuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbcurso = new System.Windows.Forms.ComboBox();
-            this.btapagar = new System.Windows.Forms.Button();
-            this.btcadastrar = new System.Windows.Forms.Button();
-            this.txtnome = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
+            this.txtnome = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.txtusuario = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.txtemail = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.txttelefone = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.cbcurso = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.btcadastrar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.btactualizar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.btapagar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(50, 217);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(820, 225);
-            this.dataGridView1.TabIndex = 59;
-            this.dataGridView1.AutoSizeColumnModeChanged += new System.Windows.Forms.DataGridViewAutoSizeColumnModeEventHandler(this.dataGridView1_AutoSizeColumnModeChanged);
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // btactualizar
-            // 
-            this.btactualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btactualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.btactualizar.FlatAppearance.BorderSize = 0;
-            this.btactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btactualizar.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btactualizar.ForeColor = System.Drawing.Color.White;
-            this.btactualizar.Location = new System.Drawing.Point(663, 134);
-            this.btactualizar.Name = "btactualizar";
-            this.btactualizar.Size = new System.Drawing.Size(207, 25);
-            this.btactualizar.TabIndex = 58;
-            this.btactualizar.Text = "Actualizar";
-            this.btactualizar.UseVisualStyleBackColor = false;
-            this.btactualizar.Click += new System.EventHandler(this.btactualizar_Click);
             // 
             // label6
             // 
@@ -84,24 +55,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(346, 114);
+            this.label6.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(345, 110);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 17);
+            this.label6.Size = new System.Drawing.Size(77, 24);
             this.label6.TabIndex = 57;
             this.label6.Text = "Telefone";
-            // 
-            // txttelefone
-            // 
-            this.txttelefone.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txttelefone.Enabled = false;
-            this.txttelefone.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttelefone.Location = new System.Drawing.Point(349, 134);
-            this.txttelefone.Name = "txttelefone";
-            this.txttelefone.Size = new System.Drawing.Size(294, 25);
-            this.txttelefone.TabIndex = 56;
             // 
             // label4
             // 
@@ -109,24 +68,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(46, 166);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(47, 169);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 17);
+            this.label4.Size = new System.Drawing.Size(52, 24);
             this.label4.TabIndex = 53;
             this.label4.Text = "Email";
-            // 
-            // txtemail
-            // 
-            this.txtemail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtemail.Enabled = false;
-            this.txtemail.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtemail.Location = new System.Drawing.Point(49, 186);
-            this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(276, 25);
-            this.txtemail.TabIndex = 52;
             // 
             // label3
             // 
@@ -134,11 +81,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Lucida Fax", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
             this.label3.Location = new System.Drawing.Point(175, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(522, 33);
+            this.label3.Size = new System.Drawing.Size(476, 33);
             this.label3.TabIndex = 51;
             this.label3.Text = "Cadastrar Coordenador do Curso";
             // 
@@ -148,24 +95,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(346, 62);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(346, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 17);
+            this.label2.Size = new System.Drawing.Size(147, 24);
             this.label2.TabIndex = 50;
             this.label2.Text = "Nome de usuario";
-            // 
-            // txtusuario
-            // 
-            this.txtusuario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtusuario.Enabled = false;
-            this.txtusuario.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtusuario.Location = new System.Drawing.Point(349, 82);
-            this.txtusuario.Name = "txtusuario";
-            this.txtusuario.Size = new System.Drawing.Size(294, 25);
-            this.txtusuario.TabIndex = 49;
             // 
             // label1
             // 
@@ -173,12 +108,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(47, 62);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(47, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 17);
+            this.label1.Size = new System.Drawing.Size(250, 24);
             this.label1.TabIndex = 48;
-            this.label1.Text = "Nome Completo";
+            this.label1.Text = "Nome Completo do Professor";
             // 
             // label7
             // 
@@ -186,93 +121,237 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(47, 114);
+            this.label7.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(47, 106);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 17);
+            this.label7.Size = new System.Drawing.Size(56, 24);
             this.label7.TabIndex = 61;
             this.label7.Text = "Curso";
             // 
-            // cbcurso
+            // dataGridView1
             // 
-            this.cbcurso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbcurso.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbcurso.FormattingEnabled = true;
-            this.cbcurso.Location = new System.Drawing.Point(50, 134);
-            this.cbcurso.Name = "cbcurso";
-            this.cbcurso.Size = new System.Drawing.Size(276, 25);
-            this.cbcurso.TabIndex = 62;
-            this.cbcurso.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // btapagar
-            // 
-            this.btapagar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btapagar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btapagar.FlatAppearance.BorderSize = 0;
-            this.btapagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btapagar.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btapagar.ForeColor = System.Drawing.Color.White;
-            this.btapagar.Location = new System.Drawing.Point(663, 179);
-            this.btapagar.Name = "btapagar";
-            this.btapagar.Size = new System.Drawing.Size(207, 25);
-            this.btapagar.TabIndex = 63;
-            this.btapagar.Text = "Apagar";
-            this.btapagar.UseVisualStyleBackColor = false;
-            this.btapagar.Click += new System.EventHandler(this.btapagar_Click);
-            // 
-            // btcadastrar
-            // 
-            this.btcadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btcadastrar.BackColor = System.Drawing.Color.Green;
-            this.btcadastrar.FlatAppearance.BorderSize = 0;
-            this.btcadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btcadastrar.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btcadastrar.ForeColor = System.Drawing.Color.White;
-            this.btcadastrar.Location = new System.Drawing.Point(663, 82);
-            this.btcadastrar.Name = "btcadastrar";
-            this.btcadastrar.Size = new System.Drawing.Size(207, 25);
-            this.btcadastrar.TabIndex = 64;
-            this.btcadastrar.Text = "Cadastrar";
-            this.btcadastrar.UseVisualStyleBackColor = false;
-            this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click);
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeight = 18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dataGridView1.Location = new System.Drawing.Point(50, 235);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(819, 202);
+            this.dataGridView1.TabIndex = 66;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dataGridView1.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.dataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.ThemeStyle.HeaderStyle.Height = 18;
+            this.dataGridView1.ThemeStyle.ReadOnly = false;
+            this.dataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.dataGridView1.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dataGridView1.ThemeStyle.RowsStyle.Height = 28;
+            this.dataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
             // txtnome
             // 
-            this.txtnome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtnome.Font = new System.Drawing.Font("Lucida Fax", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnome.FormattingEnabled = true;
-            this.txtnome.Location = new System.Drawing.Point(50, 82);
+            this.txtnome.BackColor = System.Drawing.Color.Transparent;
+            this.txtnome.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.txtnome.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtnome.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtnome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtnome.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtnome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.txtnome.ItemHeight = 30;
+            this.txtnome.Location = new System.Drawing.Point(51, 68);
+            this.txtnome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtnome.Name = "txtnome";
-            this.txtnome.Size = new System.Drawing.Size(276, 25);
-            this.txtnome.TabIndex = 65;
-            this.txtnome.SelectedIndexChanged += new System.EventHandler(this.txtnome_SelectedIndexChanged);
+            this.txtnome.Size = new System.Drawing.Size(275, 36);
+            this.txtnome.TabIndex = 67;
+            this.txtnome.SelectedIndexChanged += new System.EventHandler(this.txtnome_SelectedIndexChanged_1);
+            // 
+            // txtusuario
+            // 
+            this.txtusuario.BorderRadius = 3;
+            this.txtusuario.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtusuario.DefaultText = "";
+            this.txtusuario.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtusuario.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtusuario.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtusuario.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtusuario.Enabled = false;
+            this.txtusuario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtusuario.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtusuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtusuario.Location = new System.Drawing.Point(348, 70);
+            this.txtusuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtusuario.Name = "txtusuario";
+            this.txtusuario.PasswordChar = '\0';
+            this.txtusuario.PlaceholderText = "";
+            this.txtusuario.SelectedText = "";
+            this.txtusuario.Size = new System.Drawing.Size(293, 34);
+            this.txtusuario.TabIndex = 68;
+            // 
+            // txtemail
+            // 
+            this.txtemail.BorderRadius = 3;
+            this.txtemail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtemail.DefaultText = "";
+            this.txtemail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtemail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtemail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtemail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtemail.Enabled = false;
+            this.txtemail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtemail.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtemail.Location = new System.Drawing.Point(49, 195);
+            this.txtemail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtemail.Name = "txtemail";
+            this.txtemail.PasswordChar = '\0';
+            this.txtemail.PlaceholderText = "";
+            this.txtemail.SelectedText = "";
+            this.txtemail.Size = new System.Drawing.Size(275, 36);
+            this.txtemail.TabIndex = 69;
+            // 
+            // txttelefone
+            // 
+            this.txttelefone.BorderRadius = 3;
+            this.txttelefone.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txttelefone.DefaultText = "";
+            this.txttelefone.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txttelefone.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txttelefone.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txttelefone.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txttelefone.Enabled = false;
+            this.txttelefone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txttelefone.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txttelefone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txttelefone.Location = new System.Drawing.Point(348, 135);
+            this.txttelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txttelefone.Name = "txttelefone";
+            this.txttelefone.PasswordChar = '\0';
+            this.txttelefone.PlaceholderText = "";
+            this.txttelefone.SelectedText = "";
+            this.txttelefone.Size = new System.Drawing.Size(293, 33);
+            this.txttelefone.TabIndex = 70;
+            // 
+            // cbcurso
+            // 
+            this.cbcurso.BackColor = System.Drawing.Color.Transparent;
+            this.cbcurso.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcurso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcurso.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcurso.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcurso.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbcurso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcurso.ItemHeight = 30;
+            this.cbcurso.Location = new System.Drawing.Point(49, 132);
+            this.cbcurso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbcurso.Name = "cbcurso";
+            this.cbcurso.Size = new System.Drawing.Size(275, 36);
+            this.cbcurso.TabIndex = 71;
+            // 
+            // btcadastrar
+            // 
+            this.btcadastrar.BorderRadius = 3;
+            this.btcadastrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btcadastrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btcadastrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btcadastrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btcadastrar.FillColor = System.Drawing.Color.Green;
+            this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btcadastrar.ForeColor = System.Drawing.Color.White;
+            this.btcadastrar.Location = new System.Drawing.Point(663, 69);
+            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btcadastrar.Name = "btcadastrar";
+            this.btcadastrar.Size = new System.Drawing.Size(207, 35);
+            this.btcadastrar.TabIndex = 72;
+            this.btcadastrar.Text = "Cadastrar";
+            this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click);
+            // 
+            // btactualizar
+            // 
+            this.btactualizar.BorderRadius = 3;
+            this.btactualizar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btactualizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btactualizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btactualizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
+            this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btactualizar.ForeColor = System.Drawing.Color.White;
+            this.btactualizar.Location = new System.Drawing.Point(663, 128);
+            this.btactualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btactualizar.Name = "btactualizar";
+            this.btactualizar.Size = new System.Drawing.Size(207, 33);
+            this.btactualizar.TabIndex = 73;
+            this.btactualizar.Text = "Actualizar";
+            this.btactualizar.Click += new System.EventHandler(this.btactualizar_Click);
+            // 
+            // btapagar
+            // 
+            this.btapagar.BorderRadius = 3;
+            this.btapagar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btapagar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btapagar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btapagar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btapagar.FillColor = System.Drawing.Color.Firebrick;
+            this.btapagar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btapagar.ForeColor = System.Drawing.Color.White;
+            this.btapagar.Location = new System.Drawing.Point(663, 186);
+            this.btapagar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btapagar.Name = "btapagar";
+            this.btapagar.Size = new System.Drawing.Size(207, 32);
+            this.btapagar.TabIndex = 74;
+            this.btapagar.Text = "Apagar";
+            this.btapagar.Click += new System.EventHandler(this.btapagar_Click_1);
             // 
             // UCGCCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtnome);
-            this.Controls.Add(this.btcadastrar);
             this.Controls.Add(this.btapagar);
-            this.Controls.Add(this.cbcurso);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btactualizar);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btcadastrar);
+            this.Controls.Add(this.cbcurso);
             this.Controls.Add(this.txttelefone);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtemail);
+            this.Controls.Add(this.txtusuario);
+            this.Controls.Add(this.txtnome);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtusuario);
             this.Controls.Add(this.label1);
             this.Name = "UCGCCadastro";
             this.Size = new System.Drawing.Size(917, 447);
@@ -284,21 +363,20 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btactualizar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txttelefone;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtemail;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtusuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbcurso;
-        private System.Windows.Forms.Button btapagar;
-        private System.Windows.Forms.Button btcadastrar;
-        private System.Windows.Forms.ComboBox txtnome;
+        private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dataGridView1;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox txtnome;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtusuario;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtemail;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txttelefone;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbcurso;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btcadastrar;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btactualizar;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btapagar;
     }
 }

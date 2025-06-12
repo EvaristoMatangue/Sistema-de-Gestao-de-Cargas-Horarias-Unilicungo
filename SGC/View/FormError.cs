@@ -28,7 +28,7 @@ namespace SGC.View
             lerror.Text = $"{Helppers.Session.Error}";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btfechar_Click(object sender, EventArgs e)
         {
             this.Close();
         }

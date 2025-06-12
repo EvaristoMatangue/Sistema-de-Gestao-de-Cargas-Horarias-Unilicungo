@@ -108,10 +108,7 @@ namespace SGC.View.Chefe_de_Departamento
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.FormClosed += (s, args) => this.Close();
-            this.Hide();
-            login.Show();
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -120,13 +117,21 @@ namespace SGC.View.Chefe_de_Departamento
             if (i == 5)
             {
                 timer1.Stop();
-                if (BCrypt.Net.BCrypt.Verify("1234", $"{Helppers.Session.s}"))
+                if (BCrypt.Net.BCrypt.Verify($"{Helppers.Session.UserName}" + "1234", $"{Helppers.Session.s}"))
                 {
                     SenhaPadrao senhapadrao = new SenhaPadrao();
                     senhapadrao.ShowDialog();
 
                 }
             }
+        }
+
+        private void siticoneButton1_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            login.Show();
         }
     }
 }

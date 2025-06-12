@@ -30,7 +30,6 @@ namespace SGC.View
        
         public DataTable ObterDadosDoBancoDeDados()
         {
-            string connectionString = "Server=localhost;Database=gestao_contratos;User=root;Password=;";
             string query = @"
         SELECT 
             d.Nome AS NomeDocente,
@@ -61,7 +60,7 @@ namespace SGC.View
 
             DataTable dt = new DataTable("DadosDocente");
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(conn))
             {
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
@@ -236,6 +235,16 @@ namespace SGC.View
 
         private void btlaboral_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btposlaboral_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void siticoneButton2_Click(object sender, EventArgs e)
+        {
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
                 string query = @"
@@ -280,7 +289,7 @@ namespace SGC.View
             }
         }
 
-        private void btposlaboral_Click(object sender, EventArgs e)
+        private void siticoneButton1_Click(object sender, EventArgs e)
         {
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
@@ -324,6 +333,11 @@ namespace SGC.View
 
                 dataGridView1.DataSource = dataTable;
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

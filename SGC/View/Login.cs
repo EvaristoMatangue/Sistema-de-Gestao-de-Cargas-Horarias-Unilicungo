@@ -159,7 +159,7 @@ namespace SGC.View
                 string query = @"
                 SELECT 'tipousuario' AS UserType FROM usuarios WHERE NomeUsuario = @username AND senha = @password
                 ";
-
+                
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
@@ -185,6 +185,7 @@ namespace SGC.View
                 string nomec = "SELECT g.* FROM gestorescurso AS g JOIN usuarios AS u ON g.nomeusuario = @u WHERE u.tipousuario = 'gestorcurso'";
                 string nome = "SELECT c.nome as nomech, c.email as emailch FROM chefedepartamento as c join usuarios as u on c.nomeusuario = @u WHERE u.tipousuario = 'chefedepartamento'";
                 string nomerh = "SELECT d.nome AS nome, d.email AS email FROM gestoresrh AS d JOIN usuarios AS u ON d.nomeusuario = @u WHERE u.tipousuario = 'gestorrh'";
+                
                 if(connection != null)
                 {
                     connection.Clone();
@@ -229,7 +230,7 @@ namespace SGC.View
                         if (readerc.Read())
                         {
                             // Supondo que 'reader["nome"]' contenha o nome completo da pessoa
-                            string nomeCompleto = readerc["nome"].ToString();
+                            string nomeCompleto = readerc["nomech"].ToString();
 
                             // Divide o nome completo em partes, separando por espaços
                             string[] partesNome = nomeCompleto.Split(' ');
@@ -274,95 +275,7 @@ namespace SGC.View
         }
         private void btcadastrar_Click(object sender, EventArgs e)
         {
-            string username = txtuser.Text;
-            string password = txtsenha.Text;
-            // Obter a data de hoje
-           
-
-            tedio();
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                    
-
-                if (connection != null)
-                {
-                    connection.Close();
-                }
-                connection.Open();
-
-                string query = @"
-                                SELECT nomeusuario, senha, tipousuario FROM usuarios WHERE nomeusuario = @username
-                                ";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@username", txtuser.Text);
-
-                command.ExecuteNonQuery();
-
-                MySqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    string storedHash = reader["senha"].ToString();
-                    string userType = reader["tipousuario"].ToString();
-
-                    if (BCrypt.Net.BCrypt.Verify(password, storedHash))
-                    {
-                        Session.UserName = txtuser.Text;
-                        Session.s = storedHash;
-
-                        if (reader["tipousuario"].ToString() == "gestorrh")
-                        {
-                            FormAdmin admin = new FormAdmin();
-                            admin.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            admin.Show();
-
-                        }
-                        else if (reader["tipousuario"].ToString() == "docente")
-                        {
-                            FormDocente docente = new FormDocente();
-                            docente.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            docente.Show();
-
-                        }
-                        else if (reader["tipousuario"].ToString() == "gestorcurso")
-                        {
-                            FormGestorCuros gestorcurso = new FormGestorCuros();
-                            gestorcurso.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            gestorcurso.Show();
-                        }
-                        else if (reader["tipousuario"].ToString() == "chefedepartamento")
-                        {
-                            FormChefeReparticao chefedep = new FormChefeReparticao();
-                            chefedep.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            chefedep.Show();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Usuario Nao Autorizado!");
-                        }
-                    }
-                    else
-                    {
-                        Session.Error = "Usuario ou senha Invalido!";
-                        FormError erro = new FormError();
-                        erro.ShowDialog();
-                    }
-
-                }
-                else
-                {
-                    Session.Error = "Usuario ou senha Invalido!";
-                    FormError erro = new FormError();
-                    erro.ShowDialog();
-                }
-
-            }
+            
             
 
 
@@ -384,6 +297,137 @@ namespace SGC.View
             {
                 txtsenha.UseSystemPasswordChar = true;
                 btveresconder.Image = Properties.Resources.eye_20px;
+            }
+        }
+
+        private void txtuser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void siticoneButton1_Click(object sender, EventArgs e)
+        {
+            string username = txtuser.Text;
+            string password = txtsenha.Text;
+
+            tedio();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+
+
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+                connection.Open();
+
+                string query = @"
+                                SELECT u.nomeusuario, u.senha, u.tipousuario, c.nome as curso FROM usuarios as u Join cursos as c WHERE u.nomeusuario = @username
+                                ";
+                string queryrh = @"
+                                SELECT u.nomeusuario, u.senha, u.tipousuario FROM usuarios as u WHERE u.nomeusuario = @username
+                                ";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", txtuser.Text);
+
+                command.ExecuteNonQuery();
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                MySqlCommand commandrh = new MySqlCommand(queryrh, connection);
+                commandrh.Parameters.AddWithValue("@username", txtuser.Text);
+
+                commandrh.ExecuteNonQuery();
+
+                MySqlDataReader readerrh = commandrh.ExecuteReader();
+
+
+                if (reader.Read()||readerrh.Read())
+                {
+                    string storedHash = reader["senha"].ToString();
+                    string userType = reader["tipousuario"].ToString();
+
+                    if (BCrypt.Net.BCrypt.Verify(password, storedHash))
+                    {
+                        Session.UserName = txtuser.Text;
+                        Session.s = storedHash;
+                        Session.curso = reader["curso"].ToString();
+                        if (reader["tipousuario"].ToString() == "gestorrh")
+                        {
+                            FormAdmin admin = new FormAdmin();
+                            admin.FormClosed += (s, args) => this.Close();
+                            this.Hide();
+                            admin.Show();
+
+                        }
+                        else if (reader["tipousuario"].ToString() == "docente")
+                        {
+                            FormDocente docente = new FormDocente();
+                            docente.FormClosed += (s, args) => this.Close();
+                            this.Hide();
+                            docente.Show();
+
+                        }
+                        else if (reader["tipousuario"].ToString() == "gestorcurso")
+                        {
+                            FormGestorCursos gestorcurso = new FormGestorCursos();
+                            gestorcurso.FormClosed += (s, args) => this.Close();
+                            this.Hide();
+                            gestorcurso.Show();
+                        }
+                        else if (reader["tipousuario"].ToString() == "chefedepartamento")
+                        {
+                            FormChefeReparticao chefedep = new FormChefeReparticao();
+                            chefedep.FormClosed += (s, args) => this.Close();
+                            this.Hide();
+                            chefedep.Show();
+
+                        }
+                        else
+                        {
+                            Session.Error = "Usuario Nao Autorizado!";
+                            FormError erro = new FormError();
+                            erro.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        Session.Error = "Usuario ou senha Invalido!";
+                        FormError erro = new FormError();
+                        erro.ShowDialog();
+                    }
+
+                } 
+                else
+                {
+                    Session.Error = "Usuario ou senha Invalido!";
+                    FormError erro = new FormError();
+                    erro.ShowDialog();
+                }
+
+            }
+        }
+
+        private void siticoneButton1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            RecuperarSenha recuperar = new RecuperarSenha();
+            recuperar.FormClosed += (s, args) => this.Close();
+            this.Hide();
+            recuperar.ShowDialog();
+        }
+
+        private void txtsenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btcadastrar.PerformClick(); // Simula o clique no botão Entrar
             }
         }
     }

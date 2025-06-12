@@ -29,30 +29,7 @@ namespace SGC.View.Chefe_de_Departamento
 
         private void cbdocente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (MySqlConnection connection = new MySqlConnection(conn))
-            {
-                string query = @"
-                            SELECT 
-                                *
-                                
-                            FROM 
-                                Docentes as d
-                            
-                         WHERE 
-                                d.curso = @curso
-                         ORDER BY 
-                                nome";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@curso", cbdocente.Text);
-
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
-            combobox();
+            
         }
         public void combobox()
         {
@@ -220,6 +197,34 @@ namespace SGC.View.Chefe_de_Departamento
                     }
                 }
             }
+        }
+
+        private void cbdocente_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
+                string query = @"
+                SELECT 
+                    *
+                    
+                FROM 
+                    Docentes as d
+                
+             WHERE 
+                    d.curso = @curso
+             ORDER BY 
+                    nome";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@curso", cbdocente.Text);
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                dataGridView1.DataSource = dataTable;
+            }
+            combobox();
         }
     }
 }

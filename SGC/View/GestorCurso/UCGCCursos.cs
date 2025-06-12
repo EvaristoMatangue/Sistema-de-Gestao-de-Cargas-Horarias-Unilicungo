@@ -48,85 +48,6 @@ namespace SGC.View
 
             }
         }
-        private void btcadastrar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (MySqlConnection connection1 = new MySqlConnection(conn))
-                {
-                    if (connection1 != null)
-                    {
-                        connection1.Close();
-                    }
-                    connection1.Open();
-                    string queryVerificar = "SELECT COUNT(*) FROM cursos WHERE Nome = @nn";
-                    MySqlCommand commandVerificar = new MySqlCommand(queryVerificar, connection1);
-
-                    commandVerificar.Parameters.AddWithValue("@nn", txtnome.Text);
-                    int count = Convert.ToInt32(commandVerificar.ExecuteScalar());
-
-                    if (count > 0)
-                    {
-                        Session.Error = "O nome da Diciplina Já existe, Tente com outro nome!";
-                        FormError erro = new FormError();
-                        erro.ShowDialog();
-                    }
-                    else
-                    {
-                        using (MySqlConnection connection = new MySqlConnection(conn))
-                        {
-
-                            if (connection != null)
-                            {
-                                connection.Close();
-                            }
-                            connection.Open();
-
-                            // SQL para inserir os dados na tabela
-                            string query = "INSERT INTO cursos (nome, periodo, Nivel) VALUES (@nome, @periodo, @Nivel)";
-
-                            // Crie um novo comando com a consulta SQL e a conexão
-                            MySqlCommand command = new MySqlCommand(query, connection);
-
-                            // Adicione os parâmetros
-                            command.Parameters.AddWithValue("@nome", txtnome.Text);
-                            command.Parameters.AddWithValue("@periodo", cbperiodo.Text);
-                            command.Parameters.AddWithValue("@Nivel", cbnivel.Text);
-
-
-                            // Execute o comando de inserção
-                            command.ExecuteNonQuery();
-
-
-                            PopupNotifier popup = new PopupNotifier();
-                            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                            popup.BodyColor = Color.White;
-                            popup.Image = Properties.Resources.ok_48px;
-                            popup.TitleText = "Sucesso";
-                            popup.ContentText = "Dados Cadastrados com sucesso!";
-                            popup.Popup();
-
-                            verdados();
-                            // Feche a conexão
-                            connection.Close();
-
-
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                PopupNotifier popup = new PopupNotifier();
-                //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                popup.BodyColor = Color.White;
-                popup.Image = Properties.Resources.exit;
-                popup.TitleText = "ALerta";
-                popup.ContentText = ex.Message;
-                popup.Popup();
-
-            }
-        }
 
         private void UCGCCursos_Load(object sender, EventArgs e)
         {
@@ -158,7 +79,269 @@ namespace SGC.View
             verdados();
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void limpardados()
+        {
+            cbcordenador.Text = "";
+            txtnome.Text = "";
+            cbnivel.Text = "";
+            cbperiodo.Text = "";
+           
+        }
+        private void btcadastrar_Click(object sender, EventArgs e)
+        {
+            if (txtnome.Text == "" || cbcordenador.Text == "" || cbnivel.Text == "" || cbperiodo.Text == "")
+            {
+
+                Session.Error = "Por favor, preenche todos os campos!";
+                FormError formError = new FormError();
+                formError.ShowDialog();
+
+            }
+            else
+            {
+                try
+                {
+                    using (MySqlConnection connection1 = new MySqlConnection(conn))
+                    {
+                        if (connection1 != null)
+                        {
+                            connection1.Close();
+                        }
+                        connection1.Open();
+                        string queryVerificar = "SELECT COUNT(*) FROM cursos WHERE Nome = @nn";
+                        MySqlCommand commandVerificar = new MySqlCommand(queryVerificar, connection1);
+
+                        commandVerificar.Parameters.AddWithValue("@nn", txtnome.Text);
+                        int count = Convert.ToInt32(commandVerificar.ExecuteScalar());
+
+                        if (count > 0)
+                        {
+                            Session.Error = "O nome da Diciplina Já existe, Tente com outro nome!";
+                            FormError erro = new FormError();
+                            erro.ShowDialog();
+                        }
+                        else
+                        {
+                            using (MySqlConnection connection = new MySqlConnection(conn))
+                            {
+
+                                if (connection != null)
+                                {
+                                    connection.Close();
+                                }
+                                connection.Open();
+
+                                // SQL para inserir os dados na tabela
+                                string query = "INSERT INTO cursos (nome, periodo, Nivel) VALUES (@nome, @periodo, @Nivel)";
+
+                                // Crie um novo comando com a consulta SQL e a conexão
+                                MySqlCommand command = new MySqlCommand(query, connection);
+
+                                // Adicione os parâmetros
+                                command.Parameters.AddWithValue("@nome", txtnome.Text);
+                                command.Parameters.AddWithValue("@periodo", cbperiodo.Text);
+                                command.Parameters.AddWithValue("@Nivel", cbnivel.Text);
+
+
+                                // Execute o comando de inserção
+                                command.ExecuteNonQuery();
+
+
+                                PopupNotifier popup = new PopupNotifier();
+                                //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
+                                popup.BodyColor = Color.White;
+                                popup.Image = Properties.Resources.ok_48px;
+                                popup.TitleText = "Sucesso";
+                                popup.ContentText = "Dados Cadastrados com sucesso!";
+                                popup.Popup();
+
+                                verdados();
+                                // Feche a conexão
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Session.Error = ex.Message;
+                    FormError erro = new FormError();
+                    erro.ShowDialog();
+
+                }
+
+            }
+        }
+
+        private void btactualizar_Click(object sender, EventArgs e)
+        {
+            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+
+            if (selectedRow != null)
+            {
+                // Recupere o ID da linha selecionada
+                int id = Convert.ToInt32(selectedRow["ID"]);
+
+
+                if (cbcordenador.Text == "" || txtnome.Text == "" || cbnivel.Text == "" || cbperiodo.Text == "")
+                {
+
+                    Session.Error = "Por favor, preenche todos os campos!";
+                    FormError formError = new FormError();
+                    formError.ShowDialog();
+
+                }
+                else
+                {
+                    using (MySqlConnection connection = new MySqlConnection(conn))
+                    {
+                        if (connection != null)
+                        {
+                            connection.Close();
+                        }
+                        connection.Open();
+
+                        string queryc = "SELECT id FROM gestorescurso WHERE nome = @nome";
+                        MySqlCommand commandd = new MySqlCommand(queryc, connection);
+                        commandd.Parameters.AddWithValue("@nome", cbcordenador.Text);
+                        int idcordenador = Convert.ToInt32(commandd.ExecuteScalar());
+
+                        // SQL para atualizar os dados na tabela
+                        string query = "UPDATE cursos SET nome= @nome , periodo = @periodo , Nivel= @Nivel, cordenador= @cordenador, cordenadorID= @cordenadorID WHERE ID = @ID";
+
+                        // Crie um novo comando com a consulta SQL e a conexão
+                        MySqlCommand command = new MySqlCommand(query, connection);
+
+                        // Adicione os parâmetros
+                        command.Parameters.AddWithValue("@nome", txtnome.Text);
+                        command.Parameters.AddWithValue("@periodo", cbperiodo.Text);
+                        command.Parameters.AddWithValue("@Nivel", cbnivel.Text);
+                        command.Parameters.AddWithValue("@cordenador", cbcordenador.Text);
+                        command.Parameters.AddWithValue("@cordenadorID", idcordenador);
+                        command.Parameters.AddWithValue("@ID", id);
+
+
+                        // Execute o comando de atualização
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Feche a conexão
+                        connection.Close();
+
+                        if (rowsAffected > 0)
+                        {
+                            PopupNotifier popup = new PopupNotifier();
+                            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
+                            popup.BodyColor = Color.White;
+                            popup.Image = Properties.Resources.ok_48px;
+                            popup.TitleText = "Sucesso";
+                            popup.ContentText = "Registo Actualizado com sucesso!";
+                            popup.Popup();
+
+                            // Após a exclusão, recarregue os dados no DataGridView para refletir as alterações
+                            verdados();
+                        }
+                        else
+                        {
+                            Session.Error = "Falha ao atualizar os dados. Por favor, tente novamente.";
+                            FormError erro = new FormError();
+                            erro.ShowDialog();
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                Session.Error = "Por favor, selecione uma linha para atualizar.";
+                FormError erro = new FormError();
+                erro.ShowDialog();
+            }
+        }
+
+        private void btapagar_Click(object sender, EventArgs e)
+        {
+            // Verificar se há uma linha selecionada no DataGridView
+            if (dataGridView1.CurrentRow != null)
+            {
+                // Confirmar a ação com o usuário
+                DialogResult check = MessageBox.Show(
+                    "Pretende apagar este registo?",
+                    "Remover",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (check == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Obter o ID do registro selecionado
+                        DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+
+                        if (selectedRow != null)
+                        {
+                            int id = Convert.ToInt32(selectedRow["ID"]);
+
+                            using (MySqlConnection connection = new MySqlConnection(conn))
+                            {
+                                connection.Open();
+
+                                // Comando para apagar o registro
+                                string queryDelete = "DELETE FROM cursos WHERE ID = @ID";
+                                MySqlCommand command = new MySqlCommand(queryDelete, connection);
+
+                                // Adicionar o parâmetro
+                                command.Parameters.AddWithValue("@ID", id);
+
+                                // Executar o comando
+                                int rowsAffected = command.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Exibir mensagem de sucesso
+                                    ExibirSucesso("Registro eliminado com sucesso!");
+
+                                    // Atualizar os dados no DataGridView
+                                    verdados();
+                                }
+                                else
+                                {
+                                    // Mensagem de erro se não conseguir apagar
+                                    ExibirErro("Falha ao deletar o registro. Por favor, tente novamente.");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ExibirErro("Selecione um registro válido para apagar.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Captura e exibição de erros
+                        ExibirErro($"Erro ao apagar o registro: {ex.Message}");
+                    }
+                }
+            }
+            else
+            {
+                ExibirErro("Nenhuma linha selecionada. Por favor, selecione uma linha para apagar.");
+            }
+        }
+        private void ExibirErro(string mensagem)
+        {
+            Helppers.Session.Error = mensagem;
+            FormError erro = new FormError();
+            erro.ShowDialog();
+        }
+
+        private void ExibirSucesso(string mensagem)
+        {
+            Helppers.Session.Sucess = mensagem;
+            FormSucess sucesso = new FormSucess();
+            sucesso.ShowDialog();
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count - 1)
             {
@@ -177,7 +360,9 @@ namespace SGC.View
 
                 if (id <= 0)
                 {
-                    MessageBox.Show("Por favor selecione uma linha!");
+                    Session.Error = "Por favor selecione uma linha!";
+                    FormError erro = new FormError();
+                    erro.ShowDialog();
                 }
             }
             else
@@ -185,143 +370,6 @@ namespace SGC.View
                 Session.Error = "Nenhuma Linha foi selecionada, por favor selecione uma!";
                 FormError erro = new FormError();
                 erro.ShowDialog();
-            }
-        }
-
-        private void btactualizar_Click(object sender, EventArgs e)
-        {
-            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
-
-            if (selectedRow != null)
-            {
-                // Recupere o ID da linha selecionada
-                int id = Convert.ToInt32(selectedRow["ID"]);
-
-
-
-                using (MySqlConnection connection = new MySqlConnection(conn))
-                {
-                    if (connection != null)
-                    {
-                        connection.Close();
-                    }
-                    connection.Open();
-
-                    string queryc = "SELECT id FROM gestorescurso WHERE nome = @nome";
-                    MySqlCommand commandd = new MySqlCommand(queryc, connection);
-                    commandd.Parameters.AddWithValue("@nome", cbcordenador.Text);
-                    int idcordenador = Convert.ToInt32(commandd.ExecuteScalar());
-
-                    // SQL para atualizar os dados na tabela
-                    string query = "UPDATE cursos SET nome= @nome , periodo = @periodo , Nivel= @Nivel, cordenador= @cordenador, cordenadorID= @cordenadorID WHERE ID = @ID";
-
-                    // Crie um novo comando com a consulta SQL e a conexão
-                    MySqlCommand command = new MySqlCommand(query, connection);
-
-                    // Adicione os parâmetros
-                    command.Parameters.AddWithValue("@nome", txtnome.Text);
-                    command.Parameters.AddWithValue("@periodo", cbperiodo.Text);
-                    command.Parameters.AddWithValue("@Nivel", cbnivel.Text);
-                    command.Parameters.AddWithValue("@cordenador", cbcordenador.Text);
-                    command.Parameters.AddWithValue("@cordenadorID", idcordenador);
-                    command.Parameters.AddWithValue("@ID", id);
-
-
-                    // Execute o comando de atualização
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    // Feche a conexão
-                    connection.Close();
-
-                    if (rowsAffected > 0)
-                    {
-                        PopupNotifier popup = new PopupNotifier();
-                        //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                        popup.BodyColor = Color.White;
-                        popup.Image = Properties.Resources.ok_48px;
-                        popup.TitleText = "Sucesso";
-                        popup.ContentText = "Registo Actualizado com sucesso!";
-                        popup.Popup();
-
-                        // Após a exclusão, recarregue os dados no DataGridView para refletir as alterações
-                        verdados();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falha ao atualizar os dados. Por favor, tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecione uma linha para atualizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        public void limpardados()
-        {
-            cbcordenador.Text = "";
-            txtnome.Text = "";
-            cbnivel.Text = "";
-            cbperiodo.Text = "";
-           
-        }
-        private void btapagar_Click(object sender, EventArgs e)
-        {
-            DialogResult check = MessageBox.Show("Pretende apagar este registo?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-
-            // Obtenha os dados da linha selecionada no DataGridView
-            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
-
-            if (selectedRow != null)
-            {
-                // Recupere o ID da linha selecionada
-                int id = Convert.ToInt32(selectedRow["ID"]);
-
-                // Crie uma nova conexão usando a string de conexão
-                using (MySqlConnection connection = new MySqlConnection(conn))
-                {
-                    if (check == DialogResult.Yes)
-                    {
-                        // SQL para deletar a linha da tabela
-                        string query = "DELETE FROM cursos WHERE ID = @ID";
-                        // Crie um novo comando com a consulta SQL e a conexão
-                        MySqlCommand command = new MySqlCommand(query, connection);
-
-                        command.Parameters.AddWithValue("@ID", id);
-
-                        // Abra a conexão
-                        connection.Open();
-
-                        // Execute o comando de exclusão
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-
-                            PopupNotifier popup = new PopupNotifier();
-                            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                            popup.BodyColor = Color.White;
-                            popup.Image = Properties.Resources.exit;
-                            popup.TitleText = "Sucesso";
-                            popup.ContentText = "Registo Eliminado com sucesso!";
-                            popup.Popup();
-
-                            limpardados();
-                            verdados();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Falha ao deletar a linha. Por favor, tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-
-
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecione uma linha para deletar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

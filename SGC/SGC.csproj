@@ -80,6 +80,9 @@
     <Reference Include="MySqlBackup, Version=2.3.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MySqlBackup.NET.2.3.8\lib\netstandard2.0\MySqlBackup.dll</HintPath>
     </Reference>
+    <Reference Include="Siticone.Desktop.UI, Version=2.1.1.0, Culture=neutral, PublicKeyToken=9683591576b7f0b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Siticone.Desktop.UI.2.1.1\lib\net40\Siticone.Desktop.UI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -151,6 +154,12 @@
     <Compile Include="FormRelatorio.Designer.cs">
       <DependentUpon>FormRelatorio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSucess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSucess.Designer.cs">
+      <DependentUpon>FormSucess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helppers\Dados.cs" />
     <Compile Include="Helppers\Helpper.cs" />
     <Compile Include="Program.cs" />
@@ -197,6 +206,12 @@
     </Compile>
     <Compile Include="View\FormError.Designer.cs">
       <DependentUpon>FormError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormGestorCursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormGestorCursos.Designer.cs">
+      <DependentUpon>FormGestorCursos.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormReportar.cs">
       <SubType>Form</SubType>
@@ -252,6 +267,12 @@
     <Compile Include="View\GestorCurso\UCGCCursos.Designer.cs">
       <DependentUpon>UCGCCursos.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\RecuperarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RecuperarSenha.Designer.cs">
+      <DependentUpon>RecuperarSenha.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SenhaPadrao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRelatorio.resx">
       <DependentUpon>FormRelatorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSucess.resx">
+      <DependentUpon>FormSucess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -314,6 +338,9 @@
     <EmbeddedResource Include="View\FormError.resx">
       <DependentUpon>FormError.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormGestorCursos.resx">
+      <DependentUpon>FormGestorCursos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormReportar.resx">
       <DependentUpon>FormReportar.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\GestorCurso\UCGCCursos.resx">
       <DependentUpon>UCGCCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RecuperarSenha.resx">
+      <DependentUpon>RecuperarSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SenhaPadrao.resx">
       <DependentUpon>SenhaPadrao.cs</DependentUpon>
@@ -462,6 +492,10 @@
     <None Include="Resources\person_teacher_48px.png" />
     <None Include="Resources\elective.png" />
     <None Include="Resources\person_teacher.png" />
+    <None Include="Resources\sairIcon.png" />
+    <None Include="Resources\ULLogoSb.png" />
+    <None Include="Resources\subject-icon-5.png" />
+    <None Include="Resources\backIcon.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
