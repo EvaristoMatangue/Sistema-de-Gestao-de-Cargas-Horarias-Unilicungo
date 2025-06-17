@@ -56,19 +56,6 @@ namespace SGC.View.Chefe_de_Departamento
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@curso", curso);
 
-                chart1.Series["Series1"].Points.Clear();
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        // Obter o nome do docente e a quantidade de disciplinas
-                        string nomeDocente = reader["NomeDocente"].ToString();
-                        int quantidade = Convert.ToInt32(reader["Quantidade"]);
-
-                        // Adicionar os dados ao gráfico de barras
-                        chart1.Series["Series1"].Points.AddXY(nomeDocente, quantidade);
-                    }
-                }
             }
             using (MySqlConnection connection = new MySqlConnection(conn))
             {

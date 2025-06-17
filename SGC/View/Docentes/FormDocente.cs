@@ -205,12 +205,12 @@ namespace SGC.View
             if (WindowState == FormWindowState.Normal)
             {
                 WindowState = FormWindowState.Maximized;
-                button3.Image = Properties.Resources.clone_figure_20px;
+                button3.Image = Properties.Resources.copy_24px;
             }
             else
             {
                 WindowState = FormWindowState.Normal;
-                button3.Image = Properties.Resources.maximize_button_20px;
+                button3.Image = Properties.Resources.maximize_button_24px;
 
             }
         }
@@ -222,6 +222,65 @@ namespace SGC.View
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void txtprocurar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btprocurar.PerformClick(); // Simula o clique no botão procurar
+            }
+        }
+
+        private void btprocurar_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
+                string query = @"
+                            SELECT 
+                                d.Nome AS NomeDocente,
+                                di.Nivel,
+                                di.Nome AS Disciplina,
+                                c.Nome AS Curso,
+                                di.CargaHoraria,
+                                t.TotalCargaHoraria,
+                                d.Observacao
+                                
+                            FROM 
+                                Docentes d
+                            JOIN 
+                                Disciplinas di ON d.ID = di.DocenteID
+                            JOIN 
+                                Cursos c ON di.CursoID = c.ID
+                            JOIN 
+                                (
+                                    SELECT 
+                                        di.DocenteID,
+                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
+                                    FROM 
+                                        Disciplinas di
+                                    GROUP BY 
+                                        di.DocenteID
+                                ) t ON d.ID = t.DocenteID
+                            WHERE 
+                                d.Nome LIKE @procurar OR 
+                                        di.Semestre LIKE @procurar OR 
+                                        di.Nivel LIKE @procurar OR 
+                                        c.Nome LIKE @procurar                            
+                            ORDER BY 
+                                NomeDocente";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@procurar", "%" + txtprocurar.Text.Trim() + "%");
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                dataGridView1.DataSource = dataTable;
+            }
 
         }
     }

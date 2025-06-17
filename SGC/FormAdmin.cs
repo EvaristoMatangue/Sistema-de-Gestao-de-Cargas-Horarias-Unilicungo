@@ -1,5 +1,6 @@
 ﻿using Microsoft.Reporting.WinForms;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using SGC.View;
 using SGC.View.GestorCurso;
 using SGC.View.GestorHR;
@@ -30,15 +31,16 @@ namespace SGC
             UCDashboard dashboard = new UCDashboard();
 
             painelprincipal.Controls.Clear();
+            dashboard.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(dashboard);
 
             ToolTip toolTip = new ToolTip();
 
             // Configurações opcionais
-            toolTip.AutoPopDelay = 5000; // O tempo em milissegundos que o tooltip permanece visível
-            toolTip.InitialDelay = 100;  // Atraso antes de aparecer após o cursor parar no botão
-            toolTip.ReshowDelay = 100;   // Intervalo entre exibições sucessivas do tooltip
-            toolTip.ShowAlways = true;   // Sempre mostra o tooltip mesmo com o botão inativo
+            toolTip.AutoPopDelay = 5000; 
+            toolTip.InitialDelay = 100;  
+            toolTip.ReshowDelay = 100;   
+            toolTip.ShowAlways = true;   
 
             // Definindo o texto para os botões
             toolTip.SetToolTip(btrestaurar, "Restaurar os dados do sistema a partir do backup.");
@@ -79,43 +81,16 @@ namespace SGC
             btcurso.BackColor = Color.Transparent;
             btgestorcurso.BackColor = Color.Transparent;
             btgestorrh.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Transparent;
             btchefedepartamento.BackColor = Color.Transparent;
 
             UCDisciplina uCDisciplina = new UCDisciplina();
 
             painelprincipal.Controls.Clear();
+            uCDisciplina.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(uCDisciplina);
         }
 
-        private void painelprincipal_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void btgestorrh_Click(object sender, EventArgs e)
         {
@@ -125,12 +100,14 @@ namespace SGC
             button4.BackColor = Color.Transparent;
             btcurso.BackColor = Color.Transparent;
             btgestorcurso.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Transparent;
             btgestorrh.BackColor = Color.Silver;
             btchefedepartamento.BackColor = Color.Transparent;
 
             UCGRHCadastro uCGRH = new UCGRHCadastro();
 
             painelprincipal.Controls.Clear();
+            uCGRH.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(uCGRH);
         }
 
@@ -142,12 +119,14 @@ namespace SGC
             button4.BackColor = Color.Transparent;
             btcurso.BackColor = Color.Transparent;
             btgestorcurso.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Transparent;   
             btgestorrh.BackColor = Color.Transparent;
             btchefedepartamento.BackColor = Color.Transparent;
 
             UCDocenteAdmin docente = new UCDocenteAdmin();
 
             painelprincipal.Controls.Clear();
+            docente.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(docente);
         }
 
@@ -158,6 +137,7 @@ namespace SGC
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
             btcurso.BackColor = Color.Silver;
+            btassociar.BackColor = Color.Transparent;
             btgestorcurso.BackColor = Color.Transparent;
             btgestorrh.BackColor = Color.Transparent;
             btchefedepartamento.BackColor = Color.Transparent;
@@ -165,6 +145,7 @@ namespace SGC
             UCGCCursos cursos = new UCGCCursos();
 
             painelprincipal.Controls.Clear();
+            cursos.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(cursos);
         }
 
@@ -175,12 +156,14 @@ namespace SGC
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
             btcurso.BackColor = Color.Transparent;
+            btassociar.BackColor= Color.Transparent;
             btgestorcurso.BackColor = Color.Silver;
             btgestorrh.BackColor = Color.Transparent;
             btchefedepartamento.BackColor = Color.Transparent;
 
             UCGCCadastro cadastro = new UCGCCadastro();
             painelprincipal.Controls.Clear();
+            cadastro.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(cadastro);
         }
 
@@ -193,47 +176,14 @@ namespace SGC
             btcurso.BackColor = Color.Transparent;
             btgestorcurso.BackColor = Color.Transparent;
             btgestorrh.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Transparent;
             btchefedepartamento.BackColor = Color.Transparent;
 
             UCDashboard dashboard = new UCDashboard();
 
             painelprincipal.Controls.Clear();
+            dashboard.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(dashboard);
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btapagar_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void btrestaurar_Click(object sender, EventArgs e)
@@ -303,6 +253,7 @@ namespace SGC
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
             btcurso.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Transparent;
             btgestorcurso.BackColor = Color.Transparent;
             btgestorrh.BackColor = Color.Transparent;
             btchefedepartamento.BackColor = Color.Silver;
@@ -310,6 +261,7 @@ namespace SGC
             UCChefedepartamento departamento = new UCChefedepartamento();
 
             painelprincipal.Controls.Clear();
+            departamento.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(departamento);
         }
 
@@ -330,10 +282,34 @@ namespace SGC
 
         private void btsair_Click(object sender, EventArgs e)
         {
+            Helppers.Session.UserName = "";
+            Helppers.Session.Nomerh = "";
+            Helppers.Session.Emailrh = "";
+            Helppers.Session.Sobrenomerh = "";
+
+
             Login login = new Login();
             login.FormClosed += (s, args) => this.Close();
             this.Hide();
             login.Show();
+        }
+
+        private void btassociar_Click(object sender, EventArgs e)
+        {
+            btdocente.BackColor = Color.Transparent;
+            btdisciplina.BackColor = Color.Transparent;
+            btdashboard.BackColor = Color.Transparent;
+            button4.BackColor = Color.Transparent;
+            btcurso.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Silver;
+            btgestorrh.BackColor = Color.Transparent;
+            btchefedepartamento.BackColor = Color.Transparent;
+            btgestorcurso.BackColor = Color.Transparent;
+
+            UCGCTurmas cadastro = new UCGCTurmas();
+            painelprincipal.Controls.Clear();
+            cadastro.Dock = DockStyle.Fill;
+            painelprincipal.Controls.Add(cadastro);
         }
     }
 }

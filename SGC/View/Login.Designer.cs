@@ -99,6 +99,7 @@
             this.txtsenha.SelectedText = "";
             this.txtsenha.Size = new System.Drawing.Size(285, 47);
             this.txtsenha.TabIndex = 37;
+            this.txtsenha.TextChanged += new System.EventHandler(this.txtsenha_TextChanged);
             this.txtsenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtsenha_KeyDown);
             // 
             // btcadastrar

@@ -18,6 +18,8 @@ namespace SGC.View
     {
         string curso;
         string conn = $"{Helppers.conexao.connectionString}";
+
+        int numcarga;
         public UCDocente()
         {
             InitializeComponent();
@@ -210,9 +212,20 @@ namespace SGC.View
                                 {
                                     connection.Close();
                                 }
-                                connection.Open();
+
+                                if (cbnivelacademico.Text == "Licenciado")
+                                {
+                                    numcarga = 16;
+                                }else if (cbnivelacademico.Text == "Mestrado")
+                                {
+                                    numcarga = 12;
+                                }else if (cbnivelacademico.Text == "PHD")
+                                {
+                                    numcarga = 8;
+                                }
+                                    connection.Open();
                                 // SQL para inserir os dados na tabela
-                                string query = "INSERT INTO docentes (nome, email, telefone, curso, nomeusuario, numcarga, observacao) VALUES (@nome, @email, @telefone, @curso, @nomeusuario, @numcarga, @observacao)";
+                                string query = "INSERT INTO docentes (nome, email, telefone, curso, nomeusuario, nivelacademico, numcarga, observacao) VALUES (@nome, @email, @telefone, @curso, @nomeusuario, @nivelac, @numcarga, @observacao)";
 
                                 // Crie um novo comando com a consulta SQL e a conexão
                                 MySqlCommand command = new MySqlCommand(query, connection);
@@ -225,7 +238,8 @@ namespace SGC.View
                                 command.Parameters.AddWithValue("@telefone", txttelefone.Text);
                                 command.Parameters.AddWithValue("@curso", cbcurso.Text);
                                 command.Parameters.AddWithValue("@nomeusuario", txtusuario.Text);
-                                command.Parameters.AddWithValue("@numcarga", txtnumcarga.Text);
+                                command.Parameters.AddWithValue("@nivelac", cbnivelacademico.Text);
+                                command.Parameters.AddWithValue("@numcarga", numcarga);
                                 command.Parameters.AddWithValue("@observacao", txtobs.Text);
 
                                 string queryu = "INSERT INTO usuarios (nomeusuario, tipousuario, email, senha) VALUES (@nomeusuario, @tipousuario, @email, @senha)";
@@ -282,9 +296,20 @@ namespace SGC.View
                     // Abra a conexão
                     connection.Open();
 
-
+                    if (cbnivelacademico.Text == "Licenciado")
+                    {
+                        numcarga = 16;
+                    }
+                    else if (cbnivelacademico.Text == "Mestrado")
+                    {
+                        numcarga = 12;
+                    }
+                    else if (cbnivelacademico.Text == "PHD")
+                    {
+                        numcarga = 8;
+                    }
                     // SQL para atualizar os dados na tabela
-                    string query = "UPDATE docentes SET nome= @nome , email = @email , telefone= @telefone, curso= @curso, nomeusuario= @nomeusuario, observacao =@obs WHERE ID = @ID";
+                    string query = "UPDATE docentes SET nome= @nome , email = @email , telefone= @telefone, curso= @curso, nomeusuario= @nomeusuario, numcarga=@numcarga, nivelacademico=@nivelac observacao =@obs WHERE ID = @ID";
                     // Crie um novo comando com a consulta SQL e a conexão
                     MySqlCommand command = new MySqlCommand(query, connection);
 
@@ -294,6 +319,8 @@ namespace SGC.View
                     command.Parameters.AddWithValue("@telefone", txttelefone.Text);
                     command.Parameters.AddWithValue("@curso", cbcurso.Text);
                     command.Parameters.AddWithValue("@nomeusuario", txtusuario.Text);
+                    command.Parameters.AddWithValue("@numcarga", numcarga);
+                    command.Parameters.AddWithValue("@nivelac", cbnivelacademico.Text);
                     command.Parameters.AddWithValue("@obs", txtobs.Text);
                     command.Parameters.AddWithValue("@ID", id);
 

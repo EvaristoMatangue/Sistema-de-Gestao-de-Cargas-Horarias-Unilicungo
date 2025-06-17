@@ -1,16 +1,18 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using MySql.Data.MySqlClient;
+using SGC.Helppers;
+using SGC.View.Docentes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using SGC.Helppers;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Reporting.WinForms;
-using System.Globalization;
 
 namespace SGC.View
 {
@@ -20,6 +22,9 @@ namespace SGC.View
         public UCDashboard()
         {
             InitializeComponent();
+
+            dataGridView1.CellClick += dataGridView1_CellClick;
+
         }
 
         private void UCDashboard_Load(object sender, EventArgs e)
@@ -79,33 +84,30 @@ namespace SGC.View
             {
                 string query = @"
                             SELECT 
-                                d.Nome AS NomeDocente,
+                                d.Nome  AS NomeDocente,
                                 di.Nivel,
                                 di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
+                                c.Nome  AS Curso,
+                                di.cargahoraria,
                                 t.TotalCargaHoraria,
                                 d.Observacao
-                                
                             FROM 
-                            
-                            Docentes d
+                                Docentes d
                             JOIN 
                                 Disciplinas di ON d.ID = di.DocenteID
                             JOIN 
-                                Cursos c ON di.CursoID = c.ID
+                                Cursos c      ON di.CursoID = c.ID
                             JOIN 
                                 (
                                     SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
+                                        DocenteID,
+                                        SUM(CargaHoraria) AS TotalCargaHoraria
+                                    FROM Disciplinas
+                                    GROUP BY DocenteID
                                 ) t ON d.ID = t.DocenteID
                             ORDER BY 
-                                NomeDocente";
+                                NomeDocente;
+";
 
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(query, connection);
@@ -129,118 +131,18 @@ namespace SGC.View
                 reader.Close();
 
                 dataGridView1.DataSource = dadosDocentes;
-                
+                if (!dataGridView1.Columns.Contains("btnDetalhes"))
+                {
+                    DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+                    btn.HeaderText = "Acções";
+                    btn.Name = "btnDetalhes";
+                    btn.Width = 40; // largura pequena
+                    btn.UseColumnTextForButtonValue = false;
+                    dataGridView1.Columns.Add(btn);
+                }
+
+
             }
-        }
-
-        private void lsemestreum_Click(object sender, EventArgs e)
-        {
-            lsemestreum.BackColor = Color.FromArgb(0, 138, 210);
-            lsemestreum.ForeColor = Color.White;
-            lsementredois.ForeColor = Color.FromArgb(0, 138, 210);
-            lsementredois.BackColor = Color.Transparent;
-            using (MySqlConnection connection = new MySqlConnection(conn))
-            {
-                string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-
-                         WHERE 
-                                di.Semestre = '1º Semestre'
-                         ORDER BY 
-                                NomeDocente";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
-        }
-
-        private void lsementredois_Click(object sender, EventArgs e)
-        {
-            lsementredois.BackColor = Color.FromArgb(0, 138, 210);
-            lsementredois.ForeColor = Color.White;
-            lsemestreum.ForeColor = Color.FromArgb(0, 138, 210);
-            lsemestreum.BackColor = Color.Transparent;
-            using (MySqlConnection connection = new MySqlConnection(conn))
-            {
-                string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-                            WHERE 
-                                di.Semestre = '2º Semestre'
-                            ORDER BY 
-                                NomeDocente";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
-
-        }
-
-        private void btlaboral_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btposlaboral_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void siticoneButton2_Click(object sender, EventArgs e)
@@ -338,6 +240,163 @@ namespace SGC.View
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "btnDetalhes" && e.RowIndex >= 0)
+            {
+                e.PaintBackground(e.CellBounds, true);
+
+                Color azul = ColorTranslator.FromHtml("#008AD2");
+                Color branco = Color.White;
+
+                // Botão pequeno
+                int btnSize = 24;
+                Rectangle buttonRect = new Rectangle(
+                    e.CellBounds.X + (e.CellBounds.Width - btnSize) / 2,
+                    e.CellBounds.Y + (e.CellBounds.Height - btnSize) / 2,
+                    btnSize,
+                    btnSize
+                );
+
+                using (SolidBrush brush = new SolidBrush(azul))
+                using (Pen pen = new Pen(azul))
+                using (GraphicsPath path = new GraphicsPath())
+                {
+                    int radius = 8;
+                    path.AddArc(buttonRect.X, buttonRect.Y, radius, radius, 180, 90);
+                    path.AddArc(buttonRect.Right - radius, buttonRect.Y, radius, radius, 270, 90);
+                    path.AddArc(buttonRect.Right - radius, buttonRect.Bottom - radius, radius, radius, 0, 90);
+                    path.AddArc(buttonRect.X, buttonRect.Bottom - radius, radius, radius, 90, 90);
+                    path.CloseFigure();
+
+                    e.Graphics.FillPath(brush, path);
+                    e.Graphics.DrawPath(pen, path);
+
+                    // Ícone de olho desenhado manualmente
+                    int eyeWidth = 12;
+                    int eyeHeight = 8;
+                    Rectangle eyeRect = new Rectangle(
+                        buttonRect.X + (buttonRect.Width - eyeWidth) / 2,
+                        buttonRect.Y + (buttonRect.Height - eyeHeight) / 2,
+                        eyeWidth,
+                        eyeHeight
+                    );
+
+                    using (Pen eyePen = new Pen(branco, 1.5f))
+                    {
+                        e.Graphics.DrawEllipse(eyePen, eyeRect);
+
+                        Rectangle pupilRect = new Rectangle(
+                            eyeRect.X + eyeRect.Width / 2 - 2,
+                            eyeRect.Y + eyeRect.Height / 2 - 2,
+                            4,
+                            4
+                        );
+
+                        using (SolidBrush pupilBrush = new SolidBrush(branco))
+                        {
+                            e.Graphics.FillEllipse(pupilBrush, pupilRect);
+                        }
+                    }
+                }
+
+                e.Handled = true;
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "btnDetalhes")
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+
+                string nome = row.Cells["NomeDocente"].Value?.ToString();
+                string curso = row.Cells["Curso"].Value?.ToString();
+                string nivel = row.Cells["Nivel"].Value?.ToString();
+                string disciplina = row.Cells["Disciplina"].Value?.ToString();
+                int total = Convert.ToInt32(row.Cells["TotalCargaHoraria"].Value);
+                string obs = row.Cells["Observacao"].Value?.ToString();
+
+                // Abre a nova tela com os dados da linha
+                FormDetalhesDocentes detalhes = new FormDetalhesDocentes(nome, curso, nivel, disciplina, total, obs);
+                detalhes.ShowDialog();
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btprocurar_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
+                string query = @"
+                            SELECT 
+                                d.Nome AS NomeDocente,
+                                di.Nivel,
+                                di.Nome AS Disciplina,
+                                c.Nome AS Curso,
+                                di.CargaHoraria,
+                                t.TotalCargaHoraria,
+                                d.Observacao
+                                
+                            FROM 
+                                Docentes d
+                            JOIN 
+                                Disciplinas di ON d.ID = di.DocenteID
+                            JOIN 
+                                Cursos c ON di.CursoID = c.ID
+                            JOIN 
+                                (
+                                    SELECT 
+                                        di.DocenteID,
+                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
+                                    FROM 
+                                        Disciplinas di
+                                    GROUP BY 
+                                        di.DocenteID
+                                ) t ON d.ID = t.DocenteID
+                            WHERE 
+                                d.Nome LIKE @procurar OR 
+                                        di.Semestre LIKE @procurar OR 
+                                        di.Nivel LIKE @procurar OR 
+                                        c.Nome LIKE @procurar                            
+                            ORDER BY 
+                                NomeDocente";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@procurar", "%" +txtprocurar.Text.Trim()+"%");
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                dataGridView1.DataSource = dataTable;
+            }
+
+        }
+
+        private void txtprocurar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btprocurar.PerformClick(); // Simula o clique no botão procurar
+            }
         }
     }
 }

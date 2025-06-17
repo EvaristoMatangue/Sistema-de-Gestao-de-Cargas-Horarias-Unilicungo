@@ -89,7 +89,7 @@ namespace SGC.View
         }
         private void btcadastrar_Click(object sender, EventArgs e)
         {
-            if (txtnome.Text == "" || cbcordenador.Text == "" || cbnivel.Text == "" || cbperiodo.Text == "")
+            if (txtnome.Text == "" || cbnivel.Text == "" || cbperiodo.Text == "")
             {
 
                 Session.Error = "Por favor, preenche todos os campos!";

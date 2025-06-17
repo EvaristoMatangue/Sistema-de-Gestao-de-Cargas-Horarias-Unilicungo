@@ -44,9 +44,9 @@
             this.btactualizar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.btcadastrar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtnumcarga = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
+            this.cbnivelacademico = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
+            this.btapagar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnumcarga)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -79,7 +79,7 @@
             this.cbcurso.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cbcurso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbcurso.ItemHeight = 30;
-            this.cbcurso.Location = new System.Drawing.Point(38, 399);
+            this.cbcurso.Location = new System.Drawing.Point(38, 352);
             this.cbcurso.Name = "cbcurso";
             this.cbcurso.Size = new System.Drawing.Size(360, 36);
             this.cbcurso.TabIndex = 112;
@@ -96,7 +96,7 @@
             this.txtusuario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtusuario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtusuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtusuario.Location = new System.Drawing.Point(38, 296);
+            this.txtusuario.Location = new System.Drawing.Point(38, 249);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.PasswordChar = '\0';
             this.txtusuario.PlaceholderText = "Digite o nome do usuario";
@@ -116,7 +116,7 @@
             this.txttelefone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttelefone.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txttelefone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttelefone.Location = new System.Drawing.Point(38, 220);
+            this.txttelefone.Location = new System.Drawing.Point(38, 173);
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.PasswordChar = '\0';
             this.txttelefone.PlaceholderText = "Digite o número de telefone";
@@ -139,7 +139,7 @@
             this.txtemail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtemail.Location = new System.Drawing.Point(38, 144);
+            this.txtemail.Location = new System.Drawing.Point(38, 97);
             this.txtemail.Name = "txtemail";
             this.txtemail.PasswordChar = '\0';
             this.txtemail.PlaceholderText = "Digite o email";
@@ -161,7 +161,7 @@
             this.txtnome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtnome.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtnome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtnome.Location = new System.Drawing.Point(38, 73);
+            this.txtnome.Location = new System.Drawing.Point(38, 26);
             this.txtnome.Name = "txtnome";
             this.txtnome.PasswordChar = '\0';
             this.txtnome.PlaceholderText = "Digite o Nome Completo";
@@ -184,7 +184,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(32, 358);
+            this.label9.Location = new System.Drawing.Point(32, 311);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(205, 32);
@@ -253,7 +253,7 @@
             this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
             this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btactualizar.ForeColor = System.Drawing.Color.White;
-            this.btactualizar.Location = new System.Drawing.Point(1076, 78);
+            this.btactualizar.Location = new System.Drawing.Point(777, 86);
             this.btactualizar.Name = "btactualizar";
             this.btactualizar.Size = new System.Drawing.Size(278, 49);
             this.btactualizar.TabIndex = 116;
@@ -270,7 +270,7 @@
             this.btcadastrar.FillColor = System.Drawing.Color.Green;
             this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btcadastrar.ForeColor = System.Drawing.Color.White;
-            this.btcadastrar.Location = new System.Drawing.Point(776, 78);
+            this.btcadastrar.Location = new System.Drawing.Point(477, 86);
             this.btcadastrar.Name = "btcadastrar";
             this.btcadastrar.Size = new System.Drawing.Size(278, 49);
             this.btcadastrar.TabIndex = 115;
@@ -281,30 +281,56 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 467);
+            this.label1.Location = new System.Drawing.Point(35, 411);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(237, 32);
             this.label1.TabIndex = 118;
             this.label1.Text = "Quantidade de carga";
             // 
-            // txtnumcarga
+            // cbnivelacademico
             // 
-            this.txtnumcarga.BackColor = System.Drawing.Color.Transparent;
-            this.txtnumcarga.BorderRadius = 3;
-            this.txtnumcarga.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtnumcarga.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtnumcarga.Location = new System.Drawing.Point(279, 467);
-            this.txtnumcarga.Name = "txtnumcarga";
-            this.txtnumcarga.Size = new System.Drawing.Size(116, 36);
-            this.txtnumcarga.TabIndex = 117;
+            this.cbnivelacademico.BackColor = System.Drawing.Color.Transparent;
+            this.cbnivelacademico.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbnivelacademico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbnivelacademico.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbnivelacademico.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbnivelacademico.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbnivelacademico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbnivelacademico.ItemHeight = 30;
+            this.cbnivelacademico.Items.AddRange(new object[] {
+            "Licenciado",
+            "Mestrado",
+            "PHD"});
+            this.cbnivelacademico.Location = new System.Drawing.Point(41, 453);
+            this.cbnivelacademico.Name = "cbnivelacademico";
+            this.cbnivelacademico.Size = new System.Drawing.Size(360, 36);
+            this.cbnivelacademico.TabIndex = 119;
+            // 
+            // btapagar
+            // 
+            this.btapagar.BorderRadius = 3;
+            this.btapagar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btapagar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btapagar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btapagar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btapagar.FillColor = System.Drawing.Color.Firebrick;
+            this.btapagar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btapagar.ForeColor = System.Drawing.Color.White;
+            this.btapagar.Location = new System.Drawing.Point(1077, 86);
+            this.btapagar.Name = "btapagar";
+            this.btapagar.Size = new System.Drawing.Size(278, 49);
+            this.btapagar.TabIndex = 120;
+            this.btapagar.Text = "Apagar";
+            this.btapagar.Click += new System.EventHandler(this.btapagar_Click);
             // 
             // UCDocenteAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btapagar);
+            this.Controls.Add(this.cbnivelacademico);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtnumcarga);
             this.Controls.Add(this.btactualizar);
             this.Controls.Add(this.btcadastrar);
             this.Controls.Add(this.dataGridView1);
@@ -322,7 +348,6 @@
             this.Size = new System.Drawing.Size(1376, 688);
             this.Load += new System.EventHandler(this.UCDocenteAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnumcarga)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,6 +367,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btactualizar;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btcadastrar;
         private System.Windows.Forms.Label label1;
-        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtnumcarga;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbnivelacademico;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btapagar;
     }
 }

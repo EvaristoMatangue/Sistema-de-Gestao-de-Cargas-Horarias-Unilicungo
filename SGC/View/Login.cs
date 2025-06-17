@@ -336,15 +336,8 @@ namespace SGC.View
 
                 MySqlDataReader reader = command.ExecuteReader();
 
-                MySqlCommand commandrh = new MySqlCommand(queryrh, connection);
-                commandrh.Parameters.AddWithValue("@username", txtuser.Text);
-
-                commandrh.ExecuteNonQuery();
-
-                MySqlDataReader readerrh = commandrh.ExecuteReader();
-
-
-                if (reader.Read()||readerrh.Read())
+              
+                if (reader.Read())
                 {
                     string storedHash = reader["senha"].ToString();
                     string userType = reader["tipousuario"].ToString();
@@ -362,7 +355,7 @@ namespace SGC.View
                             admin.Show();
 
                         }
-                        else if (reader["tipousuario"].ToString() == "docente")
+                        if (reader["tipousuario"].ToString() == "docente")
                         {
                             FormDocente docente = new FormDocente();
                             docente.FormClosed += (s, args) => this.Close();
@@ -385,9 +378,44 @@ namespace SGC.View
                             chefedep.Show();
 
                         }
+                        
+                    }
+                    else
+                    {
+                        Session.Error = "Usuario ou senha Invalido!";
+                        FormError erro = new FormError();
+                        erro.ShowDialog();
+                    }
+
+                } else if(!reader.Read())
+                {
+                    reader.Close();  // IMPORTANTE: fechar antes de novo reader
+                    MySqlCommand commandrh = new MySqlCommand(queryrh, connection);
+                    commandrh.Parameters.AddWithValue("@username", txtuser.Text);
+
+                    MySqlDataReader readerrh = commandrh.ExecuteReader();
+
+                    if (readerrh.Read())
+                    {
+                        string storedHash = readerrh["senha"].ToString();
+                        string userType = readerrh["tipousuario"].ToString();
+
+                        if (BCrypt.Net.BCrypt.Verify(password, storedHash))
+                        {
+                            Session.UserName = txtuser.Text;
+                            Session.s = storedHash;
+                            if (readerrh["tipousuario"].ToString() == "gestorrh")
+                            {
+                                FormAdmin admin = new FormAdmin();
+                                admin.FormClosed += (s, args) => this.Close();
+                                this.Hide();
+                                admin.Show();
+
+                            }
+                        }
                         else
                         {
-                            Session.Error = "Usuario Nao Autorizado!";
+                            Session.Error = "Usuario ou senha Invalido!";
                             FormError erro = new FormError();
                             erro.ShowDialog();
                         }
@@ -398,8 +426,7 @@ namespace SGC.View
                         FormError erro = new FormError();
                         erro.ShowDialog();
                     }
-
-                } 
+                }
                 else
                 {
                     Session.Error = "Usuario ou senha Invalido!";
@@ -429,6 +456,11 @@ namespace SGC.View
             {
                 btcadastrar.PerformClick(); // Simula o clique no botão Entrar
             }
+        }
+
+        private void txtsenha_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

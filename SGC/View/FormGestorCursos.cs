@@ -27,6 +27,7 @@ namespace SGC.View
             UCDashboard dashboard = new UCDashboard();
 
             painelprincipal.Controls.Clear();
+            dashboard.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(dashboard);
             timer1.Start();
         }
@@ -67,14 +68,14 @@ namespace SGC.View
 
         private void btdisciplina_Click(object sender, EventArgs e)
         {
-            btdocente.BackColor = Color.Transparent;
             btdisciplina.BackColor = Color.Silver;
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
 
-            UCGCDisciplina uCDisciplina = new UCGCDisciplina();
+            UCGCTurmas uCDisciplina = new UCGCTurmas();
 
             painelprincipal.Controls.Clear();
+            uCDisciplina.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(uCDisciplina);
         }
 
@@ -106,7 +107,6 @@ namespace SGC.View
 
         private void btdashboard_Click(object sender, EventArgs e)
         {
-            btdocente.BackColor = Color.Transparent;
             btdisciplina.BackColor = Color.Transparent;
             btdashboard.BackColor = Color.Silver;
             button4.BackColor = Color.Transparent;
@@ -114,12 +114,12 @@ namespace SGC.View
             UCDashboard dashboard = new UCDashboard();
 
             painelprincipal.Controls.Clear();
+            dashboard.Dock = DockStyle.Fill;
             painelprincipal.Controls.Add(dashboard);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            btdocente.BackColor = Color.Transparent;
 
             btdisciplina.BackColor = Color.Transparent;
             btdashboard.BackColor = Color.Transparent;
@@ -131,8 +131,6 @@ namespace SGC.View
 
         private void btdocente_Click(object sender, EventArgs e)
         {
-            btdocente.BackColor = Color.Silver;
-
             btdisciplina.BackColor = Color.Transparent;
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
@@ -177,6 +175,12 @@ namespace SGC.View
 
         private void btapagar_Click(object sender, EventArgs e)
         {
+            Helppers.Session.UserName = "";
+            Helppers.Session.Nomec = "";
+            Helppers.Session.Emailc = "";
+            Helppers.Session.Sobrenomec = "";
+            Helppers.Session.curso = "";
+
             Login login = new Login();
             login.FormClosed += (s, args) => this.Close();
             this.Hide();

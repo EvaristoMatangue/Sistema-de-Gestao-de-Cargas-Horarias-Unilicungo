@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGC.View.GestorCurso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,7 @@ namespace SGC.View.Chefe_de_Departamento
 
         private void btdisciplina_Click(object sender, EventArgs e)
         {
+            btassociar.BackColor = Color.Transparent;
             btdocente.BackColor = Color.Transparent;
             btdisciplina.BackColor = Color.Silver;
             btdashboard.BackColor = Color.Transparent;
@@ -39,6 +41,7 @@ namespace SGC.View.Chefe_de_Departamento
 
         private void btdashboard_Click(object sender, EventArgs e)
         {
+            btassociar.BackColor = Color.Transparent;
             btdocente.BackColor = Color.Transparent;
             btdisciplina.BackColor = Color.Transparent;
             btdashboard.BackColor = Color.Silver;
@@ -53,12 +56,12 @@ namespace SGC.View.Chefe_de_Departamento
         private void btdocente_Click(object sender, EventArgs e)
         {
             btdocente.BackColor = Color.Silver;
-
+            btassociar.BackColor = Color.Transparent;
             btdisciplina.BackColor = Color.Transparent;
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
 
-            UCChefeDocentes docente = new UCChefeDocentes();
+            UCDocente docente = new UCDocente();
 
             painelprincipal.Controls.Clear();
             painelprincipal.Controls.Add(docente);
@@ -66,6 +69,7 @@ namespace SGC.View.Chefe_de_Departamento
 
         private void button4_Click(object sender, EventArgs e)
         {
+            btassociar.BackColor = Color.Transparent;
             btdocente.BackColor = Color.Transparent;
             btdisciplina.BackColor = Color.Transparent;
             btdashboard.BackColor = Color.Transparent;
@@ -128,10 +132,29 @@ namespace SGC.View.Chefe_de_Departamento
 
         private void siticoneButton1_Click(object sender, EventArgs e)
         {
+            Helppers.Session.UserName = "";
+            Helppers.Session.Nome = "";
+            Helppers.Session.Email = "";
+            Helppers.Session.Sobrenome = "";
+
             Login login = new Login();
             login.FormClosed += (s, args) => this.Close();
             this.Hide();
             login.Show();
+        }
+
+        private void btassociar_Click(object sender, EventArgs e)
+        {
+            btdocente.BackColor = Color.Transparent;
+            btassociar.BackColor = Color.Silver;
+            btdisciplina.BackColor = Color.Transparent;
+            btdashboard.BackColor = Color.Transparent;
+            button4.BackColor = Color.Transparent;
+
+            UCGCTurmas docente = new UCGCTurmas();
+
+            painelprincipal.Controls.Clear();
+            painelprincipal.Controls.Add(docente);
         }
     }
 }

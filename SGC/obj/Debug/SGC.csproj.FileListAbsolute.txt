@@ -245,3 +245,5 @@ C:\Users\user\source\repos\Sistema-de-Gestao-de-Cargas-Horarias-Unilicungo\SGC\b
 C:\Users\user\source\repos\Sistema-de-Gestao-de-Cargas-Horarias-Unilicungo\SGC\obj\Debug\SGC.FormSucess.resources
 C:\Users\user\source\repos\Sistema-de-Gestao-de-Cargas-Horarias-Unilicungo\SGC\obj\Debug\SGC.View.FormGestorCursos.resources
 C:\Users\user\source\repos\Sistema-de-Gestao-de-Cargas-Horarias-Unilicungo\SGC\obj\Debug\SGC.exe.config
+C:\Users\user\Source\Repos\Sistema-de-Gestao-de-Cargas-Horarias-Unilicungo\SGC\obj\Debug\SGC.View.GestorCurso.UCGCTurmas.resources
+C:\Users\user\source\repos\Sistema-de-Gestao-de-Cargas-Horarias-Unilicungo\SGC\obj\Debug\SGC.View.Docentes.FormDetalhesDocentes.resources

@@ -38,6 +38,7 @@
             this.txtemail = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.txttelefone = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.txtusuario = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.btactualizar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,9 +47,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.label3.Location = new System.Drawing.Point(243, 10);
+            this.label3.Location = new System.Drawing.Point(364, 15);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(351, 33);
+            this.label3.Size = new System.Drawing.Size(515, 52);
             this.label3.TabIndex = 38;
             this.label3.Text = "Cadastrar Gestor de RH";
             // 
@@ -62,10 +64,9 @@
             this.btcadastrar.FillColor = System.Drawing.Color.Green;
             this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btcadastrar.ForeColor = System.Drawing.Color.White;
-            this.btcadastrar.Location = new System.Drawing.Point(617, 119);
-            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2);
+            this.btcadastrar.Location = new System.Drawing.Point(926, 183);
             this.btcadastrar.Name = "btcadastrar";
-            this.btcadastrar.Size = new System.Drawing.Size(183, 35);
+            this.btcadastrar.Size = new System.Drawing.Size(274, 54);
             this.btcadastrar.TabIndex = 86;
             this.btcadastrar.Text = "Cadastrar";
             this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click);
@@ -92,13 +93,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(62, 193);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(93, 297);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(738, 240);
+            this.dataGridView1.Size = new System.Drawing.Size(1107, 369);
             this.dataGridView1.TabIndex = 91;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -134,13 +134,12 @@
             this.txtnome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtnome.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtnome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtnome.Location = new System.Drawing.Point(62, 58);
-            this.txtnome.Margin = new System.Windows.Forms.Padding(2);
+            this.txtnome.Location = new System.Drawing.Point(93, 89);
             this.txtnome.Name = "txtnome";
             this.txtnome.PasswordChar = '\0';
             this.txtnome.PlaceholderText = "Digite o Nome Completo";
             this.txtnome.SelectedText = "";
-            this.txtnome.Size = new System.Drawing.Size(239, 35);
+            this.txtnome.Size = new System.Drawing.Size(358, 54);
             this.txtnome.TabIndex = 92;
             // 
             // txtemail
@@ -155,13 +154,12 @@
             this.txtemail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtemail.Location = new System.Drawing.Point(339, 58);
-            this.txtemail.Margin = new System.Windows.Forms.Padding(2);
+            this.txtemail.Location = new System.Drawing.Point(508, 89);
             this.txtemail.Name = "txtemail";
             this.txtemail.PasswordChar = '\0';
             this.txtemail.PlaceholderText = "Digite o email";
             this.txtemail.SelectedText = "";
-            this.txtemail.Size = new System.Drawing.Size(239, 35);
+            this.txtemail.Size = new System.Drawing.Size(358, 54);
             this.txtemail.TabIndex = 93;
             this.txtemail.Leave += new System.EventHandler(this.txtemail_Leave);
             // 
@@ -177,13 +175,12 @@
             this.txttelefone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttelefone.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txttelefone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttelefone.Location = new System.Drawing.Point(339, 119);
-            this.txttelefone.Margin = new System.Windows.Forms.Padding(2);
+            this.txttelefone.Location = new System.Drawing.Point(508, 183);
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.PasswordChar = '\0';
             this.txttelefone.PlaceholderText = "Digite o número de telefone";
             this.txttelefone.SelectedText = "";
-            this.txttelefone.Size = new System.Drawing.Size(239, 35);
+            this.txttelefone.Size = new System.Drawing.Size(358, 54);
             this.txttelefone.TabIndex = 94;
             this.txttelefone.TextChanged += new System.EventHandler(this.txttelefone_TextChanged);
             this.txttelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelefone_KeyPress);
@@ -201,19 +198,35 @@
             this.txtusuario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtusuario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtusuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtusuario.Location = new System.Drawing.Point(62, 119);
-            this.txtusuario.Margin = new System.Windows.Forms.Padding(2);
+            this.txtusuario.Location = new System.Drawing.Point(93, 183);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.PasswordChar = '\0';
             this.txtusuario.PlaceholderText = "Digite o nome do usuario";
             this.txtusuario.SelectedText = "";
-            this.txtusuario.Size = new System.Drawing.Size(239, 35);
+            this.txtusuario.Size = new System.Drawing.Size(358, 54);
             this.txtusuario.TabIndex = 95;
+            // 
+            // btactualizar
+            // 
+            this.btactualizar.BorderRadius = 3;
+            this.btactualizar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btactualizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btactualizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btactualizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
+            this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btactualizar.ForeColor = System.Drawing.Color.White;
+            this.btactualizar.Location = new System.Drawing.Point(922, 89);
+            this.btactualizar.Name = "btactualizar";
+            this.btactualizar.Size = new System.Drawing.Size(278, 49);
+            this.btactualizar.TabIndex = 108;
+            this.btactualizar.Text = "Actualizar";
             // 
             // UCGRHCadastro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btactualizar);
             this.Controls.Add(this.txtusuario);
             this.Controls.Add(this.txttelefone);
             this.Controls.Add(this.txtemail);
@@ -221,8 +234,9 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btcadastrar);
             this.Controls.Add(this.label3);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCGRHCadastro";
-            this.Size = new System.Drawing.Size(917, 447);
+            this.Size = new System.Drawing.Size(1376, 688);
             this.Load += new System.EventHandler(this.UCGRHCadastro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -238,5 +252,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtemail;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txttelefone;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtusuario;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btactualizar;
     }
 }

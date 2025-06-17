@@ -31,12 +31,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDocente));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.painelprincipal = new System.Windows.Forms.Panel();
+            this.btprocurar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.txtprocurar = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.dataGridView1 = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btposlaboral = new Siticone.Desktop.UI.WinForms.SiticoneButton();
@@ -66,7 +69,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1110, 31);
+            this.panel1.Size = new System.Drawing.Size(1101, 31);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -83,7 +86,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::SGC.Properties.Resources.subtract_24px;
-            this.button2.Location = new System.Drawing.Point(978, 0);
+            this.button2.Location = new System.Drawing.Point(969, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 29);
             this.button2.TabIndex = 6;
@@ -97,7 +100,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = global::SGC.Properties.Resources.maximize_button_24px;
-            this.button3.Location = new System.Drawing.Point(1018, 0);
+            this.button3.Location = new System.Drawing.Point(1009, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(45, 29);
             this.button3.TabIndex = 7;
@@ -113,7 +116,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.Image = global::SGC.Properties.Resources.close_24px;
-            this.button1.Location = new System.Drawing.Point(1063, 0);
+            this.button1.Location = new System.Drawing.Point(1055, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(46, 29);
             this.button1.TabIndex = 5;
@@ -122,6 +125,8 @@
             // 
             // painelprincipal
             // 
+            this.painelprincipal.Controls.Add(this.btprocurar);
+            this.painelprincipal.Controls.Add(this.txtprocurar);
             this.painelprincipal.Controls.Add(this.dataGridView1);
             this.painelprincipal.Controls.Add(this.pictureBox2);
             this.painelprincipal.Controls.Add(this.btposlaboral);
@@ -137,8 +142,50 @@
             this.painelprincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelprincipal.Location = new System.Drawing.Point(0, 31);
             this.painelprincipal.Name = "painelprincipal";
-            this.painelprincipal.Size = new System.Drawing.Size(1110, 517);
+            this.painelprincipal.Size = new System.Drawing.Size(1101, 633);
             this.painelprincipal.TabIndex = 5;
+            // 
+            // btprocurar
+            // 
+            this.btprocurar.BorderRadius = 4;
+            this.btprocurar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btprocurar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btprocurar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btprocurar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btprocurar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
+            this.btprocurar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btprocurar.ForeColor = System.Drawing.Color.White;
+            this.btprocurar.Image = global::SGC.Properties.Resources.Search;
+            this.btprocurar.Location = new System.Drawing.Point(1036, 113);
+            this.btprocurar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btprocurar.Name = "btprocurar";
+            this.btprocurar.Size = new System.Drawing.Size(35, 29);
+            this.btprocurar.TabIndex = 104;
+            this.btprocurar.Click += new System.EventHandler(this.btprocurar_Click);
+            // 
+            // txtprocurar
+            // 
+            this.txtprocurar.BorderRadius = 5;
+            this.txtprocurar.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtprocurar.DefaultText = "";
+            this.txtprocurar.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtprocurar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtprocurar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtprocurar.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtprocurar.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtprocurar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtprocurar.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtprocurar.IconLeft = global::SGC.Properties.Resources.Search11;
+            this.txtprocurar.IconLeftOffset = new System.Drawing.Point(3, 1);
+            this.txtprocurar.Location = new System.Drawing.Point(757, 115);
+            this.txtprocurar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtprocurar.Name = "txtprocurar";
+            this.txtprocurar.PasswordChar = '\0';
+            this.txtprocurar.PlaceholderText = "Procurar...";
+            this.txtprocurar.SelectedText = "";
+            this.txtprocurar.Size = new System.Drawing.Size(275, 29);
+            this.txtprocurar.TabIndex = 103;
+            this.txtprocurar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtprocurar_KeyDown);
             // 
             // dataGridView1
             // 
@@ -163,13 +210,13 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 150);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 148);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1110, 367);
+            this.dataGridView1.Size = new System.Drawing.Size(1101, 485);
             this.dataGridView1.TabIndex = 69;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -201,7 +248,7 @@
             this.pictureBox2.Image = global::SGC.Properties.Resources.backIcon;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(45, 27);
+            this.pictureBox2.Size = new System.Drawing.Size(0, 27);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 68;
             this.pictureBox2.TabStop = false;
@@ -218,7 +265,7 @@
             this.btposlaboral.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
             this.btposlaboral.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btposlaboral.ForeColor = System.Drawing.Color.White;
-            this.btposlaboral.Location = new System.Drawing.Point(965, 113);
+            this.btposlaboral.Location = new System.Drawing.Point(971, 67);
             this.btposlaboral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btposlaboral.Name = "btposlaboral";
             this.btposlaboral.Size = new System.Drawing.Size(120, 29);
@@ -237,7 +284,7 @@
             this.btlaboral.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
             this.btlaboral.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btlaboral.ForeColor = System.Drawing.Color.White;
-            this.btlaboral.Location = new System.Drawing.Point(824, 113);
+            this.btlaboral.Location = new System.Drawing.Point(829, 67);
             this.btlaboral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btlaboral.Name = "btlaboral";
             this.btlaboral.Size = new System.Drawing.Size(120, 29);
@@ -252,7 +299,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.label4.Location = new System.Drawing.Point(211, 111);
+            this.label4.Location = new System.Drawing.Point(138, 105);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(566, 37);
             this.label4.TabIndex = 12;
@@ -266,7 +313,7 @@
             this.lsemestreum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
             this.lsemestreum.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsemestreum.ForeColor = System.Drawing.Color.White;
-            this.lsemestreum.Location = new System.Drawing.Point(861, 77);
+            this.lsemestreum.Location = new System.Drawing.Point(867, 31);
             this.lsemestreum.Name = "lsemestreum";
             this.lsemestreum.Size = new System.Drawing.Size(106, 21);
             this.lsemestreum.TabIndex = 6;
@@ -280,7 +327,7 @@
             this.lsemestredois.AutoSize = true;
             this.lsemestredois.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsemestredois.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.lsemestredois.Location = new System.Drawing.Point(979, 77);
+            this.lsemestredois.Location = new System.Drawing.Point(984, 31);
             this.lsemestredois.Name = "lsemestredois";
             this.lsemestredois.Size = new System.Drawing.Size(106, 21);
             this.lsemestredois.TabIndex = 7;
@@ -294,7 +341,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(63)))), ((int)(((byte)(1)))));
-            this.label3.Location = new System.Drawing.Point(964, 68);
+            this.label3.Location = new System.Drawing.Point(969, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(22, 31);
             this.label3.TabIndex = 8;
@@ -303,8 +350,6 @@
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(63)))), ((int)(((byte)(1)))));
             this.panel4.Location = new System.Drawing.Point(331, 5);
             this.panel4.Name = "panel4";
@@ -341,8 +386,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::SGC.Properties.Resources.ULLogoSb;
             this.pictureBox1.Location = new System.Drawing.Point(218, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -356,10 +399,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1110, 548);
+            this.ClientSize = new System.Drawing.Size(1101, 664);
             this.Controls.Add(this.painelprincipal);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDocente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormDocente";
@@ -393,5 +437,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dataGridView1;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton btprocurar;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtprocurar;
     }
 }

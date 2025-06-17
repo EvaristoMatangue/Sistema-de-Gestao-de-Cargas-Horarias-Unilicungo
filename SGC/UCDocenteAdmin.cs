@@ -18,7 +18,7 @@ namespace SGC
     public partial class UCDocenteAdmin : UserControl
     {
         string conn = $"{Helppers.conexao.connectionString}";
-
+        int numcarga= 0;
         public UCDocenteAdmin()
         {
             InitializeComponent();
@@ -93,8 +93,9 @@ namespace SGC
                 txtnome.Text = row.Cells["nome"].Value.ToString();
                 txtemail.Text = row.Cells["email"].Value.ToString();
                 txttelefone.Text = row.Cells["telefone"].Value.ToString();
-                dataGridView1.Text = row.Cells["curso"].Value.ToString();
+                cbcurso.Text = row.Cells["curso"].Value.ToString();
                 txtusuario.Text = row.Cells["nomeusuario"].Value.ToString();
+                cbnivelacademico.Text = row.Cells["nivelacademico"].Value.ToString();
                 txtobs.Text = row.Cells["observacao"].Value.ToString();
 
                 // Obtém o valor da célula na coluna "ID" da linha selecionada
@@ -146,8 +147,21 @@ namespace SGC
                                 connection.Close();
                             }
                             connection.Open();
-                            // SQL para inserir os dados na tabela
-                            string query = "INSERT INTO docentes (nome, email, telefone, curso, nomeusuario, numcarga, observacao) VALUES (@nome, @email, @telefone, @curso, @nomeusuario, @numcarga, @observacao)";
+                            if (cbnivelacademico.Text == "Licenciado")
+                            {
+                                numcarga = 16;
+
+                            }else if (cbnivelacademico.Text == "Mestrado")
+                            {
+                                numcarga = 12;
+
+                            }else if (cbnivelacademico.Text == "PHD")
+                            {
+                                numcarga= 8;
+                            }
+
+                                // SQL para inserir os dados na tabela
+                                string query = "INSERT INTO docentes (nome, email, telefone, curso, nomeusuario,nivelacademico, numcarga, observacao) VALUES (@nome, @email, @telefone, @curso, @nomeusuario, @nivelac, @numcarga, @observacao)";
 
                             // Crie um novo comando com a consulta SQL e a conexão
                             MySqlCommand command = new MySqlCommand(query, connection);
@@ -160,7 +174,8 @@ namespace SGC
                             command.Parameters.AddWithValue("@telefone", txttelefone.Text);
                             command.Parameters.AddWithValue("@curso", cbcurso.Text);
                             command.Parameters.AddWithValue("@nomeusuario", txtusuario.Text);
-                            command.Parameters.AddWithValue("@numcarga", txtnumcarga.Text);
+                            command.Parameters.AddWithValue("@nivelac", cbnivelacademico.Text);
+                            command.Parameters.AddWithValue("@numcarga", numcarga);
                             command.Parameters.AddWithValue("@observacao", txtobs.Text);
 
                             string queryu = "INSERT INTO usuarios (nomeusuario, tipousuario, senha) VALUES (@nomeusuario, @tipousuario, @senha)";
@@ -226,17 +241,30 @@ namespace SGC
                         erro.ShowDialog();
                         return; // Interrompe a execução se o nome já existir
                     }
-
+                    if (cbnivelacademico.Text == "Licenciado")
+                    {
+                        numcarga = 16;
+                    }
+                    else if (cbnivelacademico.Text == "Mestrado")
+                    {
+                        numcarga = 12;
+                    }
+                    else if (cbnivelacademico.Text == "PHD")
+                    {
+                        numcarga = 8;
+                    }
                     // SQL para atualizar os dados na tabela
-                    string query = "UPDATE docentes SET nome= @nome , email = @email , telefone= @telefone, curso= @curso, nomeusuario= @nomeusuario, observacao =@obs WHERE ID = @ID";
+                    string query = "UPDATE docentes SET nome= @nome , email = @email , telefone= @telefone, curso= @curso, nomeusuario= @nomeusuario, nivelacademico=@nivelacademico, numcarga=@numcarga, observacao =@obs WHERE ID = @ID";
                     MySqlCommand command = new MySqlCommand(query, connection);
 
                     //parâmetros
                     command.Parameters.AddWithValue("@nome", txtnome.Text);
                     command.Parameters.AddWithValue("@email", txtemail.Text);
                     command.Parameters.AddWithValue("@telefone", txttelefone.Text);
-                    command.Parameters.AddWithValue("@curso", dataGridView1.Text);
+                    command.Parameters.AddWithValue("@curso", cbcurso.Text);
                     command.Parameters.AddWithValue("@nomeusuario", txtusuario.Text);
+                    command.Parameters.AddWithValue("@nivelacademico", cbnivelacademico.Text);
+                    command.Parameters.AddWithValue("@numcarga", numcarga);
                     command.Parameters.AddWithValue("@obs", txtobs.Text);
                     command.Parameters.AddWithValue("@ID", id);
 
@@ -347,6 +375,61 @@ namespace SGC
                 erro.ShowDialog();
                 txttelefone.Text = new string(telefone.Where(char.IsDigit).ToArray());
                 txttelefone.SelectionStart = txttelefone.Text.Length; // Ajustar o cursor
+            }
+        }
+
+        private void btapagar_Click(object sender, EventArgs e)
+        {
+            DialogResult check = MessageBox.Show("Pretende apagar este registo?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
+            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+
+            if (selectedRow != null)
+            {
+                int id = Convert.ToInt32(selectedRow["ID"]);
+
+                using (MySqlConnection connection = new MySqlConnection(conn))
+                {
+                    if (check == DialogResult.Yes)
+                    {
+                        string query = "DELETE FROM docentes WHERE ID = @ID";
+                        string queryu = "DELETE FROM usuarios WHERE nomeusuario = @nomeuser";
+
+                        MySqlCommand commandu = new MySqlCommand(queryu, connection);
+                        MySqlCommand command = new MySqlCommand(query, connection);
+
+                        commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
+                        command.Parameters.AddWithValue("@ID", id);
+
+                        connection.Open();
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        int rowsAffectedu = commandu.ExecuteNonQuery();
+                        if (rowsAffected > 0 && rowsAffectedu > 0)
+                        {
+                            Session.Sucess = "Registo Eliminado com sucesso!";
+                            FormSucess sucess = new FormSucess();
+                            sucess.ShowDialog();
+
+                            limpardados();
+                            verdados();
+                        }
+                        else
+                        {
+                            Session.Error = "Falha ao deletar a linha. Por favor, tente novamente.";
+                            FormError erro = new FormError();
+                            erro.ShowDialog();
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                Session.Error = "Por favor, selecione uma linha para deletar.";
+                FormError erro = new FormError();
+                erro.ShowDialog();
             }
         }
     }

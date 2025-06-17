@@ -202,6 +202,12 @@ namespace SGC.View
 
         private void btapagar_Click_1(object sender, EventArgs e)
         {
+            Helppers.Session.curso = "";
+            Helppers.Session.UserName = "";
+            Helppers.Session.Nomec = "";
+            Helppers.Session.Emailc = "";
+            Helppers.Session.Sobrenomec = "";
+
             Login login = new Login();
             login.FormClosed += (s, args) => this.Close();
             this.Hide();

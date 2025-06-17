@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,10 +44,9 @@
             this.btactualizar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.btcadastrar = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.dataGridView1 = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
-            this.txtnumcarga = new Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbnivelacademico = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnumcarga)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -78,7 +77,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 439);
+            this.label4.Location = new System.Drawing.Point(12, 434);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(205, 32);
@@ -97,7 +96,7 @@
             this.txtusuario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtusuario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtusuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtusuario.Location = new System.Drawing.Point(16, 320);
+            this.txtusuario.Location = new System.Drawing.Point(16, 273);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.PasswordChar = '\0';
             this.txtusuario.PlaceholderText = "Digite o nome do usuario";
@@ -117,7 +116,7 @@
             this.txttelefone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttelefone.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txttelefone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttelefone.Location = new System.Drawing.Point(16, 245);
+            this.txttelefone.Location = new System.Drawing.Point(16, 198);
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.PasswordChar = '\0';
             this.txttelefone.PlaceholderText = "Digite o número de telefone";
@@ -140,7 +139,7 @@
             this.txtemail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtemail.Location = new System.Drawing.Point(16, 169);
+            this.txtemail.Location = new System.Drawing.Point(16, 122);
             this.txtemail.Name = "txtemail";
             this.txtemail.PasswordChar = '\0';
             this.txtemail.PlaceholderText = "Digite o email";
@@ -163,7 +162,7 @@
             this.txtnome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtnome.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtnome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtnome.Location = new System.Drawing.Point(16, 95);
+            this.txtnome.Location = new System.Drawing.Point(16, 48);
             this.txtnome.Name = "txtnome";
             this.txtnome.PasswordChar = '\0';
             this.txtnome.PlaceholderText = "Digite o Nome Completo";
@@ -182,7 +181,7 @@
             this.cbcurso.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cbcurso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbcurso.ItemHeight = 30;
-            this.cbcurso.Location = new System.Drawing.Point(16, 481);
+            this.cbcurso.Location = new System.Drawing.Point(16, 476);
             this.cbcurso.Name = "cbcurso";
             this.cbcurso.Size = new System.Drawing.Size(360, 36);
             this.cbcurso.TabIndex = 104;
@@ -248,25 +247,25 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 18;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dataGridView1.Location = new System.Drawing.Point(393, 162);
             this.dataGridView1.Name = "dataGridView1";
@@ -298,34 +297,43 @@
             this.dataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
-            // txtnumcarga
-            // 
-            this.txtnumcarga.BackColor = System.Drawing.Color.Transparent;
-            this.txtnumcarga.BorderRadius = 3;
-            this.txtnumcarga.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtnumcarga.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtnumcarga.Location = new System.Drawing.Point(257, 393);
-            this.txtnumcarga.Name = "txtnumcarga";
-            this.txtnumcarga.Size = new System.Drawing.Size(116, 36);
-            this.txtnumcarga.TabIndex = 110;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 393);
+            this.label1.Location = new System.Drawing.Point(12, 340);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 32);
+            this.label1.Size = new System.Drawing.Size(324, 32);
             this.label1.TabIndex = 111;
-            this.label1.Text = "Quantidade de carga";
+            this.label1.Text = "Selecione o Nivel Academico";
+            // 
+            // cbnivelacademico
+            // 
+            this.cbnivelacademico.BackColor = System.Drawing.Color.Transparent;
+            this.cbnivelacademico.BorderRadius = 3;
+            this.cbnivelacademico.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbnivelacademico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbnivelacademico.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbnivelacademico.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbnivelacademico.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbnivelacademico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbnivelacademico.ItemHeight = 30;
+            this.cbnivelacademico.Items.AddRange(new object[] {
+            "Licenciado",
+            "Mestrado",
+            "PHD"});
+            this.cbnivelacademico.Location = new System.Drawing.Point(18, 374);
+            this.cbnivelacademico.Name = "cbnivelacademico";
+            this.cbnivelacademico.Size = new System.Drawing.Size(358, 36);
+            this.cbnivelacademico.TabIndex = 112;
             // 
             // UCDocente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbnivelacademico);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtnumcarga);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btapagar);
             this.Controls.Add(this.btactualizar);
@@ -344,7 +352,6 @@
             this.Size = new System.Drawing.Size(1376, 688);
             this.Load += new System.EventHandler(this.UCDocente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnumcarga)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,7 +371,7 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btactualizar;
         private Siticone.Desktop.UI.WinForms.SiticoneButton btcadastrar;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dataGridView1;
-        private Siticone.Desktop.UI.WinForms.SiticoneNumericUpDown txtnumcarga;
         private System.Windows.Forms.Label label1;
+        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbnivelacademico;
     }
 }
