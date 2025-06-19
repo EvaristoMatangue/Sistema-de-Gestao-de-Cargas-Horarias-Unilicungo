@@ -44,7 +44,6 @@ namespace SGC
 
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["CursoID"].Visible = false;
-                dataGridView1.Columns["docenteID"].Visible = false;
                 dataGridView1.Columns["id"].Visible = false;
 
 
@@ -54,7 +53,6 @@ namespace SGC
         {
 
             cbcurso.Items.Clear();
-            cbdocente.Items.Clear();
 
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
@@ -93,21 +91,6 @@ namespace SGC
 
                     }
                 }
-
-                string queryd = "SELECT nome FROM docentes";
-
-                MySqlCommand commandd = new MySqlCommand(queryd, connection);
-
-                using (MySqlDataReader readerd = commandd.ExecuteReader())
-                {
-                    while (readerd.Read())
-                    {
-
-                        cbdocente.Items.Add(readerd["nome"].ToString());
-
-                    }
-
-                }
             }
 
             verdados();
@@ -125,7 +108,6 @@ namespace SGC
                 txtcarga.Text = row.Cells["cargahoraria"].Value.ToString();
                 cbcurso.Text = row.Cells["curso"].Value.ToString();
                 cbsemestre.Text = row.Cells["Semestre"].Value.ToString();
-                cbdocente.Text = row.Cells["docente"].Value.ToString();
 
                 // Obtém o valor da célula na coluna "ID" da linha selecionada
                 int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
@@ -179,12 +161,7 @@ namespace SGC
                             commandSupervisor.Parameters.AddWithValue("@supervisor", cbcurso.Text);
                             int idcurso = Convert.ToInt32(commandSupervisor.ExecuteScalar());
 
-                            string queryd = "SELECT id FROM docentes WHERE nome = @dd";
-                            MySqlCommand commandd = new MySqlCommand(queryd, connection);
-                            commandd.Parameters.AddWithValue("@dd", cbdocente.Text);
-                            int iddocente = Convert.ToInt32(commandd.ExecuteScalar());
-
-                            string query = "INSERT INTO disciplinas (nome, cargahoraria, Nivel, cursoID, docenteID, Semestre, curso, docente) VALUES (@nome, @cargahoraria, @Nivel, @cursoID, @docenteID, @Semestre, @curso, @docente)";
+                            string query = "INSERT INTO disciplinas (nome, cargahoraria, Nivel, cursoID, Semestre, curso) VALUES (@nome, @cargahoraria, @Nivel, @cursoID, @Semestre, @curso)";
 
                             // Crie um novo comando com a consulta SQL e a conexão
                             MySqlCommand command = new MySqlCommand(query, connection);
@@ -194,10 +171,8 @@ namespace SGC
                             command.Parameters.AddWithValue("@cargahoraria", txtcarga.Text);
                             command.Parameters.AddWithValue("@Nivel", txtnivel.Text);
                             command.Parameters.AddWithValue("@cursoID", idcurso);
-                            command.Parameters.AddWithValue("@docenteID", iddocente);
                             command.Parameters.AddWithValue("@Semestre", cbsemestre.Text);
                             command.Parameters.AddWithValue("@curso", cbcurso.Text);
-                            command.Parameters.AddWithValue("@docente", cbdocente.Text);
 
 
                             // Execute o comando de inserção
@@ -237,14 +212,8 @@ namespace SGC
                     MySqlCommand commandSupervisor = new MySqlCommand(querySupervisor, connection);
                     commandSupervisor.Parameters.AddWithValue("@supervisor", cbcurso.Text);
                     int idcurso = Convert.ToInt32(commandSupervisor.ExecuteScalar());
-
-                    string querydocente = "SELECT id FROM docentes WHERE nome = @docente";
-                    MySqlCommand commandd = new MySqlCommand(querydocente, connection);
-                    commandd.Parameters.AddWithValue("@docente", cbdocente.Text);
-                    int iddocente = Convert.ToInt32(commandd.ExecuteScalar());
-
-                    // SQL para atualizar os dados na tabela
-                    string query = "UPDATE disciplinas SET nome= @nome , cargahoraria = @cargahoraria , Nivel= @Nivel, CursoID= @CursoID, semestre=@semestre, docenteID= @docenteid, curso= @curso, docente=@docente WHERE ID = @ID";
+                     // SQL para atualizar os dados na tabela
+                    string query = "UPDATE disciplinas SET nome= @nome , cargahoraria = @cargahoraria , Nivel= @Nivel, CursoID= @CursoID, semestre=@semestre, curso= @curso WHERE ID = @ID";
 
                     // Crie um novo comando com a consulta SQL e a conexão
                     MySqlCommand command = new MySqlCommand(query, connection);
@@ -255,8 +224,6 @@ namespace SGC
                     command.Parameters.AddWithValue("@Nivel", txtnivel.Text);
                     command.Parameters.AddWithValue("@CursoID", idcurso);
                     command.Parameters.AddWithValue("@semestre", cbsemestre.Text);
-                    command.Parameters.AddWithValue("@docenteid", iddocente);
-                    command.Parameters.AddWithValue("@docente", cbdocente.Text);
                     command.Parameters.AddWithValue("@curso", cbcurso.Text);
                     command.Parameters.AddWithValue("@ID", id);
 

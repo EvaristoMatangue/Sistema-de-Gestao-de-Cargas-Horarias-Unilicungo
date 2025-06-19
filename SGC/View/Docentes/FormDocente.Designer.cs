@@ -42,12 +42,7 @@
             this.txtprocurar = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.dataGridView1 = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btposlaboral = new Siticone.Desktop.UI.WinForms.SiticoneButton();
-            this.btlaboral = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.lsemestreum = new System.Windows.Forms.Label();
-            this.lsemestredois = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1101, 31);
+            this.panel1.Size = new System.Drawing.Size(1146, 31);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -86,7 +81,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = global::SGC.Properties.Resources.subtract_24px;
-            this.button2.Location = new System.Drawing.Point(969, 0);
+            this.button2.Location = new System.Drawing.Point(1014, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 29);
             this.button2.TabIndex = 6;
@@ -100,7 +95,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = global::SGC.Properties.Resources.maximize_button_24px;
-            this.button3.Location = new System.Drawing.Point(1009, 0);
+            this.button3.Location = new System.Drawing.Point(1054, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(45, 29);
             this.button3.TabIndex = 7;
@@ -116,7 +111,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.Image = global::SGC.Properties.Resources.close_24px;
-            this.button1.Location = new System.Drawing.Point(1055, 0);
+            this.button1.Location = new System.Drawing.Point(1100, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(46, 29);
             this.button1.TabIndex = 5;
@@ -129,12 +124,7 @@
             this.painelprincipal.Controls.Add(this.txtprocurar);
             this.painelprincipal.Controls.Add(this.dataGridView1);
             this.painelprincipal.Controls.Add(this.pictureBox2);
-            this.painelprincipal.Controls.Add(this.btposlaboral);
-            this.painelprincipal.Controls.Add(this.btlaboral);
             this.painelprincipal.Controls.Add(this.label4);
-            this.painelprincipal.Controls.Add(this.lsemestreum);
-            this.painelprincipal.Controls.Add(this.lsemestredois);
-            this.painelprincipal.Controls.Add(this.label3);
             this.painelprincipal.Controls.Add(this.panel4);
             this.painelprincipal.Controls.Add(this.label2);
             this.painelprincipal.Controls.Add(this.label1);
@@ -142,7 +132,7 @@
             this.painelprincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelprincipal.Location = new System.Drawing.Point(0, 31);
             this.painelprincipal.Name = "painelprincipal";
-            this.painelprincipal.Size = new System.Drawing.Size(1101, 633);
+            this.painelprincipal.Size = new System.Drawing.Size(1146, 633);
             this.painelprincipal.TabIndex = 5;
             // 
             // btprocurar
@@ -216,7 +206,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1101, 485);
+            this.dataGridView1.Size = new System.Drawing.Size(1146, 485);
             this.dataGridView1.TabIndex = 69;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -248,49 +238,11 @@
             this.pictureBox2.Image = global::SGC.Properties.Resources.backIcon;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(0, 27);
+            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 68;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // btposlaboral
-            // 
-            this.btposlaboral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btposlaboral.BorderRadius = 3;
-            this.btposlaboral.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btposlaboral.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btposlaboral.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btposlaboral.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btposlaboral.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.btposlaboral.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btposlaboral.ForeColor = System.Drawing.Color.White;
-            this.btposlaboral.Location = new System.Drawing.Point(971, 67);
-            this.btposlaboral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btposlaboral.Name = "btposlaboral";
-            this.btposlaboral.Size = new System.Drawing.Size(120, 29);
-            this.btposlaboral.TabIndex = 67;
-            this.btposlaboral.Text = "Pos-Laboral";
-            this.btposlaboral.Click += new System.EventHandler(this.btposlaboral_Click_1);
-            // 
-            // btlaboral
-            // 
-            this.btlaboral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btlaboral.BorderRadius = 3;
-            this.btlaboral.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btlaboral.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btlaboral.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btlaboral.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btlaboral.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.btlaboral.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btlaboral.ForeColor = System.Drawing.Color.White;
-            this.btlaboral.Location = new System.Drawing.Point(829, 67);
-            this.btlaboral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btlaboral.Name = "btlaboral";
-            this.btlaboral.Size = new System.Drawing.Size(120, 29);
-            this.btlaboral.TabIndex = 66;
-            this.btlaboral.Text = "Laboral";
-            this.btlaboral.Click += new System.EventHandler(this.btlaboral_Click_1);
             // 
             // label4
             // 
@@ -305,48 +257,6 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "CARGA HORARIA DE DOCENTES INTERNOS";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lsemestreum
-            // 
-            this.lsemestreum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lsemestreum.AutoSize = true;
-            this.lsemestreum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.lsemestreum.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsemestreum.ForeColor = System.Drawing.Color.White;
-            this.lsemestreum.Location = new System.Drawing.Point(867, 31);
-            this.lsemestreum.Name = "lsemestreum";
-            this.lsemestreum.Size = new System.Drawing.Size(106, 21);
-            this.lsemestreum.TabIndex = 6;
-            this.lsemestreum.Text = "1º Semestre";
-            this.lsemestreum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lsemestreum.Click += new System.EventHandler(this.lsemestreum_Click_1);
-            // 
-            // lsemestredois
-            // 
-            this.lsemestredois.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lsemestredois.AutoSize = true;
-            this.lsemestredois.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsemestredois.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.lsemestredois.Location = new System.Drawing.Point(984, 31);
-            this.lsemestredois.Name = "lsemestredois";
-            this.lsemestredois.Size = new System.Drawing.Size(106, 21);
-            this.lsemestredois.TabIndex = 7;
-            this.lsemestredois.Text = "2º Semestre";
-            this.lsemestredois.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lsemestredois.Click += new System.EventHandler(this.lsemestredois_Click);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(63)))), ((int)(((byte)(1)))));
-            this.label3.Location = new System.Drawing.Point(969, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(22, 31);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "|";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel4
             // 
@@ -399,7 +309,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1101, 664);
+            this.ClientSize = new System.Drawing.Size(1146, 664);
             this.Controls.Add(this.painelprincipal);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -428,12 +338,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lsemestreum;
-        private System.Windows.Forms.Label lsemestredois;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btlaboral;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btposlaboral;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dataGridView1;

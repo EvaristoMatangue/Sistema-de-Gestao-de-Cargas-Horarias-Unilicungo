@@ -75,25 +75,6 @@ namespace SGC.View
             }
         }
 
-        private void AtualizarCoresSemestre(Label labelSelecionado)
-        {
-            Label[] labels = { lsemestreum, lsemestredois };
-
-            foreach (var label in labels)
-            {
-                if (label == labelSelecionado && !string.IsNullOrEmpty(semestreSelecionado))
-                {
-                    label.BackColor = Color.FromArgb(0, 138, 210);
-                    label.ForeColor = Color.White;
-                }
-                else
-                {
-                    label.BackColor = Color.Transparent;
-                    label.ForeColor = Color.FromArgb(0, 138, 210);
-                }
-            }
-        }
-
         private void CarregarDadosPorPeriodo(string periodo)
         {
             string query = @"
@@ -165,7 +146,6 @@ namespace SGC.View
                 CarregarDados("1º Semestre");
             }
 
-            AtualizarCoresSemestre(lsemestreum);
         }
 
         private void lsemestredois_Click(object sender, EventArgs e)
@@ -182,12 +162,10 @@ namespace SGC.View
                 CarregarDados("2º Semestre");
             }
 
-            AtualizarCoresSemestre(lsemestredois);
         }
 
         private void btposlaboral_Click_1(object sender, EventArgs e)
         {
-            CarregarDadosPorPeriodo("pos-laboral");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

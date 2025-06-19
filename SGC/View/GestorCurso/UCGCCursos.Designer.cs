@@ -200,6 +200,7 @@
             this.btactualizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btactualizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btactualizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btactualizar.Enabled = false;
             this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
             this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btactualizar.ForeColor = System.Drawing.Color.White;

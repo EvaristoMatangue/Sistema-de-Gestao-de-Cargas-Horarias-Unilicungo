@@ -195,6 +195,8 @@ namespace SGC.View.GestorCurso
 
                 if (e.RowIndex >= 0)
                 {
+                    btactualizar.Visible = true;
+                    btapagar.Visible = true;
                     DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                     string cursoid = row.Cells["cursoID"].Value.ToString();
 

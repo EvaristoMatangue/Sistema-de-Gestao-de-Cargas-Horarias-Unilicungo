@@ -56,9 +56,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(345, 110);
+            this.label6.Location = new System.Drawing.Point(518, 169);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 24);
+            this.label6.Size = new System.Drawing.Size(115, 35);
             this.label6.TabIndex = 57;
             this.label6.Text = "Telefone";
             // 
@@ -69,9 +70,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(47, 169);
+            this.label4.Location = new System.Drawing.Point(70, 260);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 24);
+            this.label4.Size = new System.Drawing.Size(75, 35);
             this.label4.TabIndex = 53;
             this.label4.Text = "Email";
             // 
@@ -83,9 +85,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.label3.Location = new System.Drawing.Point(175, 10);
+            this.label3.Location = new System.Drawing.Point(262, 15);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(476, 33);
+            this.label3.Size = new System.Drawing.Size(699, 52);
             this.label3.TabIndex = 51;
             this.label3.Text = "Cadastrar Coordenador do Curso";
             // 
@@ -96,9 +99,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(346, 46);
+            this.label2.Location = new System.Drawing.Point(519, 71);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 24);
+            this.label2.Size = new System.Drawing.Size(212, 35);
             this.label2.TabIndex = 50;
             this.label2.Text = "Nome de usuario";
             // 
@@ -109,9 +113,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(47, 44);
+            this.label1.Location = new System.Drawing.Point(70, 68);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(250, 24);
+            this.label1.Size = new System.Drawing.Size(355, 35);
             this.label1.TabIndex = 48;
             this.label1.Text = "Nome Completo do Professor";
             // 
@@ -122,9 +127,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Emoji", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(47, 106);
+            this.label7.Location = new System.Drawing.Point(70, 163);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 24);
+            this.label7.Size = new System.Drawing.Size(81, 35);
             this.label7.TabIndex = 61;
             this.label7.Text = "Curso";
             // 
@@ -150,13 +156,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(50, 235);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(75, 362);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(819, 202);
+            this.dataGridView1.Size = new System.Drawing.Size(1228, 311);
             this.dataGridView1.TabIndex = 66;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -191,10 +196,9 @@
             this.txtnome.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtnome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.txtnome.ItemHeight = 30;
-            this.txtnome.Location = new System.Drawing.Point(51, 68);
-            this.txtnome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtnome.Location = new System.Drawing.Point(76, 105);
             this.txtnome.Name = "txtnome";
-            this.txtnome.Size = new System.Drawing.Size(275, 36);
+            this.txtnome.Size = new System.Drawing.Size(410, 36);
             this.txtnome.TabIndex = 67;
             this.txtnome.SelectedIndexChanged += new System.EventHandler(this.txtnome_SelectedIndexChanged_1);
             // 
@@ -211,13 +215,12 @@
             this.txtusuario.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtusuario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtusuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtusuario.Location = new System.Drawing.Point(348, 70);
-            this.txtusuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtusuario.Location = new System.Drawing.Point(522, 108);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.PasswordChar = '\0';
             this.txtusuario.PlaceholderText = "";
             this.txtusuario.SelectedText = "";
-            this.txtusuario.Size = new System.Drawing.Size(293, 34);
+            this.txtusuario.Size = new System.Drawing.Size(440, 52);
             this.txtusuario.TabIndex = 68;
             // 
             // txtemail
@@ -233,13 +236,12 @@
             this.txtemail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtemail.Location = new System.Drawing.Point(49, 195);
-            this.txtemail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtemail.Location = new System.Drawing.Point(74, 300);
             this.txtemail.Name = "txtemail";
             this.txtemail.PasswordChar = '\0';
             this.txtemail.PlaceholderText = "";
             this.txtemail.SelectedText = "";
-            this.txtemail.Size = new System.Drawing.Size(275, 36);
+            this.txtemail.Size = new System.Drawing.Size(412, 55);
             this.txtemail.TabIndex = 69;
             // 
             // txttelefone
@@ -255,13 +257,12 @@
             this.txttelefone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttelefone.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txttelefone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txttelefone.Location = new System.Drawing.Point(348, 135);
-            this.txttelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txttelefone.Location = new System.Drawing.Point(522, 208);
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.PasswordChar = '\0';
             this.txttelefone.PlaceholderText = "";
             this.txttelefone.SelectedText = "";
-            this.txttelefone.Size = new System.Drawing.Size(293, 33);
+            this.txttelefone.Size = new System.Drawing.Size(440, 51);
             this.txttelefone.TabIndex = 70;
             // 
             // cbcurso
@@ -274,10 +275,9 @@
             this.cbcurso.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cbcurso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbcurso.ItemHeight = 30;
-            this.cbcurso.Location = new System.Drawing.Point(49, 132);
-            this.cbcurso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbcurso.Location = new System.Drawing.Point(74, 203);
             this.cbcurso.Name = "cbcurso";
-            this.cbcurso.Size = new System.Drawing.Size(275, 36);
+            this.cbcurso.Size = new System.Drawing.Size(410, 36);
             this.cbcurso.TabIndex = 71;
             // 
             // btcadastrar
@@ -290,10 +290,9 @@
             this.btcadastrar.FillColor = System.Drawing.Color.Green;
             this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btcadastrar.ForeColor = System.Drawing.Color.White;
-            this.btcadastrar.Location = new System.Drawing.Point(663, 69);
-            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btcadastrar.Location = new System.Drawing.Point(994, 106);
             this.btcadastrar.Name = "btcadastrar";
-            this.btcadastrar.Size = new System.Drawing.Size(207, 35);
+            this.btcadastrar.Size = new System.Drawing.Size(310, 54);
             this.btcadastrar.TabIndex = 72;
             this.btcadastrar.Text = "Cadastrar";
             this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click);
@@ -305,13 +304,13 @@
             this.btactualizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btactualizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btactualizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btactualizar.Enabled = false;
             this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
             this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btactualizar.ForeColor = System.Drawing.Color.White;
-            this.btactualizar.Location = new System.Drawing.Point(663, 128);
-            this.btactualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btactualizar.Location = new System.Drawing.Point(994, 197);
             this.btactualizar.Name = "btactualizar";
-            this.btactualizar.Size = new System.Drawing.Size(207, 33);
+            this.btactualizar.Size = new System.Drawing.Size(310, 51);
             this.btactualizar.TabIndex = 73;
             this.btactualizar.Text = "Actualizar";
             this.btactualizar.Click += new System.EventHandler(this.btactualizar_Click);
@@ -323,20 +322,20 @@
             this.btapagar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btapagar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btapagar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btapagar.Enabled = false;
             this.btapagar.FillColor = System.Drawing.Color.Firebrick;
             this.btapagar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btapagar.ForeColor = System.Drawing.Color.White;
-            this.btapagar.Location = new System.Drawing.Point(663, 186);
-            this.btapagar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btapagar.Location = new System.Drawing.Point(994, 286);
             this.btapagar.Name = "btapagar";
-            this.btapagar.Size = new System.Drawing.Size(207, 32);
+            this.btapagar.Size = new System.Drawing.Size(310, 49);
             this.btapagar.TabIndex = 74;
             this.btapagar.Text = "Apagar";
             this.btapagar.Click += new System.EventHandler(this.btapagar_Click_1);
             // 
             // UCGCCadastro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btapagar);
             this.Controls.Add(this.btactualizar);
@@ -353,8 +352,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCGCCadastro";
-            this.Size = new System.Drawing.Size(917, 447);
+            this.Size = new System.Drawing.Size(1376, 688);
             this.Load += new System.EventHandler(this.UCGCCadastro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

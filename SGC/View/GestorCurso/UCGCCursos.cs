@@ -343,6 +343,7 @@ namespace SGC.View
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            btactualizar.Visible = true;
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count - 1)
             {
                 // Obtém os valores da célula na linha selecionada

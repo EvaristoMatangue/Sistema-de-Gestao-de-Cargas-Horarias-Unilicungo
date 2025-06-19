@@ -102,7 +102,6 @@ namespace SGC.View.Chefe_de_Departamento
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["id"].Visible = false;
                 dataGridView1.Columns["Cursoid"].Visible = false;
-                dataGridView1.Columns["Docenteid"].Visible = false;
 
             }
             using (MySqlConnection connection = new MySqlConnection(conn))

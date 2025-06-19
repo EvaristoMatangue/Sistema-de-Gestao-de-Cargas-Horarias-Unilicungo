@@ -74,6 +74,7 @@ namespace SGC.View.GestorCurso
                 }
 
             }
+            verdados();
 
         }
 
@@ -144,7 +145,8 @@ namespace SGC.View.GestorCurso
 
                                 // Feche a conexão
                                 connection.Close();
-
+                                verdados();                               
+                                // selecionardocente();
                             
                         }
                     }
@@ -187,76 +189,282 @@ namespace SGC.View.GestorCurso
             }
 
         }
+        //private void selecionardocente()
+        //{
+        //    using (MySqlConnection connection = new MySqlConnection(conn))
+        //    {
+        //        if (connection != null)
+        //        {
+        //            connection.Close();
+        //        }
+        //        lnomedocente.Visible = true;
+        //        lnivelacademico.Visible = true;
+        //        lquantmax.Visible = true;
+        //        lquantrestante.Visible = true;
+        //        lquantcadeiras.Visible = true;
+
+        //        lnomedocente.Text = cbdocente.Text;
+
+
+        //        connection.Open();
+        //        string queryc = @"
+        //    SELECT nivelacademico, numcarga 
+        //    FROM docentes 
+        //    WHERE nome = @nomedocente";
+
+        //        MySqlCommand commandc = new MySqlCommand(queryc, connection);
+        //        commandc.Parameters.AddWithValue("@nomedocente", cbdocente.Text);
+
+        //        int cargaMaxima = 0;
+
+        //        using (MySqlDataReader reader = commandc.ExecuteReader())
+        //        {
+        //            if (reader.Read())
+        //            {
+        //                lnivelacademico.Text = reader["nivelacademico"].ToString();
+        //                lquantmax.Text = reader["numcarga"].ToString();
+        //                int.TryParse(reader["numcarga"].ToString(), out cargaMaxima);
+        //            }
+        //        }
+
+        //        // Query para contar disciplinas e somar carga horária
+        //        string query = @"
+        //    SELECT 
+        //        COUNT(*) AS totalcadeiras, 
+        //        SUM(t.cargahoraria) AS totalcarga 
+        //    FROM turmas t 
+        //    WHERE t.docente = @nomedocente";
+
+        //        MySqlCommand command = new MySqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("@nomedocente", cbdocente.Text);
+
+        //        int totalCadeiras = 0;
+        //        int totalCarga = 0;
+
+        //        using (MySqlDataReader reader2 = command.ExecuteReader())
+        //        {
+        //            if (reader2.Read())
+        //            {
+        //                int.TryParse(reader2["totalcadeiras"].ToString(), out totalCadeiras);
+        //                int.TryParse(reader2["totalcarga"].ToString(), out totalCarga);
+
+        //                lquantcadeiras.Text = totalCadeiras.ToString();
+        //            }
+        //        }
+
+        //        int restante = cargaMaxima - totalCarga;
+        //        lquantrestante.Text = restante.ToString();
+
+        //        if (restante <= 0)
+        //        {
+        //            Session.Error = "Atingiu limite de cargas para este docente!";
+        //            FormError formError = new FormError();
+        //            formError.ShowDialog();
+        //        }
+        //    }
+        //}
+        private void CarregarDisciplinas()
+        {
+            if (cbano.SelectedItem == null || cbcurso.SelectedItem == null || cbsemestre.SelectedItem == null)
+                return;
+
+            string nivel = cbano.SelectedItem.ToString();
+            string curso = cbcurso.SelectedItem.ToString();
+            string semestre = cbsemestre.SelectedItem.ToString();
+
+            string query = @"
+                    SELECT DISTINCT d.Nome
+                    FROM disciplinas d
+                    LEFT JOIN turmas t 
+                        ON d.Nome = t.nomedisciplina 
+                        AND d.Curso = t.curso 
+                        AND d.Nivel = t.ano 
+                        AND d.Semestre = t.semestre
+                    WHERE 
+                        d.Nivel = @nivel AND 
+                        d.Curso = @curso AND 
+                        d.Semestre = @semestre AND 
+                        (t.docente IS NULL OR t.docente = '')
+                    ORDER BY d.Nome;";
+
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nivel", nivel);
+                command.Parameters.AddWithValue("@curso", curso);
+                command.Parameters.AddWithValue("@semestre", semestre);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                cbdisciplina.Items.Clear();
+                cbdisciplina.Text = ""; // Limpa o texto atual
+
+                while (reader.Read())
+                {
+                    cbdisciplina.Items.Add(reader["Nome"].ToString());
+                }
+
+                if (cbdisciplina.Items.Count == 0)
+                {
+                    cbdisciplina.Text = "Sem disciplinas disponíveis";
+                }
+            }
+        }
+        public void verdados()
+        {
+            string query = "SELECT * FROM turmas ORDER BY ano, curso, nomedisciplina;";
+
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
+                connection.Open();
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dt = new DataTable();
+
+                adapter.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns["id"].Visible = false;
+                dataGridView1.Columns["cursoid"].Visible = false;
+
+            }
+        }
+
+        private void cbano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarDisciplinas();
+        }
+
+        private void cbregime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbcurso_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarDisciplinas();
+        }
+
+        private void cbsemestre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarDisciplinas();
+
+        }
+
+        private void btprocurar_Click(object sender, EventArgs e)
+        {
+            string query = @"
+                    SELECT * FROM turmas 
+                    WHERE 
+                        docente LIKE @busca OR 
+                        nomedisciplina LIKE @busca OR 
+                        curso LIKE @busca OR 
+                        ano LIKE @busca OR 
+                        semestre LIKE @busca OR 
+                        regime LIKE @busca
+                    ORDER BY ano, curso, nomedisciplina;
+                ";
+
+                        using (MySqlConnection connection = new MySqlConnection(conn))
+                        {
+                            connection.Open();
+                            MySqlCommand command = new MySqlCommand(query, connection);
+                            command.Parameters.AddWithValue("@busca", "%" + txtprocurar.Text + "%");
+
+                            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            dataGridView1.DataSource = dt;
+                        }
+        }
+
+        private void txtprocurar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btprocurar.PerformClick();
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Garante que clicou numa linha válida
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                // Carregar valores nos campos
+                cbcurso.Text = row.Cells["curso"].Value?.ToString();
+                cbano.Text = row.Cells["ano"].Value?.ToString();
+                cbregime.Text = row.Cells["regime"].Value?.ToString();
+                cbsemestre.Text = row.Cells["semestre"].Value?.ToString();
+                cbdisciplina.Text = row.Cells["nomedisciplina"].Value?.ToString();
+                cbdocente.Text = row.Cells["docente"].Value?.ToString();
+            }
+        }
+        private void AtualizarDocente()
+        {
+            string query = @"
+        UPDATE turmas
+        SET docente = @docente
+        WHERE 
+            curso = @curso AND 
+            ano = @ano AND 
+            regime = @regime AND 
+            semestre = @semestre AND 
+            nomedisciplina = @disciplina;
+    ";
+
+            using (MySqlConnection connection = new MySqlConnection(conn))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    // Adiciona os parâmetros com os valores dos controles
+                    command.Parameters.AddWithValue("@docente", cbdocente.Text.Trim());
+                    command.Parameters.AddWithValue("@curso", cbcurso.Text.Trim());
+                    command.Parameters.AddWithValue("@ano", cbano.Text.Trim());
+                    command.Parameters.AddWithValue("@regime", cbregime.Text.Trim());
+                    command.Parameters.AddWithValue("@semestre", cbsemestre.Text.Trim());
+                    command.Parameters.AddWithValue("@disciplina", cbdisciplina.Text.Trim());
+
+                    int result = command.ExecuteNonQuery();
+
+                    if (result > 0)
+                    {
+                        Session.Sucess = "Alocação atualizada com sucesso!";
+                        FormSucess sucess = new FormSucess();
+                        sucess.ShowDialog();
+                        verdados(); 
+                    }
+                    else
+                    {
+                        Session.Error = "Nenhum registo foi encontrado para atualizar.";
+                        FormError error = new FormError();
+                        error.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Session.Error = "Erro ao atualizar:"+ ex.Message;
+                    FormError error = new FormError();
+                    error.ShowDialog();
+                }
+            }
+        }
+
+        private void btactualizar_Click(object sender, EventArgs e)
+        {
+            AtualizarDocente();
+        }
 
         private void cbdocente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (MySqlConnection connection = new MySqlConnection(conn))
-            {
-                if (connection != null)
-                {
-                    connection.Close();
-                }
-                lnomedocente.Visible = true;
-                lnivelacademico.Visible = true;
-                lquantmax.Visible = true;
-                lquantrestante.Visible = true;
-                lquantcadeiras.Visible = true;
-
-                lnomedocente.Text = cbdocente.Text;
-
-
-                connection.Open();
-                string queryc = "SELECT do.nivelacademico, do.numcarga FROM docentes as do Join disciplinas where do.nome=@nomedocente";
-                string query = "SELECT COUNT(d.nome) as totalcadeiras, SUM(t.cargahoraria) as totalcarga FROM disciplinas as d join turmas as t where d.docente=@nomedocente";
-                MySqlCommand commandc = new MySqlCommand(queryc, connection);
-                commandc.Parameters.AddWithValue("@nomedocente", cbdocente.Text);
-                commandc.ExecuteNonQuery();
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@nomedocente", cbdocente.Text);
-                command.ExecuteNonQuery();
-
-                using (MySqlDataReader reader = commandc.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        quantidade = Int16.Parse(reader["numcarga"].ToString());
-
-                        lnivelacademico.Text = reader["nivelacademico"].ToString();
-                        lquantmax.Text = reader["numcarga"].ToString();
-
-                    }
-
-                }
-                using (MySqlDataReader reader2 = command.ExecuteReader())
-                {
-                    if (reader2.Read())
-                    {
-                        int totalCa;
-                        if (reader2["totalcarga"].ToString() == "" || reader2["totalcarga"].ToString() == null)
-                        {
-                            totalCa=0;
-                        }
-                        else
-                        {
-                            totalCa = Int16.Parse(reader2["totalcarga"].ToString());
-                        }
-                        lquantcadeiras.Text = reader2["totalcadeiras"].ToString();
-                        quantidaderestante = Int16.Parse(lquantmax.Text) - totalCa;
-
-                        lquantrestante.Text = quantidaderestante.ToString();
-
-
-                    }
-                }
-                if (Int16.Parse(lquantrestante.Text) <= 0)
-                {
-                    Session.Error = "Atigiu Limite de cargas para este docente!";
-                    FormError formError = new FormError();
-                    formError.ShowDialog();
-
-                }
-            }
+            //selecionardocente();
         }
     }
 }

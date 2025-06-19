@@ -19,11 +19,13 @@ namespace SGC.View
     public partial class UCDashboard : UserControl
     {
         string conn = $"{Helppers.conexao.connectionString}";
+        string nivel, disciplina, semestre,curso;
+        int cargahoraria;
         public UCDashboard()
         {
             InitializeComponent();
 
-            dataGridView1.CellClick += dataGridView1_CellClick;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 
         }
 
@@ -32,210 +34,108 @@ namespace SGC.View
             CarregarDados();
             //GerarRelatorio();
         }
-       
+
         public DataTable ObterDadosDoBancoDeDados()
         {
             string query = @"
-        SELECT 
-            d.Nome AS NomeDocente,
-            di.Nivel,
-            di.Nome AS Disciplina,
-            c.Nome AS Curso,
-            di.CargaHoraria,
-            t.TotalCargaHoraria,
-            d.Observacao
-        FROM 
-            Docentes d
-        JOIN 
-            Disciplinas di ON d.ID = di.DocenteID
-        JOIN 
-            Cursos c ON di.CursoID = c.ID
-        JOIN 
-            (
-                SELECT 
-                    di.DocenteID,
-                    SUM(di.CargaHoraria) AS TotalCargaHoraria
-                FROM 
-                    Disciplinas di
-                GROUP BY 
-                    di.DocenteID
-            ) t ON d.ID = t.DocenteID
-        ORDER BY 
-            NomeDocente";
+    SELECT 
+        tu.docente AS NomeDocente,
+        tu.ano AS Nivel,
+        tu.nomedisciplina AS Disciplina,
+        tu.curso AS Curso,
+        tu.semestre AS Semestre,
+        tu.cargahoraria AS CargaHoraria,
+        d.Observacao,
+        (
+            SELECT SUM(t2.CargaHoraria)
+            FROM turmas t2
+            WHERE t2.docente = tu.docente
+        ) AS TotalCargaHoraria
+    FROM 
+        turmas tu
+    JOIN 
+        Docentes d ON d.nome = tu.docente
+    ORDER BY 
+        tu.docente, tu.ano, tu.nomedisciplina;";
 
             DataTable dt = new DataTable("DadosDocente");
 
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
+                connection.Open();
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
                 adapter.Fill(dt);
             }
 
             return dt;
         }
 
-        
+
+
         private void CarregarDados()
         {
-
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
-                string query = @"
-                            SELECT 
-                                d.Nome  AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome  AS Curso,
-                                di.cargahoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c      ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        DocenteID,
-                                        SUM(CargaHoraria) AS TotalCargaHoraria
-                                    FROM Disciplinas
-                                    GROUP BY DocenteID
-                                ) t ON d.ID = t.DocenteID
-                            ORDER BY 
-                                NomeDocente;
-";
+                // 1. Query resumida para o DataGridView (1 linha por docente)
+                string queryResumo = @"
+            SELECT 
+                d.Nome AS NomeDocente,
+                SUM(tu.CargaHoraria) AS TotalCargaHoraria,
+                d.Observacao
+            FROM 
+                turmas tu
+            JOIN 
+                Docentes d ON d.nome = tu.docente
+            GROUP BY 
+                d.Nome, d.Observacao
+            ORDER BY 
+                d.Nome;";
 
                 connection.Open();
-                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlCommand command = new MySqlCommand(queryResumo, connection);
                 MySqlDataReader reader = command.ExecuteReader();
+
                 List<Dados> dadosDocentes = new List<Dados>();
                 while (reader.Read())
                 {
                     Dados dado = new Dados
                     {
                         NomeDocente = reader["NomeDocente"].ToString(),
-                        Nivel = reader["Nivel"].ToString(),
-                        Disciplina = reader["Disciplina"].ToString(),
-                        Curso = reader["Curso"].ToString(),
-                        CargaHoraria = Convert.ToInt32(reader["CargaHoraria"]),
                         TotalCargaHoraria = Convert.ToInt32(reader["TotalCargaHoraria"]),
-                        Observacao = reader["Observacao"].ToString()
-                        
+                        Observacao = reader["Observacao"].ToString(),
+                        Curso = curso,
+                        Nivel = nivel,
+                        CargaHoraria=cargahoraria,
+                        Disciplina=disciplina
                     };
                     dadosDocentes.Add(dado);
                 }
                 reader.Close();
 
+                // Vincula ao DataGridView
                 dataGridView1.DataSource = dadosDocentes;
+                dataGridView1.Columns["Nivel"].Visible = false;
+                dataGridView1.Columns["Disciplina"].Visible = false;
+                dataGridView1.Columns["Curso"].Visible = false;
+                dataGridView1.Columns["CargaHoraria"].Visible = false;
+                // Adiciona botão "Ver mais" (se ainda não existir)
                 if (!dataGridView1.Columns.Contains("btnDetalhes"))
                 {
                     DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-                    btn.HeaderText = "Acções";
+                    btn.HeaderText = " Acções";
                     btn.Name = "btnDetalhes";
-                    btn.Width = 40; // largura pequena
-                    btn.UseColumnTextForButtonValue = false;
+                    btn.Text = "👁";
+                    btn.UseColumnTextForButtonValue = true;
+                    btn.Width = 40;
                     dataGridView1.Columns.Add(btn);
                 }
 
-
+              
             }
         }
 
-        private void siticoneButton2_Click(object sender, EventArgs e)
-        {
-            using (MySqlConnection connection = new MySqlConnection(conn))
-            {
-                string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
 
-                         WHERE 
-                                c.Periodo = 'Laboral'
-                         ORDER BY 
-                                NomeDocente";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
-        }
-
-        private void siticoneButton1_Click(object sender, EventArgs e)
-        {
-            using (MySqlConnection connection = new MySqlConnection(conn))
-            {
-                string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-
-                         WHERE 
-                                c.Periodo = 'pos-laboral'
-                         ORDER BY 
-                                NomeDocente";
-
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                dataGridView1.DataSource = dataTable;
-            }
-        }
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -306,7 +206,7 @@ namespace SGC.View
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "btnDetalhes")
             {
@@ -319,25 +219,13 @@ namespace SGC.View
                 int total = Convert.ToInt32(row.Cells["TotalCargaHoraria"].Value);
                 string obs = row.Cells["Observacao"].Value?.ToString();
 
-                // Abre a nova tela com os dados da linha
                 FormDetalhesDocentes detalhes = new FormDetalhesDocentes(nome, curso, nivel, disciplina, total, obs);
                 detalhes.ShowDialog();
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btprocurar_Click(object sender, EventArgs e)
