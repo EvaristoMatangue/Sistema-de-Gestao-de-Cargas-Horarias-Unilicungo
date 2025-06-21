@@ -1,12 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
 using SGC.Helppers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -112,75 +113,87 @@ namespace SGC.View.GestorCurso
 
         private void btapagar_Click(object sender, EventArgs e)
         {
-            DialogResult check = MessageBox.Show("Pretende apagar este registo?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-
-            // Obtenha os dados da linha selecionada no DataGridView
-            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
-
-            if (selectedRow != null)
+            if (dataGridView1.CurrentRow != null)
             {
-                // Recupere o ID da linha selecionada
-                int id = Convert.ToInt32(selectedRow["ID"]);
+                // Alerta personalizado de confirmação
+                FormAlertaContinuar alerta = new FormAlertaContinuar(
+                    "Tem certeza que deseja eliminar este gestor de curso?\n\n" +
+                    "O usuário voltará a ser classificado como docente."
+                );
 
-                // Crie uma nova conexão usando a string de conexão
-                using (MySqlConnection connection = new MySqlConnection(conn))
+                DialogResult resposta = alerta.ShowDialog();
+
+                if (resposta != DialogResult.Yes)
+                    return;
+
+                // Obtenha os dados da linha selecionada
+                DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+
+                if (selectedRow != null)
                 {
-                    if (check == DialogResult.Yes)
+                    int id = Convert.ToInt32(selectedRow["ID"]);
+
+                    using (MySqlConnection connection = new MySqlConnection(conn))
                     {
-                        // SQL para deletar a linha da tabela
-                        string query = "DELETE FROM gestorescurso WHERE ID = @ID";
-                        string queryu = "UPDATE usuarios SET tipousuario = 'docente' WHERE nomeusuario = @nomeuser";
-                        // Crie um novo comando com a consulta SQL e a conexão
-                        MySqlCommand commandu = new MySqlCommand(queryu, connection);
-                        MySqlCommand command = new MySqlCommand(query, connection);
-
-                        commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
-                        command.Parameters.AddWithValue("@ID", id);
-
-                        if (connection != null)
+                        try
                         {
-                            connection.Close();
+                            connection.Open();
+
+                            string query = "DELETE FROM gestorescurso WHERE ID = @ID";
+                            string queryu = "UPDATE usuarios SET tipousuario = 'docente' WHERE nomeusuario = @nomeuser";
+
+                            MySqlCommand command = new MySqlCommand(query, connection);
+                            MySqlCommand commandu = new MySqlCommand(queryu, connection);
+
+                            command.Parameters.AddWithValue("@ID", id);
+                            commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
+
+                            int rowsAffected = command.ExecuteNonQuery();
+                            int rowsAffectedu = commandu.ExecuteNonQuery();
+
+                            if (rowsAffected > 0 && rowsAffectedu > 0)
+                            {
+                                // ✅ Pop-up de sucesso
+                                PopupNotifier popup = new PopupNotifier();
+                                popup.BodyColor = Color.White;
+                                popup.Image = Properties.Resources.ok_48px;
+                                popup.TitleText = "Sucesso";
+                                popup.ContentText = "Gestor de curso eliminado com sucesso!\nUsuário agora é um docente.";
+                                popup.Popup();
+
+                                // Limpar os campos
+                                txtemail.Text = "";
+                                txtnome.Text = "";
+                                txttelefone.Text = "";
+                                txtusuario.Text = "";
+
+                                verdados(); // Atualizar a grid
+                            }
+                            else
+                            {
+                                Session.Error = "Falha ao deletar o registo. Por favor, tente novamente.";
+                                FormError erro = new FormError();
+                                erro.ShowDialog();
+                            }
                         }
-                        connection.Open();
-                        // Execute o comando de exclusão
-                        int rowsAffected = command.ExecuteNonQuery();
-                        int rowsAffectedu = commandu.ExecuteNonQuery();
-                        // Feche a conexão
-                        connection.Close();
-
-                        if (rowsAffected > 0 && rowsAffectedu > 0)
+                        catch (Exception ex)
                         {
-
-                            PopupNotifier popup = new PopupNotifier();
-                            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                            popup.BodyColor = Color.White;
-                            popup.Image = Properties.Resources.ok_48px;
-                            popup.TitleText = "Sucesso";
-                            popup.ContentText = "Registo Eliminado com sucesso!";
-                            popup.Popup();
-                            txtemail.Text = "";
-                            txtnome.Text = "";
-                            txttelefone.Text = "";
-                            txtusuario.Text = "";
-                            // Após a exclusão, recarregue os dados no DataGridView para refletir as alterações
-                            verdados();
-                        }
-                        else
-                        {
-                            Session.Error = "Falha ao deletar a linha. Por favor, tente novamente.";
+                            Session.Error = $"Erro ao excluir: {ex.Message}";
                             FormError erro = new FormError();
                             erro.ShowDialog();
                         }
                     }
-
-
-
+                }
+                else
+                {
+                    Session.Error = "Por favor, selecione uma linha válida.";
+                    FormError erro = new FormError();
+                    erro.ShowDialog();
                 }
             }
             else
             {
-                Session.Error = "Por favor, selecione uma linha para deletar.";
+                Session.Error = "Nenhuma linha selecionada. Por favor, selecione uma linha para eliminar.";
                 FormError erro = new FormError();
                 erro.ShowDialog();
             }
@@ -215,7 +228,8 @@ namespace SGC.View.GestorCurso
                         txtnome.Text = row.Cells["nome"].Value.ToString();
                         txtemail.Text = row.Cells["email"].Value.ToString();
 
-
+                        btactualizar.Enabled=true;
+                        btapagar.Enabled=true;
                         // Execute a consulta SQL
                         MySqlCommand command = new MySqlCommand(query, connection);
                         command.Parameters.AddWithValue("@cursoid", cursoid);
@@ -428,7 +442,7 @@ namespace SGC.View.GestorCurso
 
                     if (usuarioExistente > 0)
                     {
-                        Session.Error = "O nome de usuário já está sendo usado por outro registro. Escolha um nome diferente.";
+                        Session.Error = "Este docente já é Gestor de outro curso. Escolha um docente diferente.";
                         FormError erro = new FormError();
                         erro.ShowDialog();
                         return;
@@ -522,75 +536,95 @@ namespace SGC.View.GestorCurso
 
         private void btapagar_Click_1(object sender, EventArgs e)
         {
-            DialogResult check = MessageBox.Show("Pretende apagar este registo?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-
-            // Obtenha os dados da linha selecionada no DataGridView
-            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
-
-            if (selectedRow != null)
+            if (dataGridView1.CurrentRow != null)
             {
-                // Recupere o ID da linha selecionada
-                int id = Convert.ToInt32(selectedRow["ID"]);
+                // Alerta personalizado de confirmação
+                FormAlertaContinuar alerta = new FormAlertaContinuar(
+                    "Tem certeza que deseja eliminar este gestor de curso?\n\n" +
+                    "O usuário voltará a ser classificado como docente."
+                );
 
-                // Crie uma nova conexão usando a string de conexão
-                using (MySqlConnection connection = new MySqlConnection(conn))
+                DialogResult resposta = alerta.ShowDialog();
+
+                if (resposta != DialogResult.Yes)
+                    return;
+
+                // Obtenha os dados da linha selecionada
+                DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+
+                if (selectedRow != null)
                 {
-                    if (check == DialogResult.Yes)
+                    int id = Convert.ToInt32(selectedRow["ID"]);
+
+                    using (MySqlConnection connection = new MySqlConnection(conn))
                     {
-                        // SQL para deletar a linha da tabela
-                        string query = "DELETE FROM gestorescurso WHERE ID = @ID";
-                        string queryu = "UPDATE usuarios SET tipousuario = 'docente' WHERE nomeusuario = @nomeuser";
-                        // Crie um novo comando com a consulta SQL e a conexão
-                        MySqlCommand commandu = new MySqlCommand(queryu, connection);
-                        MySqlCommand command = new MySqlCommand(query, connection);
-
-                        commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
-                        command.Parameters.AddWithValue("@ID", id);
-
-                        if (connection != null)
+                        try
                         {
-                            connection.Close();
+                            connection.Open();
+
+                            string query = "DELETE FROM gestorescurso WHERE ID = @ID";
+                            string queryu = "UPDATE usuarios SET tipousuario = 'docente' WHERE nomeusuario = @nomeuser";
+
+                            MySqlCommand command = new MySqlCommand(query, connection);
+                            MySqlCommand commandu = new MySqlCommand(queryu, connection);
+
+                            command.Parameters.AddWithValue("@ID", id);
+                            commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
+
+                            int rowsAffected = command.ExecuteNonQuery();
+                            int rowsAffectedu = commandu.ExecuteNonQuery();
+
+                            if (rowsAffected > 0 && rowsAffectedu > 0)
+                            {
+                                // ✅ Pop-up de sucesso
+                                PopupNotifier popup = new PopupNotifier();
+                                popup.BodyColor = Color.White;
+                                popup.Image = Properties.Resources.ok_48px;
+                                popup.TitleText = "Sucesso";
+                                popup.ContentText = "Gestor de curso eliminado com sucesso!\nUsuário agora é um docente.";
+                                popup.Popup();
+
+                                // Limpar os campos
+                                txtemail.Text = "";
+                                txtnome.Text = "";
+                                txttelefone.Text = "";
+                                txtusuario.Text = "";
+
+                                verdados(); // Atualizar a grid
+                            }
+                            else
+                            {
+                                Session.Error = "Falha ao deletar o registo. Por favor, tente novamente.";
+                                FormError erro = new FormError();
+                                erro.ShowDialog();
+                            }
                         }
-                        connection.Open();
-                        // Execute o comando de exclusão
-                        int rowsAffected = command.ExecuteNonQuery();
-                        int rowsAffectedu = commandu.ExecuteNonQuery();
-                        // Feche a conexão
-                        connection.Close();
-
-                        if (rowsAffected > 0 && rowsAffectedu > 0)
+                        catch (Exception ex)
                         {
-
-                            PopupNotifier popup = new PopupNotifier();
-                            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                            popup.BodyColor = Color.White;
-                            popup.Image = Properties.Resources.ok_48px;
-                            popup.TitleText = "Sucesso";
-                            popup.ContentText = "Registo Eliminado com sucesso!";
-                            popup.Popup();
-                            txtemail.Text = "";
-                            txtnome.Text = "";
-                            txttelefone.Text = "";
-                            txtusuario.Text = "";
-                            // Após a exclusão, recarregue os dados no DataGridView para refletir as alterações
-                            verdados();
-                        }
-                        else
-                        {
-                            Session.Error = "Falha ao deletar a linha. Por favor, tente novamente.";
+                            Session.Error = $"Erro ao excluir: {ex.Message}";
                             FormError erro = new FormError();
                             erro.ShowDialog();
                         }
                     }
                 }
+                else
+                {
+                    Session.Error = "Por favor, selecione uma linha válida.";
+                    FormError erro = new FormError();
+                    erro.ShowDialog();
+                }
             }
             else
             {
-                Session.Error = "Por favor, selecione uma linha para deletar.";
+                Session.Error = "Nenhuma linha selecionada. Por favor, selecione uma linha para eliminar.";
                 FormError erro = new FormError();
                 erro.ShowDialog();
             }
+        }
+
+        private void txtusuario_Validating(object sender, CancelEventArgs e)
+        {
+           
         }
     }
 }

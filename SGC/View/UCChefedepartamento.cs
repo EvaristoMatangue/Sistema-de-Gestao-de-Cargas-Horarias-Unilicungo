@@ -224,60 +224,60 @@ namespace SGC.View
 
         private void btapagar_Click_1(object sender, EventArgs e)
         {
-            DialogResult check = MessageBox.Show("Pretende apagar este registo?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Mostra popup de confirmação personalizado
+            FormAlertaContinuar alerta = new FormAlertaContinuar(
+                "Tem certeza que deseja eliminar este chefe de departamento?\n\n" +
+                "Essa ação é permanente e não poderá ser desfeita.\n\n" +
+                "Deseja continuar?"
+            );
 
+            DialogResult check = alerta.ShowDialog();
+
+            if (check != DialogResult.Yes)
+                return;
 
             // Obtenha os dados da linha selecionada no DataGridView
-            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+            DataRowView selectedRow = dataGridView1.CurrentRow?.DataBoundItem as DataRowView;
 
             if (selectedRow != null)
             {
                 // Recupere o ID da linha selecionada
                 int id = Convert.ToInt32(selectedRow["ID"]);
 
-                // Crie uma nova conexão usando a string de conexão
                 using (MySqlConnection connection = new MySqlConnection(conn))
                 {
-                    if (check == DialogResult.Yes)
+                    string query = "DELETE FROM chefedepartamento WHERE ID = @ID";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ID", id);
+
+                    connection.Open();
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
                     {
-                        // SQL para deletar a linha da tabela
-                        string query = "DELETE FROM chefedepartamento WHERE ID = @ID";
-                        // Crie um novo comando com a consulta SQL e a conexão
-                        MySqlCommand command = new MySqlCommand(query, connection);
+                        // Mostra popup de sucesso
+                        PopupNotifier popup = new PopupNotifier();
+                        popup.BodyColor = Color.White;
+                        popup.Image = Properties.Resources.ok_48px;
+                        popup.TitleText = "Sucesso";
+                        popup.ContentText = "Registo eliminado com sucesso!";
+                        popup.Popup();
 
-                        command.Parameters.AddWithValue("@ID", id);
-
-                        // Abra a conexão
-                        connection.Open();
-
-                        // Execute o comando de exclusão
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-
-                            PopupNotifier popup = new PopupNotifier();
-                            //popup.TitleText= new Font("Lucida Fax", 11.5F, FontStyle.Bold, );
-                            popup.BodyColor = Color.White;
-                            popup.Image = Properties.Resources.ok_48px;
-                            popup.TitleText = "Sucesso";
-                            popup.ContentText = "Registo Eliminado com sucesso!";
-                            popup.Popup();
-
-                            limpardados();
-                            verdados();
-                        }
-                        else
-                        {
-                            Session.Error = "Falha ao deletar a linha. Por favor, tente novamente.";
-                            FormError erro = new FormError();
-                            erro.ShowDialog();
-                        }
+                        limpardados();
+                        verdados();
+                    }
+                    else
+                    {
+                        Session.Error = "Falha ao eliminar o registo. Por favor, tente novamente.";
+                        FormError erro = new FormError();
+                        erro.ShowDialog();
                     }
                 }
             }
             else
             {
-                Session.Error = "Por favor, selecione uma linha para deletar.";
+                Session.Error = "Por favor, selecione uma linha para eliminar.";
                 FormError erro = new FormError();
                 erro.ShowDialog();
             }
@@ -296,6 +296,8 @@ namespace SGC.View
                 txttelefone.Text = row.Cells["telefone"].Value.ToString();
                 txtusuario.Text = row.Cells["nomeusuario"].Value.ToString();
 
+                btactualizar.Enabled = true;
+                btapagar.Enabled = true;
                 // Obtém o valor da célula na coluna "ID" da linha selecionada
                 int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
             }

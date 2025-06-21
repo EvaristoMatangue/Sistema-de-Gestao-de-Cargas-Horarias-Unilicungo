@@ -51,7 +51,6 @@ namespace SGC.View
 
         private void UCGCCursos_Load(object sender, EventArgs e)
         {
-            cbcordenador.Items.Clear();
 
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
@@ -60,28 +59,13 @@ namespace SGC.View
                     connection.Close();
                 }
                 connection.Open();
-                string queryc = "SELECT nome FROM docentes";
-
-                MySqlCommand commandc = new MySqlCommand(queryc, connection);
-
-                using (MySqlDataReader reader = commandc.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-
-                        cbcordenador.Items.Add(reader["nome"].ToString());
-
-                    }
-
-                }
-
+                
             }
             verdados();
         }
 
         public void limpardados()
         {
-            cbcordenador.Text = "";
             txtnome.Text = "";
             cbnivel.Text = "";
             cbperiodo.Text = "";
@@ -183,7 +167,7 @@ namespace SGC.View
                 int id = Convert.ToInt32(selectedRow["ID"]);
 
 
-                if (cbcordenador.Text == "" || txtnome.Text == "" || cbnivel.Text == "" || cbperiodo.Text == "")
+                if (txtnome.Text == "" || cbnivel.Text == "" || cbperiodo.Text == "")
                 {
 
                     Session.Error = "Por favor, preenche todos os campos!";
@@ -201,13 +185,8 @@ namespace SGC.View
                         }
                         connection.Open();
 
-                        string queryc = "SELECT id FROM gestorescurso WHERE nome = @nome";
-                        MySqlCommand commandd = new MySqlCommand(queryc, connection);
-                        commandd.Parameters.AddWithValue("@nome", cbcordenador.Text);
-                        int idcordenador = Convert.ToInt32(commandd.ExecuteScalar());
-
                         // SQL para atualizar os dados na tabela
-                        string query = "UPDATE cursos SET nome= @nome , periodo = @periodo , Nivel= @Nivel, cordenador= @cordenador, cordenadorID= @cordenadorID WHERE ID = @ID";
+                        string query = "UPDATE cursos SET nome= @nome , periodo = @periodo , Nivel= @Nivel WHERE ID = @ID";
 
                         // Crie um novo comando com a consulta SQL e a conexão
                         MySqlCommand command = new MySqlCommand(query, connection);
@@ -216,8 +195,6 @@ namespace SGC.View
                         command.Parameters.AddWithValue("@nome", txtnome.Text);
                         command.Parameters.AddWithValue("@periodo", cbperiodo.Text);
                         command.Parameters.AddWithValue("@Nivel", cbnivel.Text);
-                        command.Parameters.AddWithValue("@cordenador", cbcordenador.Text);
-                        command.Parameters.AddWithValue("@cordenadorID", idcordenador);
                         command.Parameters.AddWithValue("@ID", id);
 
 
@@ -264,63 +241,60 @@ namespace SGC.View
             if (dataGridView1.CurrentRow != null)
             {
                 // Confirmar a ação com o usuário
-                DialogResult check = MessageBox.Show(
-                    "Pretende apagar este registo?",
-                    "Remover",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
+                FormAlertaContinuar alerta = new FormAlertaContinuar(
+                    "Tem certeza que deseja eliminar este curso?\n\n" +
+                    "Essa ação não poderá ser desfeita. Deseja continuar?"
                 );
 
-                if (check == DialogResult.Yes)
+                DialogResult resposta = alerta.ShowDialog();
+                if (resposta != DialogResult.Yes)
+                    return;
+
+                try
                 {
-                    try
+                    // Obter o ID do registro selecionado
+                    DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+
+                    if (selectedRow != null)
                     {
-                        // Obter o ID do registro selecionado
-                        DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+                        int id = Convert.ToInt32(selectedRow["ID"]);
 
-                        if (selectedRow != null)
+                        using (MySqlConnection connection = new MySqlConnection(conn))
                         {
-                            int id = Convert.ToInt32(selectedRow["ID"]);
+                            connection.Open();
 
-                            using (MySqlConnection connection = new MySqlConnection(conn))
+                            string queryDelete = "DELETE FROM cursos WHERE ID = @ID";
+                            MySqlCommand command = new MySqlCommand(queryDelete, connection);
+                            command.Parameters.AddWithValue("@ID", id);
+
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
                             {
-                                connection.Open();
+                                // ✅ Notificação de sucesso
+                                PopupNotifier popup = new PopupNotifier();
+                                popup.BodyColor = Color.White;
+                                popup.Image = Properties.Resources.ok_48px;
+                                popup.TitleText = "Sucesso";
+                                popup.ContentText = "Curso eliminado com sucesso!";
+                                popup.Popup();
 
-                                // Comando para apagar o registro
-                                string queryDelete = "DELETE FROM cursos WHERE ID = @ID";
-                                MySqlCommand command = new MySqlCommand(queryDelete, connection);
-
-                                // Adicionar o parâmetro
-                                command.Parameters.AddWithValue("@ID", id);
-
-                                // Executar o comando
-                                int rowsAffected = command.ExecuteNonQuery();
-
-                                if (rowsAffected > 0)
-                                {
-                                    // Exibir mensagem de sucesso
-                                    ExibirSucesso("Registro eliminado com sucesso!");
-
-                                    // Atualizar os dados no DataGridView
-                                    verdados();
-                                }
-                                else
-                                {
-                                    // Mensagem de erro se não conseguir apagar
-                                    ExibirErro("Falha ao deletar o registro. Por favor, tente novamente.");
-                                }
+                                verdados(); // Recarrega os dados
+                            }
+                            else
+                            {
+                                ExibirErro("Falha ao deletar o registro. Por favor, tente novamente.");
                             }
                         }
-                        else
-                        {
-                            ExibirErro("Selecione um registro válido para apagar.");
-                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        // Captura e exibição de erros
-                        ExibirErro($"Erro ao apagar o registro: {ex.Message}");
+                        ExibirErro("Selecione um registro válido para apagar.");
                     }
+                }
+                catch (Exception ex)
+                {
+                    ExibirErro($"Erro ao apagar o registro: {ex.Message}");
                 }
             }
             else
@@ -343,7 +317,6 @@ namespace SGC.View
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            btactualizar.Visible = true;
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count - 1)
             {
                 // Obtém os valores da célula na linha selecionada
@@ -352,10 +325,10 @@ namespace SGC.View
                 // Preenche os TextBox com os valores da linha selecionada
                 txtnome.Text = row.Cells["nome"].Value.ToString();
                 cbperiodo.Text = row.Cells["periodo"].Value.ToString();
-                cbcordenador.Text = row.Cells["cordenador"].Value.ToString();
                 cbnivel.Text = row.Cells["nivel"].Value.ToString();
 
-
+                btactualizar.Enabled = true;
+                btapagar.Enabled = true;
                 // Obtém o valor da célula na coluna "ID" da linha selecionada
                 int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
 

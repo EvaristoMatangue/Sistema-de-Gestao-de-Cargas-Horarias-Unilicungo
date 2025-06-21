@@ -72,7 +72,7 @@ namespace SGC.View
             btdashboard.BackColor = Color.Transparent;
             button4.BackColor = Color.Transparent;
 
-            UCGCTurmas uCDisciplina = new UCGCTurmas();
+            UCTurmasGestor uCDisciplina = new UCTurmasGestor();
 
             painelprincipal.Controls.Clear();
             uCDisciplina.Dock = DockStyle.Fill;

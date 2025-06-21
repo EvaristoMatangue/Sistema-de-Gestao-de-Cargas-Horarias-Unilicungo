@@ -32,10 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtnome = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
-            this.cbcordenador = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.cbperiodo = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbnivel = new Siticone.Desktop.UI.WinForms.SiticoneComboBox();
@@ -52,32 +50,19 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.label6.Location = new System.Drawing.Point(519, 14);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(346, 9);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(381, 52);
+            this.label6.Size = new System.Drawing.Size(260, 33);
             this.label6.TabIndex = 41;
             this.label6.Text = "Cadastrar Cursos";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 111);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(285, 32);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "Selecione o Coordenador";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 168);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 29);
+            this.label2.Size = new System.Drawing.Size(0, 18);
             this.label2.TabIndex = 33;
             // 
             // txtnome
@@ -92,28 +77,14 @@
             this.txtnome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtnome.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtnome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtnome.Location = new System.Drawing.Point(16, 49);
+            this.txtnome.Location = new System.Drawing.Point(11, 57);
+            this.txtnome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtnome.Name = "txtnome";
             this.txtnome.PasswordChar = '\0';
             this.txtnome.PlaceholderText = "Digite o nome do curso";
             this.txtnome.SelectedText = "";
-            this.txtnome.Size = new System.Drawing.Size(342, 54);
+            this.txtnome.Size = new System.Drawing.Size(228, 35);
             this.txtnome.TabIndex = 69;
-            // 
-            // cbcordenador
-            // 
-            this.cbcordenador.BackColor = System.Drawing.Color.Transparent;
-            this.cbcordenador.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbcordenador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbcordenador.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbcordenador.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbcordenador.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbcordenador.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbcordenador.ItemHeight = 30;
-            this.cbcordenador.Location = new System.Drawing.Point(16, 151);
-            this.cbcordenador.Name = "cbcordenador";
-            this.cbcordenador.Size = new System.Drawing.Size(342, 36);
-            this.cbcordenador.TabIndex = 70;
             // 
             // cbperiodo
             // 
@@ -128,19 +99,19 @@
             this.cbperiodo.Items.AddRange(new object[] {
             "Laboral",
             "Pos-Laboral"});
-            this.cbperiodo.Location = new System.Drawing.Point(16, 248);
+            this.cbperiodo.Location = new System.Drawing.Point(11, 130);
+            this.cbperiodo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbperiodo.Name = "cbperiodo";
-            this.cbperiodo.Size = new System.Drawing.Size(342, 36);
+            this.cbperiodo.Size = new System.Drawing.Size(229, 36);
             this.cbperiodo.TabIndex = 71;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 212);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 107);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(227, 32);
+            this.label1.Size = new System.Drawing.Size(147, 21);
             this.label1.TabIndex = 72;
             this.label1.Text = "Selecione o Periodo";
             // 
@@ -160,19 +131,19 @@
             "3º Ano",
             "4º Ano",
             "5º Ano"});
-            this.cbnivel.Location = new System.Drawing.Point(16, 349);
+            this.cbnivel.Location = new System.Drawing.Point(11, 201);
+            this.cbnivel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbnivel.Name = "cbnivel";
-            this.cbnivel.Size = new System.Drawing.Size(342, 36);
+            this.cbnivel.Size = new System.Drawing.Size(229, 36);
             this.cbnivel.TabIndex = 73;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(14, 314);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(9, 178);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 32);
+            this.label3.Size = new System.Drawing.Size(129, 21);
             this.label3.TabIndex = 74;
             this.label3.Text = "Selecione o Nivel";
             // 
@@ -183,12 +154,14 @@
             this.btapagar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btapagar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btapagar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btapagar.Enabled = false;
             this.btapagar.FillColor = System.Drawing.Color.Firebrick;
             this.btapagar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btapagar.ForeColor = System.Drawing.Color.White;
-            this.btapagar.Location = new System.Drawing.Point(16, 583);
+            this.btapagar.Location = new System.Drawing.Point(11, 379);
+            this.btapagar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btapagar.Name = "btapagar";
-            this.btapagar.Size = new System.Drawing.Size(342, 49);
+            this.btapagar.Size = new System.Drawing.Size(228, 32);
             this.btapagar.TabIndex = 77;
             this.btapagar.Text = "Apagar";
             this.btapagar.Click += new System.EventHandler(this.btapagar_Click);
@@ -204,9 +177,10 @@
             this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
             this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btactualizar.ForeColor = System.Drawing.Color.White;
-            this.btactualizar.Location = new System.Drawing.Point(16, 503);
+            this.btactualizar.Location = new System.Drawing.Point(11, 327);
+            this.btactualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btactualizar.Name = "btactualizar";
-            this.btactualizar.Size = new System.Drawing.Size(342, 51);
+            this.btactualizar.Size = new System.Drawing.Size(228, 33);
             this.btactualizar.TabIndex = 76;
             this.btactualizar.Text = "Actualizar";
             this.btactualizar.Click += new System.EventHandler(this.btactualizar_Click);
@@ -221,9 +195,10 @@
             this.btcadastrar.FillColor = System.Drawing.Color.Green;
             this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btcadastrar.ForeColor = System.Drawing.Color.White;
-            this.btcadastrar.Location = new System.Drawing.Point(18, 425);
+            this.btcadastrar.Location = new System.Drawing.Point(12, 276);
+            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btcadastrar.Name = "btcadastrar";
-            this.btcadastrar.Size = new System.Drawing.Size(340, 49);
+            this.btcadastrar.Size = new System.Drawing.Size(227, 32);
             this.btcadastrar.TabIndex = 75;
             this.btcadastrar.Text = "Cadastrar";
             this.btcadastrar.Click += new System.EventHandler(this.btcadastrar_Click);
@@ -250,12 +225,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(382, 85);
+            this.dataGridView1.Location = new System.Drawing.Point(255, 55);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(970, 548);
+            this.dataGridView1.Size = new System.Drawing.Size(647, 356);
             this.dataGridView1.TabIndex = 78;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -282,7 +258,7 @@
             // 
             // UCGCCursos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btapagar);
@@ -292,14 +268,11 @@
             this.Controls.Add(this.cbnivel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbperiodo);
-            this.Controls.Add(this.cbcordenador);
             this.Controls.Add(this.txtnome);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCGCCursos";
-            this.Size = new System.Drawing.Size(1376, 688);
+            this.Size = new System.Drawing.Size(917, 447);
             this.Load += new System.EventHandler(this.UCGCCursos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -310,10 +283,8 @@
         #endregion
 
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox txtnome;
-        private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbcordenador;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbperiodo;
         private System.Windows.Forms.Label label1;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbnivel;

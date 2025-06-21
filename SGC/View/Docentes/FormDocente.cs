@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using SGC.Helppers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,42 +31,39 @@ namespace SGC.View
         private void CarregarDados(string filtroSemestre = null)
         {
             string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-                            ";
+        SELECT 
+            tu.docente AS NomeDocente,
+            tu.ano AS Nivel,
+            tu.nomedisciplina AS Disciplina,
+            tu.curso AS Curso,
+            tu.cargahoraria AS CargaHoraria,
+            SUM(tu.cargahoraria) OVER(PARTITION BY tu.docente) AS TotalCargaHoraria,
+            d.Observacao
+        FROM 
+            turmas tu
+        LEFT JOIN 
+            docentes d ON tu.docente = d.nome
+        WHERE 
+            tu.docente = @docente
+    ";
 
             if (!string.IsNullOrEmpty(filtroSemestre))
             {
-                query += $" WHERE di.Semestre = '{filtroSemestre}'";
+                query += " AND tu.semestre = @semestre";
             }
 
-            query += " ORDER BY NomeDocente";
+            query += " ORDER BY tu.ano, tu.curso, tu.nomedisciplina";
 
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
                 MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@docente", Session.UserName);
+
+                if (!string.IsNullOrEmpty(filtroSemestre))
+                {
+                    command.Parameters.AddWithValue("@semestre", filtroSemestre);
+                }
+
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
 
                 DataTable dataTable = new DataTable();
@@ -216,40 +214,44 @@ namespace SGC.View
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
                 string query = @"
-                            SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-                            WHERE 
-                                d.Nome LIKE @procurar OR 
-                                        di.Semestre LIKE @procurar OR 
-                                        di.Nivel LIKE @procurar OR 
-                                        c.Nome LIKE @procurar                            
-                            ORDER BY 
-                                NomeDocente";
+        SELECT 
+            d.Nome AS NomeDocente,
+            di.Nivel,
+            di.Nome AS Disciplina,
+            c.Nome AS Curso,
+            di.CargaHoraria,
+            t.TotalCargaHoraria,
+            d.Observacao
+        FROM 
+            Docentes d
+        JOIN 
+            Disciplinas di ON d.ID = di.DocenteID
+        JOIN 
+            Cursos c ON di.CursoID = c.ID
+        JOIN 
+            (
+                SELECT 
+                    DocenteID,
+                    SUM(CargaHoraria) AS TotalCargaHoraria
+                FROM 
+                    Disciplinas
+                GROUP BY 
+                    DocenteID
+            ) t ON d.ID = t.DocenteID
+        WHERE 
+            d.Nome = @docente AND 
+            (
+                di.Semestre LIKE @procurar OR 
+                di.Nivel LIKE @procurar OR 
+                di.Nome LIKE @procurar OR 
+                c.Nome LIKE @procurar
+            )
+        ORDER BY 
+            NomeDocente;
+    ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@docente", Session.UserName); // garantir que filtra pelo docente logado
                 command.Parameters.AddWithValue("@procurar", "%" + txtprocurar.Text.Trim() + "%");
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);

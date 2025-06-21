@@ -48,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(945, 525);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FormRelatorio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRelatorio";
             this.Load += new System.EventHandler(this.FormRelatorio_Load);
             this.ResumeLayout(false);

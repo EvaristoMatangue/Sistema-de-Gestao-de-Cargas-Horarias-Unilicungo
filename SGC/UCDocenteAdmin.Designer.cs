@@ -63,7 +63,7 @@
             // txtobs
             // 
             this.txtobs.Location = new System.Drawing.Point(25, 354);
-            this.txtobs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtobs.Margin = new System.Windows.Forms.Padding(2);
             this.txtobs.Name = "txtobs";
             this.txtobs.Size = new System.Drawing.Size(240, 62);
             this.txtobs.TabIndex = 113;
@@ -80,7 +80,7 @@
             this.cbcurso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbcurso.ItemHeight = 30;
             this.cbcurso.Location = new System.Drawing.Point(25, 229);
-            this.cbcurso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbcurso.Margin = new System.Windows.Forms.Padding(2);
             this.cbcurso.Name = "cbcurso";
             this.cbcurso.Size = new System.Drawing.Size(241, 36);
             this.cbcurso.TabIndex = 112;
@@ -98,7 +98,7 @@
             this.txtusuario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtusuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtusuario.Location = new System.Drawing.Point(25, 162);
-            this.txtusuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtusuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.PasswordChar = '\0';
             this.txtusuario.PlaceholderText = "Digite o nome do usuario";
@@ -119,7 +119,7 @@
             this.txttelefone.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txttelefone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txttelefone.Location = new System.Drawing.Point(25, 112);
-            this.txttelefone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txttelefone.Margin = new System.Windows.Forms.Padding(2);
             this.txttelefone.Name = "txttelefone";
             this.txttelefone.PasswordChar = '\0';
             this.txttelefone.PlaceholderText = "Digite o número de telefone";
@@ -143,7 +143,7 @@
             this.txtemail.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtemail.Location = new System.Drawing.Point(25, 63);
-            this.txtemail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtemail.Margin = new System.Windows.Forms.Padding(2);
             this.txtemail.Name = "txtemail";
             this.txtemail.PasswordChar = '\0';
             this.txtemail.PlaceholderText = "Digite o email";
@@ -166,7 +166,7 @@
             this.txtnome.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtnome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtnome.Location = new System.Drawing.Point(25, 17);
-            this.txtnome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtnome.Margin = new System.Windows.Forms.Padding(2);
             this.txtnome.Name = "txtnome";
             this.txtnome.PasswordChar = '\0';
             this.txtnome.PlaceholderText = "Digite o Nome Completo";
@@ -217,7 +217,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dataGridView1.Location = new System.Drawing.Point(277, 101);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
@@ -254,11 +254,12 @@
             this.btactualizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btactualizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btactualizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btactualizar.Enabled = false;
             this.btactualizar.FillColor = System.Drawing.SystemColors.Highlight;
             this.btactualizar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btactualizar.ForeColor = System.Drawing.Color.White;
             this.btactualizar.Location = new System.Drawing.Point(518, 56);
-            this.btactualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btactualizar.Margin = new System.Windows.Forms.Padding(2);
             this.btactualizar.Name = "btactualizar";
             this.btactualizar.Size = new System.Drawing.Size(185, 32);
             this.btactualizar.TabIndex = 116;
@@ -276,7 +277,7 @@
             this.btcadastrar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btcadastrar.ForeColor = System.Drawing.Color.White;
             this.btcadastrar.Location = new System.Drawing.Point(318, 56);
-            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btcadastrar.Margin = new System.Windows.Forms.Padding(2);
             this.btcadastrar.Name = "btcadastrar";
             this.btcadastrar.Size = new System.Drawing.Size(185, 32);
             this.btcadastrar.TabIndex = 115;
@@ -308,7 +309,7 @@
             "Mestrado",
             "PHD"});
             this.cbnivelacademico.Location = new System.Drawing.Point(27, 294);
-            this.cbnivelacademico.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbnivelacademico.Margin = new System.Windows.Forms.Padding(2);
             this.cbnivelacademico.Name = "cbnivelacademico";
             this.cbnivelacademico.Size = new System.Drawing.Size(241, 36);
             this.cbnivelacademico.TabIndex = 119;
@@ -320,11 +321,12 @@
             this.btapagar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btapagar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btapagar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btapagar.Enabled = false;
             this.btapagar.FillColor = System.Drawing.Color.Firebrick;
             this.btapagar.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btapagar.ForeColor = System.Drawing.Color.White;
             this.btapagar.Location = new System.Drawing.Point(718, 56);
-            this.btapagar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btapagar.Margin = new System.Windows.Forms.Padding(2);
             this.btapagar.Name = "btapagar";
             this.btapagar.Size = new System.Drawing.Size(185, 32);
             this.btapagar.TabIndex = 120;
@@ -374,6 +376,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneButton btcadastrar;
         private System.Windows.Forms.Label label1;
         private Siticone.Desktop.UI.WinForms.SiticoneComboBox cbnivelacademico;
-        private Siticone.Desktop.UI.WinForms.SiticoneButton btapagar;
+        protected internal Siticone.Desktop.UI.WinForms.SiticoneButton btapagar;
     }
 }

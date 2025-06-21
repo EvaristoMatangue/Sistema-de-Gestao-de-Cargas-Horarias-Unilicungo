@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using SGC.Helppers;
 using System;
-using System.Collections;
+using SGC.Helppers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,73 +9,120 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using Tulpep.NotificationWindow;
 
 namespace SGC.View.GestorCurso
 {
-    public partial class UCGCTurmas : UserControl
+    public partial class UCTurmasGestor : UserControl
     {
         string conn = $"{Helppers.conexao.connectionString}";
 
-        int quantidade, quantidaderestante;
-
-        public UCGCTurmas()
+        public UCTurmasGestor()
         {
             InitializeComponent();
         }
 
-        private void UCGCTurmas_Load(object sender, EventArgs e)
+        private void UCTurmasGestor_Load(object sender, EventArgs e)
         {
-            cbcurso.Items.Clear();
             cbdisciplina.Items.Clear();
             cbdocente.Items.Clear();
 
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
-                if (connection != null)
-                {
-                    connection.Close();
-                }
                 connection.Open();
-                string querydo = "SELECT nome FROM docentes";
-                string queryc = "SELECT nome FROM cursos";
-                string querydi = "SELECT nome FROM disciplinas";
 
-                MySqlCommand commanddo = new MySqlCommand(querydo, connection);
+                // 1. Docentes do curso
+                string querydo = "SELECT DISTINCT nome FROM docentes WHERE curso = @curso";
 
-                MySqlCommand commanddi = new MySqlCommand(querydi, connection);
-                MySqlCommand commandc = new MySqlCommand(queryc, connection);
+                // 2. Curso do gestor (só o próprio curso)
+                string queryc = "SELECT nome FROM cursos WHERE nome = @curso";
 
-                using (MySqlDataReader reader = commanddo.ExecuteReader())
+                // 3. Disciplinas do curso
+                string querydi = "SELECT nome FROM disciplinas WHERE curso = @curso";
+
+                // --- DOCENTES ---
+                using (MySqlCommand commanddo = new MySqlCommand(querydo, connection))
                 {
-                    while (reader.Read())
+                    commanddo.Parameters.AddWithValue("@curso", Session.curso);
+                    using (MySqlDataReader reader = commanddo.ExecuteReader())
                     {
-                        cbdocente.Items.Add(reader["nome"].ToString());
+                        while (reader.Read())
+                        {
+                            cbdocente.Items.Add(reader["nome"].ToString());
+                        }
                     }
-
-                }
-                using (MySqlDataReader readerdi = commanddi.ExecuteReader())
-                {
-                    while (readerdi.Read())
-                    {
-                        cbdisciplina.Items.Add(readerdi["nome"].ToString());
-                    }
-
-                }
-                using (MySqlDataReader readerc = commandc.ExecuteReader())
-                {
-                    while (readerc.Read())
-                    {
-                        cbcurso.Items.Add(readerc["nome"].ToString());
-                    }
-
                 }
 
+                // --- DISCIPLINAS ---
+                using (MySqlCommand commanddi = new MySqlCommand(querydi, connection))
+                {
+                    commanddi.Parameters.AddWithValue("@curso", Session.curso);
+                    using (MySqlDataReader readerdi = commanddi.ExecuteReader())
+                    {
+                        while (readerdi.Read())
+                        {
+                            cbdisciplina.Items.Add(readerdi["nome"].ToString());
+                        }
+                    }
+                }
+
+                cbcurso.Items.Add(Session.curso);
             }
+
             verdados();
 
         }
+        private void EliminarTurma()
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                // Alerta personalizado (usando FormAlertaContinuar)
+                FormAlertaContinuar alerta = new FormAlertaContinuar(
+                    "Tem certeza que deseja eliminar esta turma?\n\nEssa ação não pode ser desfeita."
+                );
+                DialogResult resposta = alerta.ShowDialog();
+
+                // Se usuário clicar em "Não", cancela
+                if (resposta == DialogResult.No)
+                    return;
+
+                // Pegando o ID da turma selecionada
+                int turmaId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id"].Value);
+
+                using (MySqlConnection connection = new MySqlConnection(conn))
+                {
+                    connection.Open();
+                    string query = "DELETE FROM turmas WHERE id = @id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", turmaId);
+                        int resultado = command.ExecuteNonQuery();
+
+                        if (resultado > 0)
+                        {
+                            Session.Sucess = "Turma eliminada com sucesso!";
+                            FormSucess sucess = new FormSucess();
+                            sucess.ShowDialog();
+
+                            verdados(); // Atualiza a DataGridView
+                        }
+                        else
+                        {
+                            Session.Error = "Erro ao eliminar a turma.";
+                            FormError formError = new FormError();
+                            formError.ShowDialog();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Session.Error = "Selecione uma turma para eliminar.";
+                FormError formError = new FormError();
+                formError.ShowDialog();
+            }
+        }
+
 
         private void btcadastrar_Click(object sender, EventArgs e)
         {
@@ -126,7 +172,9 @@ namespace SGC.View.GestorCurso
                         cargaNova = Convert.ToInt32(cargaObj);
                     else
                     {
-                        MessageBox.Show("Disciplina não encontrada. Verifique os dados.");
+                        Session.Error = "Disciplina não encontrada. Verifique os dados.";
+                        FormError formError = new FormError();
+                        formError.ShowDialog();
                         return;
                     }
 
@@ -141,8 +189,8 @@ namespace SGC.View.GestorCurso
                     else
                     {
                         Session.Error = "Docente não encontrado.";
-                        FormError erro = new FormError();
-                        erro.ShowDialog();
+                        FormError formError = new FormError();
+                        formError.ShowDialog();
                         return;
                     }
 
@@ -210,7 +258,7 @@ namespace SGC.View.GestorCurso
                     cmdInsert.Parameters.AddWithValue("@semestre", semestre);
                     cmdInsert.Parameters.AddWithValue("@disciplina", disciplina);
                     cmdInsert.Parameters.AddWithValue("@cargahoraria", cargaNova);
-                    cmdInsert.Parameters.AddWithValue("@anoletivo",cbdata.Value);
+                    cmdInsert.Parameters.AddWithValue("@anoletivo", anoletivo);
 
                     int result = cmdInsert.ExecuteNonQuery();
 
@@ -257,82 +305,7 @@ namespace SGC.View.GestorCurso
                 }
 
             }
-
         }
-        //private void selecionardocente()
-        //{
-        //    using (MySqlConnection connection = new MySqlConnection(conn))
-        //    {
-        //        if (connection != null)
-        //        {
-        //            connection.Close();
-        //        }
-        //        lnomedocente.Visible = true;
-        //        lnivelacademico.Visible = true;
-        //        lquantmax.Visible = true;
-        //        lquantrestante.Visible = true;
-        //        lquantcadeiras.Visible = true;
-
-        //        lnomedocente.Text = cbdocente.Text;
-
-
-        //        connection.Open();
-        //        string queryc = @"
-        //    SELECT nivelacademico, numcarga 
-        //    FROM docentes 
-        //    WHERE nome = @nomedocente";
-
-        //        MySqlCommand commandc = new MySqlCommand(queryc, connection);
-        //        commandc.Parameters.AddWithValue("@nomedocente", cbdocente.Text);
-
-        //        int cargaMaxima = 0;
-
-        //        using (MySqlDataReader reader = commandc.ExecuteReader())
-        //        {
-        //            if (reader.Read())
-        //            {
-        //                lnivelacademico.Text = reader["nivelacademico"].ToString();
-        //                lquantmax.Text = reader["numcarga"].ToString();
-        //                int.TryParse(reader["numcarga"].ToString(), out cargaMaxima);
-        //            }
-        //        }
-
-        //        // Query para contar disciplinas e somar carga horária
-        //        string query = @"
-        //    SELECT 
-        //        COUNT(*) AS totalcadeiras, 
-        //        SUM(t.cargahoraria) AS totalcarga 
-        //    FROM turmas t 
-        //    WHERE t.docente = @nomedocente";
-
-        //        MySqlCommand command = new MySqlCommand(query, connection);
-        //        command.Parameters.AddWithValue("@nomedocente", cbdocente.Text);
-
-        //        int totalCadeiras = 0;
-        //        int totalCarga = 0;
-
-        //        using (MySqlDataReader reader2 = command.ExecuteReader())
-        //        {
-        //            if (reader2.Read())
-        //            {
-        //                int.TryParse(reader2["totalcadeiras"].ToString(), out totalCadeiras);
-        //                int.TryParse(reader2["totalcarga"].ToString(), out totalCarga);
-
-        //                lquantcadeiras.Text = totalCadeiras.ToString();
-        //            }
-        //        }
-
-        //        int restante = cargaMaxima - totalCarga;
-        //        lquantrestante.Text = restante.ToString();
-
-        //        if (restante <= 0)
-        //        {
-        //            Session.Error = "Atingiu limite de cargas para este docente!";
-        //            FormError formError = new FormError();
-        //            formError.ShowDialog();
-        //        }
-        //    }
-        //}
         private void CarregarDisciplinas()
         {
             if (cbano.SelectedItem == null || cbcurso.SelectedItem == null || cbsemestre.SelectedItem == null)
@@ -383,33 +356,32 @@ namespace SGC.View.GestorCurso
         }
         public void verdados()
         {
-            string query = "SELECT * FROM turmas ORDER BY ano, curso, nomedisciplina;";
+            string query = @"
+        SELECT * 
+        FROM turmas 
+        WHERE curso = @cursoGestor 
+        ORDER BY ano, curso, nomedisciplina;
+    ";
 
             using (MySqlConnection connection = new MySqlConnection(conn))
             {
                 connection.Open();
 
                 MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@cursoGestor", Session.curso);
+
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                 DataTable dt = new DataTable();
-
                 adapter.Fill(dt);
 
                 dataGridView1.DataSource = dt;
-                dataGridView1.Columns["id"].Visible = false;
-                dataGridView1.Columns["cursoid"].Visible = false;
 
+                if (dataGridView1.Columns.Contains("id"))
+                    dataGridView1.Columns["id"].Visible = false;
+
+                if (dataGridView1.Columns.Contains("cursoid"))
+                    dataGridView1.Columns["cursoid"].Visible = false;
             }
-        }
-
-        private void cbano_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CarregarDisciplinas();
-        }
-
-        private void cbregime_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void cbcurso_SelectedIndexChanged(object sender, EventArgs e)
@@ -417,10 +389,14 @@ namespace SGC.View.GestorCurso
             CarregarDisciplinas();
         }
 
+        private void cbano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CarregarDisciplinas();
+        }
+
         private void cbsemestre_SelectedIndexChanged(object sender, EventArgs e)
         {
             CarregarDisciplinas();
-
         }
 
         private void btprocurar_Click(object sender, EventArgs e)
@@ -451,14 +427,6 @@ namespace SGC.View.GestorCurso
             }
         }
 
-        private void txtprocurar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btprocurar.PerformClick();
-            }
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // Garante que clicou numa linha válida
@@ -475,6 +443,14 @@ namespace SGC.View.GestorCurso
 
                 btactualizar.Enabled = true;
                 btapagar.Enabled = true;
+            }
+        }
+
+        private void txtprocurar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btprocurar.PerformClick();
             }
         }
         private void AtualizarDocenteComValidacao()
@@ -515,8 +491,8 @@ namespace SGC.View.GestorCurso
                 else
                 {
                     Session.Error = "Disciplina não encontrada.";
-                    FormError erro = new FormError();
-                    erro.ShowDialog();
+                    FormError formError = new FormError();
+                    formError.ShowDialog();
                     return;
                 }
 
@@ -530,9 +506,9 @@ namespace SGC.View.GestorCurso
                     cargaPermitida = Convert.ToInt32(maxObj);
                 else
                 {
-                    Session.Error = "Docente não encontrado.";
-                    FormError erro = new FormError();
-                    erro.ShowDialog();
+                    Session.Error = "Docente não encontrado";
+                    FormError formError = new FormError();
+                    formError.ShowDialog();
                     return;
                 }
 
@@ -591,8 +567,8 @@ namespace SGC.View.GestorCurso
                 else
                 {
                     Session.Error = "Não foi possível atualizar. Verifique os dados.";
-                    FormError erro = new FormError();
-                    erro.ShowDialog();
+                    FormError formError = new FormError();
+                    formError.ShowDialog();
                 }
             }
         }
@@ -604,60 +580,7 @@ namespace SGC.View.GestorCurso
 
         private void btapagar_Click(object sender, EventArgs e)
         {
-
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                // Alerta personalizado (usando FormAlertaContinuar)
-                FormAlertaContinuar alerta = new FormAlertaContinuar(
-                    "Tem certeza que deseja eliminar esta turma?\n\nEssa ação não pode ser desfeita."
-                );
-                DialogResult resposta = alerta.ShowDialog();
-
-                // Se usuário clicar em "Não", cancela
-                if (resposta == DialogResult.No)
-                    return;
-
-                // Pegando o ID da turma selecionada
-                int turmaId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["id"].Value);
-
-                using (MySqlConnection connection = new MySqlConnection(conn))
-                {
-                    connection.Open();
-                    string query = "DELETE FROM turmas WHERE id = @id";
-
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@id", turmaId);
-                        int resultado = command.ExecuteNonQuery();
-
-                        if (resultado > 0)
-                        {
-                            Session.Sucess = "Turma eliminada com sucesso!";
-                            FormSucess sucess = new FormSucess();
-                            sucess.ShowDialog();
-
-                            verdados(); // Atualiza a DataGridView
-                        }
-                        else
-                        {
-                            Session.Error = "Erro ao eliminar a turma.";
-                            FormError formError = new FormError();
-                            formError.ShowDialog();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Session.Error = "Selecione uma turma para eliminar.";
-                FormError formError = new FormError();
-                formError.ShowDialog();
-            }
-        }
-
-        private void cbdocente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //selecionardocente();
+            EliminarTurma();
         }
     }
 }

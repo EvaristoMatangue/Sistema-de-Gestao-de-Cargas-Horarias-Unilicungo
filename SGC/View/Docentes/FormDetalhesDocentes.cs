@@ -13,63 +13,63 @@ namespace SGC.View.Docentes
 {
     public partial class FormDetalhesDocentes : Form
     {
-        string docente, Curso, Nivel,Disciplina, Observacao;
+        string docente, Curso, Nivel, Disciplina, Observacao;
         string conn = $"{Helppers.conexao.connectionString}";
-        
+
         public FormDetalhesDocentes(string nomeDocente, string curso, string nivel, string disciplina, int totalCarga, string observacao)
         {
             InitializeComponent();
 
             ldocente.Text = nomeDocente;
-            docente=nomeDocente;
-            Curso = curso;
-            Nivel= nivel;
-            Disciplina= disciplina;
-            Totalcarga= totalCarga;
-            Observacao = observacao;
-            verdados();
+            CarregarDisciplinasDoDocente(nomeDocente);
         }
-    private void FormDetalhesDocentes_Load(object sender, EventArgs e)
-    {
-        verdados();
-    }
-    private void verdados()
+        private void FormDetalhesDocentes_Load(object sender, EventArgs e)
+        {
+        }
+        private void CarregarDisciplinasDoDocente(string nomeDocente)
+        {
+            string conn = Helppers.conexao.connectionString;
+
+            string query = @"
+        SELECT 
+            curso AS Curso,
+            ano AS Nivel,
+            nomedisciplina AS Disciplina,
+            semestre AS Semestre,
+            cargahoraria AS CargaHoraria
+        FROM 
+            turmas
+        WHERE 
+            docente = @docente
+        ORDER BY 
+            ano, curso, nomedisciplina;";
+
+            using (MySqlConnection connection = new MySqlConnection(conn))
             {
-                using (MySqlConnection connection = new MySqlConnection(conn))
-                {
-                    if (connection != null)
-                    {
-                        connection.Close();
-                    }
-                    connection.Open();
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@docente", nomeDocente);
 
-                    string query = "SELECT * from turmas where docente=@docente";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
 
-                    MySqlCommand comando= new MySqlCommand(query, connection);
+                dataGridView1.DataSource = dt;
 
-                    comando.Parameters.AddWithValue("@docente", ldocente);
-
-                    comando.ExecuteNonQuery();
-
-
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(comando);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    connection.Close();
-
-                    dataGridView1.DataSource = dataTable;
-                    dataGridView1.Columns["id"].Visible = false;
-
-                }
+                // Ajustes visuais opcionais
+                dataGridView1.Columns["Curso"].HeaderText = "Curso";
+                dataGridView1.Columns["Nivel"].HeaderText = "Ano/Nível";
+                dataGridView1.Columns["Disciplina"].HeaderText = "Disciplina";
+                dataGridView1.Columns["Semestre"].HeaderText = "Semestre";
+                dataGridView1.Columns["CargaHoraria"].HeaderText = "Carga Horária";
             }
+        }
 
-            private void btsair_Click(object sender, EventArgs e)
-            {
-                this.Close();
-            }
 
-            int Cargahoraria, Totalcarga, Cargarestante;
-        
+        private void btsair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

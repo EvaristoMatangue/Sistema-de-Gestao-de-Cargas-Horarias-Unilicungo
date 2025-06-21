@@ -53,19 +53,17 @@
             this.panel1.Controls.Add(this.siticonePictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 138);
+            this.panel1.Size = new System.Drawing.Size(456, 90);
             this.panel1.TabIndex = 0;
             // 
             // siticonePictureBox1
             // 
             this.siticonePictureBox1.Image = global::SGC.Properties.Resources.ok_48px;
             this.siticonePictureBox1.ImageRotate = 0F;
-            this.siticonePictureBox1.Location = new System.Drawing.Point(262, 18);
-            this.siticonePictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.siticonePictureBox1.Location = new System.Drawing.Point(175, 12);
             this.siticonePictureBox1.Name = "siticonePictureBox1";
-            this.siticonePictureBox1.Size = new System.Drawing.Size(152, 102);
+            this.siticonePictureBox1.Size = new System.Drawing.Size(101, 66);
             this.siticonePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.siticonePictureBox1.TabIndex = 0;
             this.siticonePictureBox1.TabStop = false;
@@ -74,10 +72,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.lsucess);
-            this.panel2.Location = new System.Drawing.Point(18, 178);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Location = new System.Drawing.Point(12, 116);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(648, 47);
+            this.panel2.Size = new System.Drawing.Size(432, 31);
             this.panel2.TabIndex = 18;
             // 
             // lsucess
@@ -86,9 +83,8 @@
             this.lsucess.Dock = System.Windows.Forms.DockStyle.Top;
             this.lsucess.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsucess.Location = new System.Drawing.Point(0, 0);
-            this.lsucess.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lsucess.Name = "lsucess";
-            this.lsucess.Size = new System.Drawing.Size(584, 24);
+            this.lsucess.Size = new System.Drawing.Size(417, 16);
             this.lsucess.TabIndex = 15;
             this.lsucess.Text = "---------------------------------------------------------------------------------" +
     "-";
@@ -104,24 +100,24 @@
             this.btfechar.FillColor = System.Drawing.Color.Green;
             this.btfechar.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btfechar.ForeColor = System.Drawing.Color.White;
-            this.btfechar.Location = new System.Drawing.Point(203, 235);
+            this.btfechar.Location = new System.Drawing.Point(135, 153);
+            this.btfechar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btfechar.Name = "btfechar";
-            this.btfechar.Size = new System.Drawing.Size(274, 45);
+            this.btfechar.Size = new System.Drawing.Size(183, 29);
             this.btfechar.TabIndex = 69;
             this.btfechar.Text = "Fechar";
             this.btfechar.Click += new System.EventHandler(this.btfechar_Click);
             // 
             // FormSucess
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(684, 287);
+            this.ClientSize = new System.Drawing.Size(456, 187);
             this.Controls.Add(this.btfechar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormSucess";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSucess";

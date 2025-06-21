@@ -201,13 +201,10 @@ namespace SGC.View
                     {
                         if (readerc.Read())
                         {
-                            // Supondo que 'reader["nome"]' contenha o nome completo da pessoa
                             string nomeCompleto = readerc["nome"].ToString();
 
-                            // Divide o nome completo em partes, separando por espaços
                             string[] partesNome = nomeCompleto.Split(' ');
 
-                            // O sobrenome geralmente é a última parte do array
                             string sobrenome = partesNome[partesNome.Length - 1];
 
                             // Armazena o sobrenome na sessão
@@ -314,29 +311,27 @@ namespace SGC.View
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-
-
-                if (connection != null)
-                {
-                    connection.Close();
-                }
                 connection.Open();
 
                 string query = @"
-                                SELECT u.nomeusuario, u.senha, u.tipousuario, c.nome as curso FROM usuarios as u Join cursos as c WHERE u.nomeusuario = @username
-                                ";
-                string queryrh = @"
-                                SELECT u.nomeusuario, u.senha, u.tipousuario FROM usuarios as u WHERE u.nomeusuario = @username
-                                ";
+        SELECT 
+            u.nomeusuario, 
+            u.senha, 
+            u.tipousuario, 
+            gc.curso AS cursoGestor
+        FROM 
+            usuarios AS u
+        LEFT JOIN 
+            gestorescurso gc ON u.nomeusuario = gc.nomeusuario
+        WHERE 
+            u.nomeusuario = @username
+    ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", txtuser.Text);
 
-                command.ExecuteNonQuery();
-
                 MySqlDataReader reader = command.ExecuteReader();
 
-              
                 if (reader.Read())
                 {
                     string storedHash = reader["senha"].ToString();
@@ -346,94 +341,57 @@ namespace SGC.View
                     {
                         Session.UserName = txtuser.Text;
                         Session.s = storedHash;
-                        Session.curso = reader["curso"].ToString();
-                        if (reader["tipousuario"].ToString() == "gestorrh")
+
+                        if (userType == "gestorcurso" && !reader.IsDBNull(reader.GetOrdinal("cursoGestor")))
+                            Session.curso = reader["cursoGestor"].ToString();
+
+                        switch (userType)
                         {
-                            FormAdmin admin = new FormAdmin();
-                            admin.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            admin.Show();
-
-                        }
-                        if (reader["tipousuario"].ToString() == "docente")
-                        {
-                            FormDocente docente = new FormDocente();
-                            docente.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            docente.Show();
-
-                        }
-                        else if (reader["tipousuario"].ToString() == "gestorcurso")
-                        {
-                            FormGestorCursos gestorcurso = new FormGestorCursos();
-                            gestorcurso.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            gestorcurso.Show();
-                        }
-                        else if (reader["tipousuario"].ToString() == "chefedepartamento")
-                        {
-                            FormChefeReparticao chefedep = new FormChefeReparticao();
-                            chefedep.FormClosed += (s, args) => this.Close();
-                            this.Hide();
-                            chefedep.Show();
-
-                        }
-                        
-                    }
-                    else
-                    {
-                        Session.Error = "Usuario ou senha Invalido!";
-                        FormError erro = new FormError();
-                        erro.ShowDialog();
-                    }
-
-                } else if(!reader.Read())
-                {
-                    reader.Close();  // IMPORTANTE: fechar antes de novo reader
-                    MySqlCommand commandrh = new MySqlCommand(queryrh, connection);
-                    commandrh.Parameters.AddWithValue("@username", txtuser.Text);
-
-                    MySqlDataReader readerrh = commandrh.ExecuteReader();
-
-                    if (readerrh.Read())
-                    {
-                        string storedHash = readerrh["senha"].ToString();
-                        string userType = readerrh["tipousuario"].ToString();
-
-                        if (BCrypt.Net.BCrypt.Verify(password, storedHash))
-                        {
-                            Session.UserName = txtuser.Text;
-                            Session.s = storedHash;
-                            if (readerrh["tipousuario"].ToString() == "gestorrh")
-                            {
+                            case "gestorrh":
                                 FormAdmin admin = new FormAdmin();
                                 admin.FormClosed += (s, args) => this.Close();
                                 this.Hide();
                                 admin.Show();
+                                break;
 
-                            }
-                        }
-                        else
-                        {
-                            Session.Error = "Usuario ou senha Invalido!";
-                            FormError erro = new FormError();
-                            erro.ShowDialog();
+                            case "docente":
+                                FormDocente docente = new FormDocente();
+                                docente.FormClosed += (s, args) => this.Close();
+                                this.Hide();
+                                docente.Show();
+                                break;
+
+                            case "gestorcurso":
+                                FormGestorCursos gestorCursos = new FormGestorCursos();
+                                gestorCursos.FormClosed += (s, args) => this.Close();
+                                this.Hide();
+                                gestorCursos.Show();
+                                break;
+
+                            case "chefedepartamento":
+                                FormChefeReparticao chefedepartamento = new FormChefeReparticao();
+                                chefedepartamento.FormClosed += (s, args) => this.Close();
+                                this.Hide();
+                                chefedepartamento.Show();
+                                break;
+
+                            default:
+                                Session.Error = "Tipo de usuário inválido.";
+                                new FormError().ShowDialog();
+                                break;
                         }
                     }
                     else
                     {
-                        Session.Error = "Usuario ou senha Invalido!";
-                        FormError erro = new FormError();
-                        erro.ShowDialog();
+                        Session.Error = "Usuário ou senha inválido!";
+                        new FormError().ShowDialog();
                     }
                 }
                 else
                 {
-                    Session.Error = "Usuario ou senha Invalido!";
-                    FormError erro = new FormError();
-                    erro.ShowDialog();
+                    Session.Error = "Usuário ou senha inválido!";
+                    new FormError().ShowDialog();
                 }
-
             }
         }
 

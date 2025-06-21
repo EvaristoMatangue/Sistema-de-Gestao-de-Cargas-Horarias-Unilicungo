@@ -100,7 +100,8 @@ namespace SGC
 
                 // Obtém o valor da célula na coluna "ID" da linha selecionada
                 int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
-
+                btactualizar.Enabled = true;
+                btapagar.Enabled = true;
             }
             else
             {
@@ -178,7 +179,7 @@ namespace SGC
                             command.Parameters.AddWithValue("@numcarga", numcarga);
                             command.Parameters.AddWithValue("@observacao", txtobs.Text);
 
-                            string queryu = "INSERT INTO usuarios (nomeusuario, tipousuario, senha) VALUES (@nomeusuario, @tipousuario, @senha)";
+                            string queryu = "INSERT INTO usuarios (nomeusuario, email, tipousuario, senha) VALUES (@nomeusuario, @email, @tipousuario, @senha)";
 
                             // Crie um novo comando com a consulta SQL e a conexão
                             MySqlCommand commandu = new MySqlCommand(queryu, connection);
@@ -187,6 +188,7 @@ namespace SGC
                             // Adicione os parâmetros
                             commandu.Parameters.AddWithValue("@nomeusuario", txtusuario.Text);
                             commandu.Parameters.AddWithValue("@tipousuario", "docente");
+                            commandu.Parameters.AddWithValue("@email", txtemail.Text);
                             commandu.Parameters.AddWithValue("@senha", hashedSenha);
 
                             // Execute o comando de inserção
@@ -380,10 +382,17 @@ namespace SGC
 
         private void btapagar_Click(object sender, EventArgs e)
         {
-            DialogResult check = MessageBox.Show("Pretende apagar este registo?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            FormAlertaContinuar alerta = new FormAlertaContinuar(
+        "Tem certeza que deseja eliminar este docente?\n" +
+        "Esta ação irá remover também o respectivo usuário do sistema\n e não poderá ser desfeita.\n\n" +
+        "Deseja continuar?"
+    );
+            DialogResult check = alerta.ShowDialog();
 
+            if (check != DialogResult.Yes)
+                return; // Usuário cancelou
 
-            DataRowView selectedRow = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+            DataRowView selectedRow = dataGridView1.CurrentRow?.DataBoundItem as DataRowView;
 
             if (selectedRow != null)
             {
@@ -391,43 +400,40 @@ namespace SGC
 
                 using (MySqlConnection connection = new MySqlConnection(conn))
                 {
-                    if (check == DialogResult.Yes)
+                    string query = "DELETE FROM docentes WHERE ID = @ID";
+                    string queryu = "DELETE FROM usuarios WHERE nomeusuario = @nomeuser";
+
+                    MySqlCommand commandu = new MySqlCommand(queryu, connection);
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
+                    command.Parameters.AddWithValue("@ID", id);
+
+                    connection.Open();
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    int rowsAffectedu = commandu.ExecuteNonQuery();
+
+                    if (rowsAffected > 0 && rowsAffectedu > 0)
                     {
-                        string query = "DELETE FROM docentes WHERE ID = @ID";
-                        string queryu = "DELETE FROM usuarios WHERE nomeusuario = @nomeuser";
+                        Session.Sucess = "Registo eliminado com sucesso!";
+                        FormSucess sucess = new FormSucess();
+                        sucess.ShowDialog();
 
-                        MySqlCommand commandu = new MySqlCommand(queryu, connection);
-                        MySqlCommand command = new MySqlCommand(query, connection);
-
-                        commandu.Parameters.AddWithValue("@nomeuser", txtusuario.Text);
-                        command.Parameters.AddWithValue("@ID", id);
-
-                        connection.Open();
-
-                        int rowsAffected = command.ExecuteNonQuery();
-                        int rowsAffectedu = commandu.ExecuteNonQuery();
-                        if (rowsAffected > 0 && rowsAffectedu > 0)
-                        {
-                            Session.Sucess = "Registo Eliminado com sucesso!";
-                            FormSucess sucess = new FormSucess();
-                            sucess.ShowDialog();
-
-                            limpardados();
-                            verdados();
-                        }
-                        else
-                        {
-                            Session.Error = "Falha ao deletar a linha. Por favor, tente novamente.";
-                            FormError erro = new FormError();
-                            erro.ShowDialog();
-                        }
+                        limpardados();
+                        verdados();
                     }
-
+                    else
+                    {
+                        Session.Error = "Falha ao eliminar o registo. Por favor, tente novamente.";
+                        FormError erro = new FormError();
+                        erro.ShowDialog();
+                    }
                 }
             }
             else
             {
-                Session.Error = "Por favor, selecione uma linha para deletar.";
+                Session.Error = "Por favor, selecione um registo para eliminar.";
                 FormError erro = new FormError();
                 erro.ShowDialog();
             }

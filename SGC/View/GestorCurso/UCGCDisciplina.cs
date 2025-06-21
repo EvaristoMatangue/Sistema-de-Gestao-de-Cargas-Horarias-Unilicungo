@@ -1,19 +1,20 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using MySql.Data.MySqlClient;
 using SGC.Helppers;
+using SGC.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Tulpep.NotificationWindow;
-using SGC.View;
-using Microsoft.ReportingServices.Diagnostics.Internal;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SGC
 {
@@ -341,6 +342,8 @@ namespace SGC
                 cbcurso.Text = row.Cells["curso"].Value.ToString();
                 cbsemestre.Text = row.Cells["Semestre"].Value.ToString();
 
+                btactualizar.Enabled = true;
+                btapagar.Enabled = true;
                 // Obtém o valor da célula na coluna "ID" da linha selecionada
                 int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
             }
@@ -376,6 +379,21 @@ namespace SGC
                 FormError erro = new FormError();
                 erro.ShowDialog();
                 txtcarga.Text = string.Empty;
+            }
+        }
+
+        private void txtnome_Validating(object sender, CancelEventArgs e)
+        {
+            string nome = txtnome.Text.Trim();
+
+            if (!Regex.IsMatch(nome, @"[a-zA-Zá-úÁ-Ú]"))
+            {
+                Session.Error = "O nome deve conter pelo menos uma letra.";
+                FormError formError = new FormError();
+                formError.ShowDialog();
+
+                txtnome.Focus();
+                e.Cancel = true;
             }
         }
     }

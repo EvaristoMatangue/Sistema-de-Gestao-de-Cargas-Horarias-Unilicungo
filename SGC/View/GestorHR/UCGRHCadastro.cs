@@ -230,5 +230,35 @@ namespace SGC.View.GestorHR
                 txttelefone.SelectionStart = txttelefone.Text.Length; // Ajustar o cursor
             }
         }
+
+        private void txtnome_Validating(object sender, CancelEventArgs e)
+        {
+            string nome = txtnome.Text.Trim();
+
+            if (!Regex.IsMatch(nome, @"[a-zA-Zá-úÁ-Ú]"))
+            {
+                Session.Error = "O nome deve conter pelo menos uma letra.";
+                FormError formError = new FormError();
+                formError.ShowDialog();
+
+                txtnome.Focus();
+                e.Cancel = true;
+            }
+        }
+
+        private void txtusuario_Validating(object sender, CancelEventArgs e)
+        {
+            string nome = txtusuario.Text.Trim();
+
+            if (!Regex.IsMatch(nome, @"[a-zA-Zá-úÁ-Ú]"))
+            {
+                Session.Error = "O nome deve conter pelo menos uma letra.";
+                FormError formError = new FormError();
+                formError.ShowDialog();
+
+                txtusuario.Focus();
+                e.Cancel = true;
+            }
+        }
     }
 }

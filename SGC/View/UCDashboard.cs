@@ -219,10 +219,14 @@ namespace SGC.View
                 int total = Convert.ToInt32(row.Cells["TotalCargaHoraria"].Value);
                 string obs = row.Cells["Observacao"].Value?.ToString();
 
-                FormDetalhesDocentes detalhes = new FormDetalhesDocentes(nome, curso, nivel, disciplina, total, obs);
-                detalhes.ShowDialog();
+                using (FormDetalhesDocentes detalhes = new FormDetalhesDocentes(nome, curso, nivel, disciplina, total, obs))
+                {
+                    detalhes.ShowDialog();
+                }
             }
         }
+
+        
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -234,37 +238,41 @@ namespace SGC.View
             {
                 string query = @"
                             SELECT 
-                                d.Nome AS NomeDocente,
-                                di.Nivel,
-                                di.Nome AS Disciplina,
-                                c.Nome AS Curso,
-                                di.CargaHoraria,
-                                t.TotalCargaHoraria,
-                                d.Observacao
-                                
-                            FROM 
-                                Docentes d
-                            JOIN 
-                                Disciplinas di ON d.ID = di.DocenteID
-                            JOIN 
-                                Cursos c ON di.CursoID = c.ID
-                            JOIN 
-                                (
-                                    SELECT 
-                                        di.DocenteID,
-                                        SUM(di.CargaHoraria) AS TotalCargaHoraria
-                                    FROM 
-                                        Disciplinas di
-                                    GROUP BY 
-                                        di.DocenteID
-                                ) t ON d.ID = t.DocenteID
-                            WHERE 
-                                d.Nome LIKE @procurar OR 
-                                        di.Semestre LIKE @procurar OR 
-                                        di.Nivel LIKE @procurar OR 
-                                        c.Nome LIKE @procurar                            
-                            ORDER BY 
-                                NomeDocente";
+    d.Nome AS NomeDocente,
+    (
+        SELECT GROUP_CONCAT(DISTINCT di.Nivel SEPARATOR ', ')
+        FROM Disciplinas di
+        JOIN turmas tu2 ON tu2.nomedisciplina = di.Nome
+        WHERE tu2.docente = d.Nome
+    ) AS Niveis,
+    (
+        SELECT GROUP_CONCAT(DISTINCT di.Nome SEPARATOR ', ')
+        FROM Disciplinas di
+        JOIN turmas tu2 ON tu2.nomedisciplina = di.Nome
+        WHERE tu2.docente = d.Nome
+    ) AS Disciplinas,
+    (
+        SELECT GROUP_CONCAT(DISTINCT c.Nome SEPARATOR ', ')
+        FROM Disciplinas di
+        JOIN Cursos c ON di.CursoID = c.ID
+        JOIN turmas tu2 ON tu2.nomedisciplina = di.Nome
+        WHERE tu2.docente = d.Nome
+    ) AS Cursos,
+    (
+        SELECT SUM(di2.CargaHoraria)
+        FROM Disciplinas di2
+        WHERE di2.Nome IN (
+            SELECT tu.nomedisciplina FROM turmas tu WHERE tu.docente = d.Nome
+        )
+    ) AS TotalCargaHoraria,
+    d.Observacao
+FROM 
+    Docentes d
+WHERE 
+    d.Nome LIKE @procurar
+ORDER BY 
+    NomeDocente;
+";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@procurar", "%" +txtprocurar.Text.Trim()+"%");

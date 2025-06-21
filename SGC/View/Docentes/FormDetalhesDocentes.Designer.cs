@@ -39,7 +39,10 @@
             this.dataGridView1 = new Siticone.Desktop.UI.WinForms.SiticoneDataGridView();
             this.siticonePanel1 = new Siticone.Desktop.UI.WinForms.SiticonePanel();
             this.btsair = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.siticonePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,10 +50,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(138)))), ((int)(((byte)(210)))));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(8, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 48);
+            this.label1.Size = new System.Drawing.Size(234, 32);
             this.label1.TabIndex = 30;
             this.label1.Text = "Cargas Horárias de: ";
             // 
@@ -59,10 +61,9 @@
             this.ldocente.AutoSize = true;
             this.ldocente.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldocente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(63)))), ((int)(((byte)(1)))));
-            this.ldocente.Location = new System.Drawing.Point(342, 9);
-            this.ldocente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ldocente.Location = new System.Drawing.Point(228, 71);
             this.ldocente.Name = "ldocente";
-            this.ldocente.Size = new System.Drawing.Size(157, 48);
+            this.ldocente.Size = new System.Drawing.Size(105, 32);
             this.ldocente.TabIndex = 31;
             this.ldocente.Text = "Docente";
             // 
@@ -96,12 +97,13 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 180);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 117);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1349, 502);
+            this.dataGridView1.Size = new System.Drawing.Size(883, 326);
             this.dataGridView1.TabIndex = 44;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -127,10 +129,13 @@
             // 
             // siticonePanel1
             // 
+            this.siticonePanel1.Controls.Add(this.pictureBox1);
+            this.siticonePanel1.Controls.Add(this.btsair);
             this.siticonePanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.siticonePanel1.Location = new System.Drawing.Point(0, 0);
+            this.siticonePanel1.Margin = new System.Windows.Forms.Padding(2);
             this.siticonePanel1.Name = "siticonePanel1";
-            this.siticonePanel1.Size = new System.Drawing.Size(1349, 180);
+            this.siticonePanel1.Size = new System.Drawing.Size(883, 117);
             this.siticonePanel1.TabIndex = 45;
             // 
             // btsair
@@ -144,31 +149,42 @@
             this.btsair.ForeColor = System.Drawing.Color.DimGray;
             this.btsair.Image = global::SGC.Properties.Resources.sairIcon;
             this.btsair.ImageSize = new System.Drawing.Size(30, 30);
-            this.btsair.Location = new System.Drawing.Point(1091, 5);
+            this.btsair.Location = new System.Drawing.Point(848, 2);
+            this.btsair.Margin = new System.Windows.Forms.Padding(2);
             this.btsair.Name = "btsair";
-            this.btsair.Size = new System.Drawing.Size(50, 52);
+            this.btsair.Size = new System.Drawing.Size(33, 34);
             this.btsair.TabIndex = 42;
             this.btsair.Click += new System.EventHandler(this.btsair_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SGC.Properties.Resources.ULLogoSb;
+            this.pictureBox1.Location = new System.Drawing.Point(391, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(90, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 43;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormDetalhesDocentes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1349, 682);
+            this.ClientSize = new System.Drawing.Size(883, 443);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btsair);
             this.Controls.Add(this.ldocente);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.siticonePanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormDetalhesDocentes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormDetalhesDocentes";
             this.Load += new System.EventHandler(this.FormDetalhesDocentes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.siticonePanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +197,6 @@
         private Siticone.Desktop.UI.WinForms.SiticoneBorderlessForm siticoneBorderlessForm1;
         private Siticone.Desktop.UI.WinForms.SiticoneDataGridView dataGridView1;
         private Siticone.Desktop.UI.WinForms.SiticonePanel siticonePanel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
